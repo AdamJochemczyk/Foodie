@@ -1,0 +1,13 @@
+.socialButton {
+  background-color: #fff;
+  text-transform: uppercase;
+  padding: 0.8rem 1.6rem;
+  color: #000;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 140px;
+  cursor: pointer;
+}

@@ -1,0 +1,41 @@
+.top {
+  background-color: var(--footer-background);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap-reverse;
+  padding: 6rem 0;
+}
+.aboutMe {
+  width: 300px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.me {
+  border-radius: 50%;
+  overflow: hidden;
+  height: 200px;
+  width: 200px;
+}
+.name {
+  margin: 2rem 0;
+}
+.description {
+  padding-bottom: 2rem;
+}
+.buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.bottom {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    var(--footer-background);
+  padding: 0.8rem;
+  text-align: center;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 600;
+}
