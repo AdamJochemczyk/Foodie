@@ -1,5 +1,4 @@
 .root {
-  padding: 1.6rem 3.2rem;
   text-transform: uppercase;
   font-weight: 600;
   border-radius: 0.4rem;
@@ -7,6 +6,12 @@
 }
 .root:hover {
   cursor: pointer;
+}
+.big {
+  padding: 1.6rem 3.2rem;
+}
+.small {
+  padding: 0.8rem 1.6rem;
 }
 .primary {
   background-color: var(--cta-orange);

@@ -20,7 +20,6 @@
     "plugin:react/recommended",
     "prettier",
     "eslint:recommended",
-    "plugin:jsx-a11y/recommended",
     "plugin:react/recommended",
     "plugin:sonarjs/recommended",
     "plugin:unicorn/recommended",

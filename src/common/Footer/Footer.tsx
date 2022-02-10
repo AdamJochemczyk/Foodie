@@ -86,7 +86,6 @@ export const Footer = () => {
               ></textarea>
               <OrangeButton
                 text="skontaktuj się ze mną"
-                variant="primary"
                 type="submit"
               ></OrangeButton>
             </form>

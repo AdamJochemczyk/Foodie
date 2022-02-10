@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 //import Image from "next/image";
 import { Footer } from "../src/common/Footer/Footer";
+import { Navbar } from "../src/common/Navbar/Navbar";
 // import styles from "../src/modules/Home/Home.module.css";
 
 const Home: NextPage = () => {
@@ -36,6 +37,7 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Navbar></Navbar>
       <main></main>
       <Footer />
     </div>

@@ -4,21 +4,25 @@ import styles from "./OrangeButton.module.css";
 
 interface OrangeButtonProperties {
   text: string;
-  variant: "primary" | "secondary";
+  variant?: "primary" | "secondary";
+  size?: "big" | "small";
   type?: "button" | "submit";
 }
 
 export const OrangeButton = ({
   text,
-  variant,
-  type
+  variant = "primary",
+  size = "big",
+  type = "button"
 }: OrangeButtonProperties) => {
   return (
     <button
-      type={type || "button"}
+      type={type}
       className={clsx(styles.root, {
         [styles.primary]: variant === "primary",
-        [styles.secondary]: variant === "secondary"
+        [styles.secondary]: variant === "secondary",
+        [styles.small]: size === "small",
+        [styles.big]: size === "big"
       })}
     >
       {text}
