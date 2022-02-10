@@ -2,12 +2,13 @@ import React from "react";
 import styles from "./Footer.module.css";
 import Image from "next/image";
 import { SocialButton } from "../SocialButton/SocialButton";
+import { OrangeButton } from "../OrangeButton/OrangeButton";
 
 export const Footer = () => {
   return (
     <footer>
       <article className={styles.top}>
-        <section className={styles.aboutMe}>
+        <section className={styles.footerSection}>
           <div className={styles.me}>
             <Image
               src="/static/images/me.jpg"
@@ -47,7 +48,50 @@ export const Footer = () => {
             />
           </div>
         </section>
-        <section>hello</section>
+        <section className={styles.footerSection}>
+          <Image
+            src="/static/icons/logo.svg"
+            width={250}
+            height={72}
+            alt="logo"
+          />
+          <h3>Foodie sp. z o . o</h3>
+          <address>
+            <p>ul. Brzozowa 23</p>
+            <p>Katowice</p>
+            <p>Polska</p>
+            <p>info@foodie.pl</p>
+            <p>+48 123 456 798</p>
+          </address>
+          <div>
+            <form
+              action="mailto:adamjoche@gmail.com"
+              method="POST"
+              name="contact"
+              className={styles.contactForm}
+            >
+              <label htmlFor="name">Name:</label>
+              <input
+                type="text"
+                name="name"
+                className={styles.contactForm__input}
+              />
+              <label htmlFor="message">Message:</label>
+              <textarea
+                name="message"
+                rows={6}
+                cols={20}
+                maxLength={150}
+                className={styles.contactForm__input}
+              ></textarea>
+              <OrangeButton
+                text="skontaktuj się ze mną"
+                variant="primary"
+                type="submit"
+              ></OrangeButton>
+            </form>
+          </div>
+        </section>
       </article>
       <section className={styles.bottom}>
         Copyrights CC {new Date().getFullYear()} by Adam Jochemczyk

@@ -14,6 +14,9 @@ a {
   color: inherit;
   text-decoration: none;
 }
+textarea {
+  resize: none;
+}
 
 * {
   box-sizing: border-box;
