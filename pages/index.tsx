@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 //import Image from "next/image";
-import { Footer } from "../src/common/Footer/Footer";
-import { Navbar } from "../src/common/Navbar/Navbar";
+import { Footer } from "../src/modules/Home/Footer/Footer";
+import { Navbar } from "../src/modules/Home/Navbar/Navbar";
 // import styles from "../src/modules/Home/Home.module.css";
 
 const Home: NextPage = () => {
