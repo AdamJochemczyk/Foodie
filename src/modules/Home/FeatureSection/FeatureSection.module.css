@@ -1,0 +1,50 @@
+.feature {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem;
+}
+.blue {
+  background-color: var(--footer-background);
+  color: #fff;
+}
+.imageRight {
+  flex-flow: row-reverse;
+}
+.text {
+  flex-basis: 60%;
+}
+.image {
+  position: relative;
+  height: 300px;
+  width: 300px;
+}
+.imageRight .image {
+  height: 250px;
+  width: 350px;
+}
+.title {
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  font-size: 4rem;
+}
+.desc {
+  font-size: 2rem;
+}
+@media screen and (max-width: 768px) {
+  .feature {
+    flex-wrap: wrap;
+  }
+  .title {
+    text-align: center;
+  }
+  .imageRight .image {
+    height: 200px;
+    width: 300px;
+  }
+}
+@media screen and (min-width: 769px) {
+  .feature {
+    gap: 10rem;
+  }
+}

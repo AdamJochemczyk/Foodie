@@ -11,6 +11,7 @@
   position: sticky;
   top: 0;
   font-weight: 500;
+  z-index: 1;
 }
 .menuItems {
   display: flex;

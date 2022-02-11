@@ -13,22 +13,22 @@ export const Navbar = () => (
       alt="Foodie"
     />
     <div className={styles.menuItems}>
-      <Link href="#first-section" passHref>
+      <Link href="#przepisy" passHref>
         <a>Przepisy</a>
       </Link>
-      <Link href="#first-section" passHref>
+      <Link href="#dieta" passHref>
         <a>Dieta</a>
       </Link>
-      <Link href="#first-section" passHref>
+      <Link href="#lodowka" passHref>
         <a>Lodówka</a>
       </Link>
-      <Link href="#first-section" passHref>
+      <Link href="#zakupy" passHref>
         <a>Zakupy</a>
       </Link>
-      <Link href="#first-section" passHref>
+      <Link href="#raporty" passHref>
         <a>Raporty</a>
       </Link>
-      <Link href="#first-section" passHref>
+      <Link href="#opinie" passHref>
         <a>Opinie</a>
       </Link>
     </div>

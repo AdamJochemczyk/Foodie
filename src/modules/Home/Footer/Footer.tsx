@@ -4,29 +4,7 @@ import Image from "next/image";
 import { SocialButton } from "../../../common/SocialButton/SocialButton";
 import { OrangeButton } from "../../../common/OrangeButton/OrangeButton";
 import Link from "next/link";
-
-const socials = [
-  {
-    link: "https://www.facebook.com/adam.jochemczyk.9",
-    src: "/static/icons/facebook.svg",
-    text: "facebook"
-  },
-  {
-    link: "https://github.com/AdamJochemczyk",
-    src: "/static/icons/github.svg",
-    text: "github"
-  },
-  {
-    link: "https://www.linkedin.com/in/adam-jochemczyk-6bb5a7204/",
-    src: "/static/icons/linkedin.svg",
-    text: "linkedin"
-  },
-  {
-    link: "mailto:adamjoche@gmail.com",
-    src: "/static/icons/mail.svg",
-    text: "mail"
-  }
-];
+import { socials } from "../constants";
 
 export const Footer = () => (
   <footer>
