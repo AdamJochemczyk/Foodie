@@ -33,8 +33,16 @@ export const Navbar = () => (
       </Link>
     </div>
     <div className={styles.actionBtns}>
-      <OrangeButton text="zarejsetruj się" size="small" />
-      <OrangeButton variant="secondary" text="zaloguj się" size="small" />
+      <Link href="/auth/sign-up" passHref>
+        <a>
+          <OrangeButton text="zarejestruj się" size="small" />
+        </a>
+      </Link>
+      <Link href="/auth/sign-in" passHref>
+        <a>
+          <OrangeButton variant="secondary" text="zaloguj się" size="small" />
+        </a>
+      </Link>
     </div>
   </nav>
 );

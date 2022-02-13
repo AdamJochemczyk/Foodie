@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { OrangeButton } from "../../../common/OrangeButton/OrangeButton";
 import styles from "./Hero.module.css";
@@ -13,12 +14,20 @@ export const Hero = () => {
           <strong>zdrowym ciele zdrowy duch!</strong>
         </p>
         <div className={styles.heroBtns}>
-          <OrangeButton text="zobacz ofertę" size="small" />
-          <OrangeButton
-            text="przejdź do apki"
-            size="small"
-            variant="secondary"
-          />
+          <Link href="#przepisy" passHref>
+            <a>
+              <OrangeButton text="zobacz ofertę" size="small" />
+            </a>
+          </Link>
+          <Link href="/auth/sign-in" passHref>
+            <a>
+              <OrangeButton
+                text="przejdź do apki"
+                size="small"
+                variant="secondary"
+              />
+            </a>
+          </Link>
         </div>
       </div>
     </section>

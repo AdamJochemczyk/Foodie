@@ -2,7 +2,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 4rem;
 }
 .blue {
   background-color: var(--footer-background);
@@ -10,9 +9,6 @@
 }
 .imageRight {
   flex-flow: row-reverse;
-}
-.text {
-  flex-basis: 60%;
 }
 .image {
   position: relative;
@@ -34,6 +30,7 @@
 @media screen and (max-width: 768px) {
   .feature {
     flex-wrap: wrap;
+    padding: 2rem;
   }
   .title {
     text-align: center;
@@ -46,5 +43,9 @@
 @media screen and (min-width: 769px) {
   .feature {
     gap: 10rem;
+    padding: 4rem;
+  }
+  .text {
+    flex-basis: 60%;
   }
 }

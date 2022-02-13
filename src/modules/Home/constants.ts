@@ -62,3 +62,24 @@ export const features = [
     imageRight: false
   }
 ];
+
+export const testimonials = [
+  {
+    name: "Andre",
+    surname: "Jagini",
+    imgSrc: "/static/images/testimonial-1.jpg",
+    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur possimus obcaecati consectetur nulla asperiores ipsam dolore optio cum, voluptates, fugiat rem unde eos sapiente. Debitis!"
+  },
+  {
+    name: "Anderson",
+    surname: "Amini",
+    imgSrc: "/static/images/testimonial-2.jpg",
+    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur"
+  },
+  {
+    name: "Emily",
+    surname: "Sapori",
+    imgSrc: "/static/images/testimonial-3.jpg",
+    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur possimus obcaecati consectetur nulla asperiores ipsam"
+  }
+];

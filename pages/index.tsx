@@ -1,11 +1,10 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-//import Image from "next/image";
 import { Footer } from "../src/modules/Home/Footer/Footer";
 import { Navbar } from "../src/modules/Home/Navbar/Navbar";
 import { Hero } from "../src/modules/Home/Hero/Hero";
-import { FeatureSection } from "../src/modules/Home/FeatureSection/FeatureSection";
-import { features } from "../src/modules/Home/constants";
+import { Features } from "../src/modules/Home/Features/Features";
+import { Testimonials } from "../src/modules/Home/Testimonials/Testimonials";
 
 const Home: NextPage = () => {
   return (
@@ -42,20 +41,8 @@ const Home: NextPage = () => {
       <Navbar />
       <main>
         <Hero />
-        {features.map(
-          ({ sectionId, title, desc, imgSrc, blueBackground, imageRight }) => (
-            <FeatureSection
-              key={sectionId}
-              sectionId={sectionId}
-              title={title}
-              desc={desc}
-              imgSrc={imgSrc}
-              blueBackground={blueBackground}
-              imageRight={imageRight}
-            />
-          )
-        )}
-        Opinie
+        <Features />
+        <Testimonials />
       </main>
       <Footer />
     </div>

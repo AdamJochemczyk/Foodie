@@ -1,0 +1,15 @@
+.testimonialsSection {
+  padding: 2rem 0;
+}
+.testimonials {
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 4rem;
+  font-weight: 700;
+}
+.testimonialsBox {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
