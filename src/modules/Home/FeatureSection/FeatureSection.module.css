@@ -12,12 +12,8 @@
 }
 .image {
   position: relative;
-  height: 300px;
-  width: 300px;
-}
-.imageRight .image {
   height: 250px;
-  width: 350px;
+  width: 250px;
 }
 .title {
   font-weight: 700;
@@ -34,10 +30,6 @@
   }
   .title {
     text-align: center;
-  }
-  .imageRight .image {
-    height: 200px;
-    width: 300px;
   }
 }
 @media screen and (min-width: 769px) {
