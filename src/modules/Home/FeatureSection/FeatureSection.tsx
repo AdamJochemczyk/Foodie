@@ -1,4 +1,3 @@
-/* eslint-disable no-magic-numbers */
 import clsx from "clsx";
 import Image from "next/image";
 import styles from "./FeatureSection.module.css";

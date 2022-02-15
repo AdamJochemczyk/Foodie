@@ -35,7 +35,6 @@
     "unicorn/filename-case": "off",
     "prefer-const": "error",
     "@typescript-eslint/no-unused-vars": "error",
-    "@typescript-eslint/no-explicit-any": "error",
-    "no-magic-numbers": "error"
+    "@typescript-eslint/no-explicit-any": "error"
   }
 }
