@@ -3,3 +3,5 @@
 
 echo "Eslint checking files..."
 npx lint-prepush
+echo "Build project to check types..."
+npm run build
