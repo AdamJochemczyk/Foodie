@@ -10,17 +10,19 @@ import {
   createPasswordValidation,
   emailValidation
 } from "../../src/common/validation";
+import { useCreateUser } from "../../src/modules/Auth/hooks/useCreateUser";
 
 //register
 export default function Signup() {
+  const createUserMutation = useCreateUser();
   const formik = useFormik({
     initialValues: { email: "", password: "" },
     validationSchema: yup.object().shape({
       email: emailValidation,
       password: createPasswordValidation
     }),
-    onSubmit: () => {
-      //console.log(values);
+    onSubmit: values => {
+      createUserMutation.mutate(values);
     }
   });
 
@@ -30,19 +32,25 @@ export default function Signup() {
         <div className={sign.form}>
           <h1 className={sign.title}>Zarejestruj się</h1>
           <FormikProvider value={formik}>
-            <FormInput
-              name="email"
-              type="email"
-              label="email"
-              autocomplete="email"
-            />
-            <FormInput
-              name="password"
-              type="password"
-              label="password"
-              autocomplete="new-password"
-            />
-            <ActionButton text="Stwórz konto" onClick={formik.handleSubmit} />
+            <form>
+              <FormInput
+                name="email"
+                type="email"
+                label="email"
+                autocomplete="email"
+              />
+              <FormInput
+                name="password"
+                type="password"
+                label="password"
+                autocomplete="new-password"
+              />
+              <ActionButton
+                text="Stwórz konto"
+                onClick={formik.handleSubmit}
+                loading={createUserMutation.isLoading}
+              />
+            </form>
           </FormikProvider>
           <div className={sign.footer}>
             Posiadasz już konto?

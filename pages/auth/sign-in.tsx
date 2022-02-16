@@ -10,18 +10,40 @@ import {
   emailValidation,
   passwordValidation
 } from "../../src/common/validation";
+import { useLogin } from "../../src/modules/Auth/hooks/useLogin";
+import { useCallback, useEffect, useState } from "react";
 
 export default function Signin() {
+  const loginMutation = useLogin();
+
+  const [rememberedEmail, setRememberedEmail] = useState("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setRememberedEmail(localStorage.getItem("loginEmail") || "");
+    }
+  }, []);
+
   const formik = useFormik({
-    initialValues: { email: "", password: "" },
+    initialValues: { email: rememberedEmail, password: "" },
+    enableReinitialize: true,
     validationSchema: yup.object().shape({
       email: emailValidation,
       password: passwordValidation
     }),
-    onSubmit: () => {
-      //
+    onSubmit: values => {
+      loginMutation.mutate(values);
+      if (rememberMe && typeof window !== "undefined") {
+        localStorage.setItem("loginEmail", values.email);
+      }
     }
   });
+
+  const [rememberMe, setRememberMe] = useState(false);
+
+  const handleRememberMeChecked = useCallback(() => {
+    setRememberMe(rememberMe => !rememberMe);
+  }, []);
 
   return (
     <div className={common.signWrapper}>
@@ -29,28 +51,39 @@ export default function Signin() {
         <div className={sign.form}>
           <h1>Zaloguj się</h1>
           <FormikProvider value={formik}>
-            <FormInput
-              name="email"
-              type="email"
-              label="email"
-              autocomplete="email"
-            />
-            <FormInput
-              name="password"
-              type="password"
-              label="password"
-              autocomplete="new-password"
-            />
-            <div className={sign.helperBox}>
-              <div>
-                <input type="checkbox" name="rememberMe" />
-                <label htmlFor="rememberMe">Pamiętaj mnie</label>
+            <form>
+              <FormInput
+                name="email"
+                type="email"
+                label="email"
+                autocomplete="email"
+              />
+              <FormInput
+                name="password"
+                type="password"
+                label="password"
+                autocomplete="new-password"
+              />
+              <div className={sign.helperBox}>
+                <div>
+                  <input
+                    type="checkbox"
+                    name="rememberMe"
+                    checked={rememberMe}
+                    onChange={handleRememberMeChecked}
+                  />
+                  <label htmlFor="rememberMe">Pamiętaj mnie</label>
+                </div>
+                <Link href="/auth/reset-password-request" passHref>
+                  <a className={sign.link}>Zapomniałeś hasła?</a>
+                </Link>
               </div>
-              <Link href="/auth/reset-password-request" passHref>
-                <a className={sign.link}>Zapomniałeś hasła?</a>
-              </Link>
-            </div>
-            <ActionButton text="Zaloguj się" onClick={formik.handleSubmit} />
+              <ActionButton
+                text="Zaloguj się"
+                onClick={formik.handleSubmit}
+                loading={loginMutation.isLoading}
+              />
+            </form>
           </FormikProvider>
           <div className={sign.helperBox}>
             <p>Nie masz konta?</p>
