@@ -6,15 +6,17 @@ import common from "../../styles/common.module.css";
 import sign from "../../src/modules/Auth/Sign.module.css";
 import * as yup from "yup";
 import { emailValidation } from "../../src/common/validation";
+import { useResetPasswordForEmailRequest } from "../../src/modules/Auth/hooks/useResetPasswordRequest";
 
-export default function Signin() {
+export default function ResetPasswordRequest() {
+  const resetPasswordForEmailMutation = useResetPasswordForEmailRequest();
   const formik = useFormik({
     initialValues: { email: "" },
     validationSchema: yup.object().shape({
       email: emailValidation
     }),
-    onSubmit: () => {
-      //
+    onSubmit: ({ email }) => {
+      resetPasswordForEmailMutation.mutate(email);
     }
   });
 

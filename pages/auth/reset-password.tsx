@@ -6,6 +6,9 @@ import common from "../../styles/common.module.css";
 import sign from "../../src/modules/Auth/Sign.module.css";
 import * as yup from "yup";
 import { createPasswordValidation } from "../../src/common/validation";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { useResetPassword } from "../../src/modules/Auth/hooks/useResetPassword";
 
 const validationSchema = yup.object().shape({
   password: createPasswordValidation,
@@ -15,14 +18,31 @@ const validationSchema = yup.object().shape({
     .oneOf([yup.ref("password"), null], "Hasła muszą być takie same")
 });
 
-export default function Signin() {
+export default function ResetPassword() {
+  const router = useRouter();
+  const { query, isReady } = router;
+  const [authToken, setAuthToken] = useState("");
+  const resetPasswordMutation = useResetPassword();
+
   const formik = useFormik({
     initialValues: { password: "", passwordConfirmation: "" },
     validationSchema: validationSchema,
-    onSubmit: () => {
-      //
+    onSubmit: ({ password }) => {
+      resetPasswordMutation.mutate({
+        authToken,
+        password
+      });
     }
   });
+
+  useEffect(() => {
+    if (!isReady) return;
+    if (query.authToken && typeof query.authToken === "string") {
+      setAuthToken(query.authToken);
+    } else {
+      router.push("/");
+    }
+  }, [isReady]);
 
   return (
     <div className={common.signWrapper}>
@@ -30,19 +50,25 @@ export default function Signin() {
         <div className={sign.form}>
           <h1 className={sign.title}> Zresetuj hasło</h1>
           <FormikProvider value={formik}>
-            <FormInput
-              name="password"
-              type="password"
-              label="password"
-              autocomplete="new-password"
-            />
-            <FormInput
-              name="passwordConfirmation"
-              type="password"
-              label="potwierdz hasło"
-              autocomplete="new-password"
-            />
-            <ActionButton text="Zresetuj hasło" onClick={formik.handleSubmit} />
+            <form>
+              <FormInput
+                name="password"
+                type="password"
+                label="password"
+                autocomplete="new-password"
+              />
+              <FormInput
+                name="passwordConfirmation"
+                type="password"
+                label="potwierdz hasło"
+                autocomplete="new-password"
+              />
+              <ActionButton
+                text="Zresetuj hasło"
+                onClick={formik.handleSubmit}
+                type="submit"
+              />
+            </form>
           </FormikProvider>
         </div>
       </SignBox>

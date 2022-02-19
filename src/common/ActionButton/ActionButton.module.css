@@ -7,3 +7,6 @@
   font-size: 2rem;
   width: 100%;
 }
+.button:hover {
+  cursor: pointer;
+}

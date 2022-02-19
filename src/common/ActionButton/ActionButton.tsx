@@ -6,15 +6,17 @@ interface ActionButtonProperties {
   text: string;
   onClick: () => void;
   loading?: boolean;
+  type?: "submit" | "button";
 }
 
 export const ActionButton = ({
   text,
   onClick,
-  loading = false
+  loading = false,
+  type = "button"
 }: ActionButtonProperties) => {
   return (
-    <button className={styles.button} onClick={onClick}>
+    <button className={styles.button} onClick={onClick} type={type}>
       {loading && <Loader />}
       {text}
     </button>
