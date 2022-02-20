@@ -12,17 +12,17 @@ export const sidebarData = [
   },
   {
     title: "Dieta",
-    path: "/",
+    path: "/diet",
     icon: <FaCarrot />
   },
   {
     title: "Lodówka",
-    path: "/",
+    path: "/fridge",
     icon: <RiFridgeLine />
   },
   {
     title: "Zakupy",
-    path: "/",
+    path: "/shoping",
     icon: <FiShoppingBag />
   },
   {

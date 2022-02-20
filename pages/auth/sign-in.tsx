@@ -1,7 +1,7 @@
 import { FormikProvider, useFormik } from "formik";
 import Link from "next/link";
 import { ActionButton } from "../../src/common/ActionButton/ActionButton";
-import { FormInput } from "../../src/common/Inputs/FormInput";
+import { FormInput } from "../../src/common/Inputs/FormInput/FormInput";
 import { SignBox } from "../../src/modules/Auth/SignBox/SignBox";
 import common from "../../styles/common.module.css";
 import sign from "../../src/modules/Auth/Sign.module.css";
@@ -57,12 +57,14 @@ export default function Signin() {
                 type="email"
                 label="email"
                 autocomplete="email"
+                rounded
               />
               <FormInput
                 name="password"
                 type="password"
                 label="password"
                 autocomplete="new-password"
+                rounded
               />
               <div className={sign.helperBox}>
                 <div>
@@ -82,6 +84,7 @@ export default function Signin() {
                 text="Zaloguj się"
                 onClick={formik.handleSubmit}
                 loading={loginMutation.isLoading}
+                rounded
               />
             </form>
           </FormikProvider>

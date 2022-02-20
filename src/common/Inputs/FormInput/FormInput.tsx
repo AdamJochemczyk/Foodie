@@ -1,18 +1,20 @@
 import clsx from "clsx";
 import { useField } from "formik";
-import { upperFirst } from "../utils/stringMethods";
-import styles from "./FormInput.module.css";
+import { upperFirst } from "../../utils/stringMethods";
+import styles from "../FormInputs.module.css";
 
 export const FormInput = ({
   name,
   label,
   type = "text",
-  autocomplete = "off"
+  autocomplete = "off",
+  rounded = false
 }: {
   name: string;
   label: string;
   autocomplete: "new-password" | "email" | "password" | "off";
   type?: "text" | "email" | "password";
+  rounded?: boolean;
 }) => {
   const [field, meta] = useField(name);
 
@@ -28,7 +30,8 @@ export const FormInput = ({
       </label>
       <input
         className={clsx(styles.fieldInput, {
-          [styles.error]: meta.touched && Boolean(meta.error)
+          [styles.error]: meta.touched && Boolean(meta.error),
+          [styles.rounded]: rounded
         })}
         type={type}
         id={field.name}

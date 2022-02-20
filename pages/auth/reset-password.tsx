@@ -1,6 +1,6 @@
 import { FormikProvider, useFormik } from "formik";
 import { ActionButton } from "../../src/common/ActionButton/ActionButton";
-import { FormInput } from "../../src/common/Inputs/FormInput";
+import { FormInput } from "../../src/common/Inputs/FormInput/FormInput";
 import { SignBox } from "../../src/modules/Auth/SignBox/SignBox";
 import common from "../../styles/common.module.css";
 import sign from "../../src/modules/Auth/Sign.module.css";
@@ -42,6 +42,7 @@ export default function ResetPassword() {
     } else {
       router.push("/");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isReady]);
 
   return (
@@ -56,17 +57,20 @@ export default function ResetPassword() {
                 type="password"
                 label="password"
                 autocomplete="new-password"
+                rounded
               />
               <FormInput
                 name="passwordConfirmation"
                 type="password"
                 label="potwierdz hasło"
                 autocomplete="new-password"
+                rounded
               />
               <ActionButton
                 text="Zresetuj hasło"
                 onClick={formik.handleSubmit}
                 type="submit"
+                rounded
               />
             </form>
           </FormikProvider>

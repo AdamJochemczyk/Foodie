@@ -1,6 +1,6 @@
 import { FormikProvider, useFormik } from "formik";
 import { ActionButton } from "../../src/common/ActionButton/ActionButton";
-import { FormInput } from "../../src/common/Inputs/FormInput";
+import { FormInput } from "../../src/common/Inputs/FormInput/FormInput";
 import { SignBox } from "../../src/modules/Auth/SignBox/SignBox";
 import common from "../../styles/common.module.css";
 import sign from "../../src/modules/Auth/Sign.module.css";
@@ -31,8 +31,13 @@ export default function ResetPasswordRequest() {
               type="email"
               label="email"
               autocomplete="email"
+              rounded
             />
-            <ActionButton text="Zresetuj hasło" onClick={formik.handleSubmit} />
+            <ActionButton
+              text="Zresetuj hasło"
+              onClick={formik.handleSubmit}
+              rounded
+            />
             <div className={sign.footer}>
               <p>
                 Wyślemy do Ciebie maila z potwierdzeniem prośby o zmianę hasła

@@ -3,7 +3,7 @@ import { SignBox } from "../../src/modules/Auth/SignBox/SignBox";
 import styles from "../../styles/common.module.css";
 import sign from "../../src/modules/Auth/Sign.module.css";
 import { FormikProvider, useFormik } from "formik";
-import { FormInput } from "../../src/common/Inputs/FormInput";
+import { FormInput } from "../../src/common/Inputs/FormInput/FormInput";
 import * as yup from "yup";
 import { ActionButton } from "../../src/common/ActionButton/ActionButton";
 import {
@@ -38,17 +38,20 @@ export default function Signup() {
                 type="email"
                 label="email"
                 autocomplete="email"
+                rounded
               />
               <FormInput
                 name="password"
                 type="password"
                 label="password"
                 autocomplete="new-password"
+                rounded
               />
               <ActionButton
                 text="Stwórz konto"
                 onClick={formik.handleSubmit}
                 loading={createUserMutation.isLoading}
+                rounded
               />
             </form>
           </FormikProvider>

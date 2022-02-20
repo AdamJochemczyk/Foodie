@@ -15,7 +15,10 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   const logoutMutation = useLogout();
 
   const toggleSidebar = useCallback(() => setSidebar(sidebar => !sidebar), []);
-  const handleLogout = useCallback(() => logoutMutation.mutate(), []);
+  const handleLogout = useCallback(
+    () => logoutMutation.mutate(),
+    [logoutMutation]
+  );
 
   return (
     <>
