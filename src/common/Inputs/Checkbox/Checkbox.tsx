@@ -1,15 +1,15 @@
+import clsx from "clsx";
 import { useField, useFormikContext } from "formik";
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { upperFirst } from "../../utils/stringMethods";
 import styles from "../FormInputs.module.css";
 
-interface SelectProperties {
-  options: { value: string; text: string }[];
-  name: string;
+interface CheckboxProperties {
   label: string;
+  name: string;
 }
 
-export const Select = ({ options, name, label }: SelectProperties) => {
+export const Checkbox = ({ label, name }: CheckboxProperties) => {
   const [field] = useField(name);
   const { setFieldValue } = useFormikContext();
 
@@ -22,23 +22,15 @@ export const Select = ({ options, name, label }: SelectProperties) => {
 
   return (
     <div className={styles.field}>
-      <label htmlFor={name} className={styles.fieldLabel}>
+      <label className={clsx(styles.fieldLabel)} htmlFor={name}>
         {upperFirst(label)}
       </label>
-      <select
-        className={styles.fieldInput}
-        name={field.name}
+      <input
+        type="checkbox"
         id={field.name}
-        value={field?.value}
+        checked={field.value}
         onChange={handleChange}
-        onBlur={field.onBlur}
-      >
-        {options.map(({ value, text }) => (
-          <option key={value} value={value}>
-            {text}
-          </option>
-        ))}
-      </select>
+      />
     </div>
   );
 };

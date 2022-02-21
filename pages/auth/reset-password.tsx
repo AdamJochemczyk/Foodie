@@ -9,6 +9,7 @@ import { createPasswordValidation } from "../../src/common/validation";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useResetPassword } from "../../src/modules/Auth/hooks/useResetPassword";
+import clsx from "clsx";
 
 const validationSchema = yup.object().shape({
   password: createPasswordValidation,
@@ -46,7 +47,7 @@ export default function ResetPassword() {
   }, [isReady]);
 
   return (
-    <div className={common.signWrapper}>
+    <div className={clsx(common.signWrapper, common.wrapper)}>
       <SignBox imgSrc="/static/images/password-reset.png">
         <div className={sign.form}>
           <h1 className={sign.title}> Zresetuj hasło</h1>

@@ -7,6 +7,7 @@ import sign from "../../src/modules/Auth/Sign.module.css";
 import * as yup from "yup";
 import { emailValidation } from "../../src/common/validation";
 import { useResetPasswordForEmailRequest } from "../../src/modules/Auth/hooks/useResetPasswordRequest";
+import clsx from "clsx";
 
 export default function ResetPasswordRequest() {
   const resetPasswordForEmailMutation = useResetPasswordForEmailRequest();
@@ -21,7 +22,7 @@ export default function ResetPasswordRequest() {
   });
 
   return (
-    <div className={common.signWrapper}>
+    <div className={clsx(common.signWrapper, common.wrapper)}>
       <SignBox imgSrc="/static/images/password-reset.png">
         <div className={sign.form}>
           <h1 className={sign.title}> Zresetuj hasło</h1>

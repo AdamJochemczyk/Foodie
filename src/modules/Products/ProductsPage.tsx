@@ -1,6 +1,7 @@
 import { FormikProvider, useFormik } from "formik";
 import React, { useState } from "react";
 import { ActionButton } from "../../common/ActionButton/ActionButton";
+import { Checkbox } from "../../common/Inputs/Checkbox/Checkbox";
 import { FormInput } from "../../common/Inputs/FormInput/FormInput";
 import { CategorySelect } from "../../common/Inputs/Select/CategorySelect";
 // import { useSearchProducts } from "./hooks/useSearchProducts";
@@ -37,6 +38,7 @@ export const ProductsPage = () => {
           <form>
             <FormInput name="searchName" label="Search by" autocomplete="off" />
             <CategorySelect name="category" />
+            <Checkbox name="favorites" label="ulubione" />
             <ActionButton
               text="Filtruj"
               type="submit"

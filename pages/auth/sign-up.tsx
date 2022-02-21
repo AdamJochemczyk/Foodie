@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SignBox } from "../../src/modules/Auth/SignBox/SignBox";
-import styles from "../../styles/common.module.css";
+import common from "../../styles/common.module.css";
 import sign from "../../src/modules/Auth/Sign.module.css";
 import { FormikProvider, useFormik } from "formik";
 import { FormInput } from "../../src/common/Inputs/FormInput/FormInput";
@@ -11,6 +11,7 @@ import {
   emailValidation
 } from "../../src/common/validation";
 import { useCreateUser } from "../../src/modules/Auth/hooks/useCreateUser";
+import clsx from "clsx";
 
 //register
 export default function Signup() {
@@ -27,7 +28,7 @@ export default function Signup() {
   });
 
   return (
-    <div className={styles.signWrapper}>
+    <div className={clsx(common.signWrapper, common.wrapper)}>
       <SignBox imgSrc="/static/images/sign.png">
         <div className={sign.form}>
           <h1 className={sign.title}>Zarejestruj się</h1>

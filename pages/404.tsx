@@ -7,7 +7,7 @@ import styles from "../styles/common.module.css";
 export default function Custom404() {
   return (
     <div className={styles.wrapper}>
-      <Image src="/static/images/404.svg" alt="404" width={800} height={800} />
+      <Image src="/static/images/404.svg" alt="404" width={600} height={600} />
       <Link href="/" passHref>
         <a>
           <OrangeButton text="back to page" />

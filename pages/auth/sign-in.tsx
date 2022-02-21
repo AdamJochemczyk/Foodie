@@ -12,6 +12,7 @@ import {
 } from "../../src/common/validation";
 import { useLogin } from "../../src/modules/Auth/hooks/useLogin";
 import { useCallback, useEffect, useState } from "react";
+import clsx from "clsx";
 
 export default function Signin() {
   const loginMutation = useLogin();
@@ -46,7 +47,7 @@ export default function Signin() {
   }, []);
 
   return (
-    <div className={common.signWrapper}>
+    <div className={clsx(common.signWrapper, common.wrapper)}>
       <SignBox imgSrc="/static/images/sign.png">
         <div className={sign.form}>
           <h1>Zaloguj się</h1>
