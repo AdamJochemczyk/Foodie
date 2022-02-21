@@ -27,3 +27,14 @@
   font-size: 1.25rem;
   color: #dc3545;
 }
+.checkbox {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  padding-left: 0.5rem;
+}
+.checkbox input {
+  height: 2rem;
+  width: 2rem;
+  margin-right: 1rem;
+}

@@ -8,20 +8,23 @@ import { queryClient } from "../src/utils/react-query-client";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <QueryClientProvider client={queryClient}>
-      {process.env.NODE_ENV === "development" && (
-        <ReactQueryDevtools position="top-right" initialIsOpen={false} />
-      )}
-      <Component {...pageProps} />
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        closeOnClick
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-    </QueryClientProvider>
+    <>
+      <QueryClientProvider client={queryClient}>
+        {process.env.NODE_ENV === "development" && (
+          <ReactQueryDevtools position="top-right" initialIsOpen={false} />
+        )}
+        <Component {...pageProps} />
+        <ToastContainer
+          position="top-right"
+          limit={3}
+          autoClose={3000}
+          closeOnClick
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+      </QueryClientProvider>
+    </>
   );
 }
 
