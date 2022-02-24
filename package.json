@@ -58,7 +58,6 @@
     "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-sonarjs": "^0.11.0",
-    "eslint-plugin-unicorn": "^40.1.0",
     "husky": "^7.0.0",
     "lint-prepush": "^2.2.0",
     "lint-staged": "^12.3.0",

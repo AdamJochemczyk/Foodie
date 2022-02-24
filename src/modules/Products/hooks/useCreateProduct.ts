@@ -10,7 +10,7 @@ interface CreateProductProperties {
   category: string;
   name: string;
   gtin_code: string;
-  photo: File;
+  photo: File | null;
 }
 
 export const useCreateProduct = () => {
@@ -19,6 +19,9 @@ export const useCreateProduct = () => {
 
   return useMutation(
     async ({ gtin_code, photo, name, category }: CreateProductProperties) => {
+      if (photo === null) {
+        throw new Error("Zdjecie musi zostac podane");
+      }
       const { data, error: uploadError } = await uploadImage(
         `products/${gtin_code}`,
         photo

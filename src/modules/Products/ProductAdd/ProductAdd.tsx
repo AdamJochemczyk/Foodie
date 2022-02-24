@@ -16,7 +16,7 @@ export const ProductAdd = () => {
   const createProductMutation = useCreateProduct();
 
   const formik = useFormik({
-    initialValues: { category: "", name: "", gtin_code: "", photo: {} as File },
+    initialValues: { category: "", name: "", gtin_code: "", photo: null },
     validationSchema: yup.object().shape({
       name: yup.string().required("Nazwa jest wymagana"),
       gtin_code: gtinCodeValidation,

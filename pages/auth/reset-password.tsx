@@ -15,7 +15,6 @@ const validationSchema = yup.object().shape({
   password: createPasswordValidation,
   passwordConfirmation: yup
     .string()
-    // eslint-disable-next-line unicorn/no-null
     .oneOf([yup.ref("password"), null], "Hasła muszą być takie same")
 });
 
