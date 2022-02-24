@@ -12,7 +12,7 @@ export const FormInput = ({
 }: {
   name: string;
   label: string;
-  autocomplete: "new-password" | "email" | "password" | "off";
+  autocomplete?: "new-password" | "email" | "password" | "off";
   type?: "text" | "email" | "password";
   rounded?: boolean;
 }) => {

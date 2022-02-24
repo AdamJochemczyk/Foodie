@@ -10,7 +10,7 @@ interface SelectProperties {
 }
 
 export const Select = ({ options, name, label }: SelectProperties) => {
-  const [field] = useField(name);
+  const [field, meta] = useField(name);
   const { setFieldValue } = useFormikContext();
 
   const handleChange = useCallback(
@@ -39,6 +39,7 @@ export const Select = ({ options, name, label }: SelectProperties) => {
           </option>
         ))}
       </select>
+      <p className={styles.errorData}>{meta.touched ? meta.error : ""}</p>
     </div>
   );
 };

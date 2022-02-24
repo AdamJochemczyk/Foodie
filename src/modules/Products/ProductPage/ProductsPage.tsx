@@ -1,10 +1,11 @@
 import { FormikProvider, useFormik } from "formik";
 import { useState } from "react";
-import { ActionButton } from "../../common/ActionButton/ActionButton";
-import { Checkbox } from "../../common/Inputs/Checkbox/Checkbox";
-import { FormInput } from "../../common/Inputs/FormInput/FormInput";
-import { CategorySelect } from "../../common/Inputs/Select/CategorySelect";
-import { useSearchProducts } from "./hooks/useSearchProducts";
+import { ActionButton } from "../../../common/ActionButton/ActionButton";
+import { Checkbox } from "../../../common/Inputs/Checkbox/Checkbox";
+import { FormInput } from "../../../common/Inputs/FormInput/FormInput";
+import { CategorySelect } from "../../../common/Inputs/Select/CategorySelect";
+import { useSearchProducts } from "../hooks/useSearchProducts";
+import { ProductCard } from "../ProductCard/ProductCard";
 import styles from "./ProductsPage.module.css";
 
 export const ProductsPage = () => {
@@ -55,11 +56,12 @@ export const ProductsPage = () => {
       <section className={styles.cards}>
         {!entitiesLoading && entities.length > 0 ? (
           entities.map(({ category, name, photo_link, product_id }) => (
-            <div key={product_id}>
-              {photo_link}
-              {name}
-              {category}
-            </div>
+            <ProductCard
+              key={product_id}
+              photo_link={photo_link}
+              name={name}
+              category={category}
+            />
           ))
         ) : (
           <p>Loading...</p>

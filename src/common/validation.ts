@@ -18,3 +18,41 @@ export const createPasswordValidation = yup
   .required("Hasło jest wymagane");
 
 export const passwordValidation = yup.string().required("Hasło jest wymagane");
+
+export const categoryValidation = yup
+  .string()
+  .oneOf([
+    "meat, eggs",
+    "fish, seafood",
+    "cereal products",
+    "milk, dairy products",
+    "preserves",
+    "drinks, juices, water",
+    "loose",
+    "spices"
+  ])
+  .required("Prosze wybierz kategorie");
+
+export const gtinCodeValidation = yup
+  .string()
+  .matches(/^\d+$/, "Gtin code musi składać się z cyfr")
+  .min(14, "Gtin code musi mieć dokładnie 14 cyfr")
+  .max(14, "Gtin code musi mieć dokładnie 14 cyfr")
+  .required("Kod jest wymagany");
+
+const SUPPORTED_FORMATS = new Set(["image/jpg", "image/jpeg", "image/png"]);
+const FILE_SIZE = 1024 * 1024 * 2;
+
+export const fileValidation = yup
+  .mixed()
+  .required("Plik jest wymagany")
+  .test(
+    "fileSize",
+    "Plik jest za duzy",
+    value => value && value.size <= FILE_SIZE
+  )
+  .test(
+    "fileFormat",
+    "Format pliku jest nieobslugiwany",
+    value => value && SUPPORTED_FORMATS.has(value.type)
+  );

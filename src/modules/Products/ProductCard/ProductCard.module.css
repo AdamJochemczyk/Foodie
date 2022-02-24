@@ -1,0 +1,34 @@
+.card {
+  border-radius: 6px;
+  width: 250px;
+  overflow: hidden;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease-in-out;
+  position: relative;
+}
+.cardDesc {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 1.5rem;
+}
+.name {
+  font-size: 2rem;
+  font-weight: 700;
+}
+.heart {
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 1;
+}
+.heart:hover {
+  cursor: pointer;
+}
