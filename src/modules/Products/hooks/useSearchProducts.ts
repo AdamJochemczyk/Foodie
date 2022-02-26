@@ -50,7 +50,7 @@ export const useSearchProducts = ({
 
   return {
     entities: data || [],
-    isLoading: isLoading,
-    refetch: refetch
+    isLoading,
+    refetch
   };
 };
