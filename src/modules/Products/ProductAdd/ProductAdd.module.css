@@ -1,0 +1,8 @@
+.content {
+  display: flex;
+  justify-content: center;
+}
+.form {
+  width: 80%;
+  max-width: 600px;
+}

@@ -38,3 +38,26 @@
   width: 2rem;
   margin-right: 1rem;
 }
+.inputFileBox {
+  padding: 1rem;
+  cursor: pointer;
+  background-color: var(--action-blue);
+  color: #fff;
+  cursor: pointer;
+  position: relative;
+}
+.inputFileBox input[type="file"] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
+}

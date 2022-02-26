@@ -1,0 +1,36 @@
+.file {
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  position: absolute;
+}
+.fileInput {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4rem;
+}
+.fileInput label {
+  position: relative;
+  border: solid 2px var(--action-blue);
+  color: var(--action-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.fileName {
+  position: absolute;
+  bottom: -35px;
+  left: 10px;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+/* Adding an outline to the label on focus */
+.fileInput input:focus + label {
+  outline: 1px solid #000;
+  outline: -webkit-focus-ring-color auto 2px;
+}

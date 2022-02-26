@@ -11,6 +11,7 @@ import {
   fileValidation
 } from "../../../common/validation";
 import { FileInput } from "../../../common/Inputs/FileInput/FileInput";
+import styles from "./ProductAdd.module.css";
 
 export const ProductAdd = () => {
   const createProductMutation = useCreateProduct();
@@ -29,20 +30,22 @@ export const ProductAdd = () => {
   });
 
   return (
-    <div>
-      <FormikProvider value={formik}>
-        <form>
-          <FormInput name="name" label="nazwa produktu" />
-          <FormInput name="gtin_code" label="kod produktu" />
-          <CategorySelect name="category" />
-          <FileInput name="photo" label="zdjecie produktu" />
-          <ActionButton
-            text="Dodaj produkt"
-            onClick={formik.handleSubmit}
-            loading={createProductMutation.isLoading}
-          />
-        </form>
-      </FormikProvider>
-    </div>
+    <main className={styles.content}>
+      <div className={styles.form}>
+        <FormikProvider value={formik}>
+          <form>
+            <FormInput name="name" label="nazwa produktu" />
+            <FormInput name="gtin_code" label="kod produktu" />
+            <CategorySelect name="category" />
+            <FileInput name="photo" label="zdjecie produktu" />
+            <ActionButton
+              text="Dodaj produkt"
+              onClick={formik.handleSubmit}
+              loading={createProductMutation.isLoading}
+            />
+          </form>
+        </FormikProvider>
+      </div>
+    </main>
   );
 };
