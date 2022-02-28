@@ -1,11 +1,12 @@
 import { supabase } from "./../../../utils/supabaseClient";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { removeImage } from "../../../utils/removeImage";
 
 export const useDeleteProduct = () => {
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   return useMutation(
     async ({ id, gtin_code }: { id: string; gtin_code: string }) => {
@@ -24,6 +25,7 @@ export const useDeleteProduct = () => {
       onSuccess: () => {
         toast.success("Usunałes produkt");
         router.push("/products/verify");
+        queryClient.invalidateQueries("getProducts");
       },
       onError: (error: { message: string }) => {
         toast.error(error.message);
