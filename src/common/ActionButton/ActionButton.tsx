@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import React from "react";
 import { Loader } from "../Loader/Loader";
+import { upperFirst } from "../utils/stringMethods";
 import styles from "./ActionButton.module.css";
 
 interface ActionButtonProperties {
@@ -9,6 +10,7 @@ interface ActionButtonProperties {
   loading?: boolean;
   type?: "submit" | "button";
   rounded?: boolean;
+  variant?: "danger" | "action";
 }
 
 export const ActionButton = ({
@@ -16,18 +18,20 @@ export const ActionButton = ({
   onClick,
   loading = false,
   type = "button",
-  rounded = false
+  rounded = false,
+  variant = "action"
 }: ActionButtonProperties) => {
   return (
     <button
       className={clsx(styles.button, {
-        [styles.rounded]: rounded
+        [styles.rounded]: rounded,
+        [styles.danger]: variant === "danger"
       })}
       onClick={onClick}
       type={type}
     >
       {loading && <Loader />}
-      {text}
+      {upperFirst(text)}
     </button>
   );
 };

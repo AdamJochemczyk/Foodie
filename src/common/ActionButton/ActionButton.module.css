@@ -6,6 +6,10 @@
   font-size: 2rem;
   width: 100%;
 }
+.danger {
+  background-color: var(--action-red);
+  border: solid 2px var(--action-red);
+}
 .rounded {
   border-radius: 20px;
 }

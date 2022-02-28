@@ -56,3 +56,16 @@ export const fileValidation = yup
     "Format pliku jest nieobslugiwany",
     value => value && SUPPORTED_FORMATS.has(value.type)
   );
+
+export const productAddValidationWithPhoto = yup.object().shape({
+  name: yup.string().required("Nazwa jest wymagana"),
+  gtin_code: gtinCodeValidation,
+  photo: fileValidation,
+  category: categoryValidation
+});
+
+export const productAddValidation = yup.object().shape({
+  name: yup.string().required("Nazwa jest wymagana"),
+  gtin_code: gtinCodeValidation,
+  category: categoryValidation
+});
