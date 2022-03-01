@@ -6,11 +6,7 @@ import { supabase } from "../../../utils/supabaseClient";
 const getProduct = async (id: string) => {
   const { data, error } = await supabase
     .from("products")
-    .select(
-      `*,users (
-        email
-    )`
-    )
+    .select(`*,user:proposal_user_id!inner(email)`)
     .eq("product_id", id);
   if (error) {
     throw error.message;

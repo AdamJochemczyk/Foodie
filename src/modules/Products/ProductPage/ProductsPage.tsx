@@ -17,11 +17,14 @@ export const ProductsPage = () => {
     entities,
     isLoading: entitiesLoading,
     refetch
-  } = useSearchProducts({
-    searchName,
-    category,
-    favorites
-  });
+  } = useSearchProducts(
+    {
+      searchName,
+      category,
+      favorites
+    },
+    true
+  );
 
   const formik = useFormik({
     initialValues: {
@@ -55,12 +58,16 @@ export const ProductsPage = () => {
       </section>
       <section className={styles.cards}>
         {!entitiesLoading && entities.length > 0 ? (
-          entities.map(({ category, name, photo_link, product_id }) => (
+          entities.map(({ category, name, photo_link, product_id, isFav }) => (
             <ProductCard
               key={product_id}
+              id={product_id}
               photo_link={photo_link}
               name={name}
               category={category}
+              isUserFav={
+                typeof isFav === "undefined" ? false : isFav.length > 0
+              }
             />
           ))
         ) : (

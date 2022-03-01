@@ -1,11 +1,14 @@
 import Link from "next/link";
 import React from "react";
-import { useFindProductsToVerify } from "../hooks/useFindProductsToVerify";
+import { useSearchProducts } from "../hooks/useSearchProducts";
 import { ProductCard } from "../ProductCard/ProductCard";
 import styles from "./ProductVerifyGallery.module.css";
 
 export const ProductVerifyGallery = () => {
-  const { entities, isLoading } = useFindProductsToVerify();
+  const { entities, isLoading } = useSearchProducts(
+    { searchName: "", category: "", favorites: false },
+    false
+  );
 
   if (isLoading) {
     <div>Loading...</div>;
@@ -24,6 +27,7 @@ export const ProductVerifyGallery = () => {
               >
                 <a>
                   <ProductCard
+                    id={product_id}
                     name={name}
                     category={category}
                     photo_link={photo_link}

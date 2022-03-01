@@ -1,20 +1,29 @@
 import Image from "next/image";
 import React from "react";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { IconContext } from "react-icons/lib";
+import { useAddToFavProduct } from "../hooks/useAddToFavProduct";
+import { useRemoveFavProduct } from "../hooks/useRemoveFavProduct";
 import styles from "./ProductCard.module.css";
 
 interface ProductCardProperties {
   photo_link: string;
   name: string;
   category: string;
+  id: string;
+  isUserFav?: boolean;
 }
 
 export const ProductCard = ({
   photo_link,
   name,
-  category
+  category,
+  id,
+  isUserFav
 }: ProductCardProperties) => {
+  const addToFav = useAddToFavProduct();
+  const removeFromFav = useRemoveFavProduct();
+
   return (
     <div className={styles.card}>
       <Image height={150} width={250} src={photo_link} alt={name} />
@@ -22,12 +31,17 @@ export const ProductCard = ({
         <p className={styles.name}>{name}</p>
         <p>Category: {category}</p>
       </div>
-      <div className={styles.heart}>
-        <IconContext.Provider value={{ size: "2rem" }}>
-          {/* TODO: when we have table AiFillHeart */}
-          <AiOutlineHeart />
-        </IconContext.Provider>
-      </div>
+      {typeof isUserFav !== "undefined" ? (
+        <div className={styles.heart}>
+          <IconContext.Provider value={{ size: "2rem", color: "red" }}>
+            {isUserFav ? (
+              <AiFillHeart onClick={() => removeFromFav.mutate(id)} />
+            ) : (
+              <AiOutlineHeart onClick={() => addToFav.mutate(id)} />
+            )}
+          </IconContext.Provider>
+        </div>
+      ) : null}
     </div>
   );
 };

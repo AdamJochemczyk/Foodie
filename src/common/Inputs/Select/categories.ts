@@ -7,5 +7,7 @@ export const categories = [
   { value: "preserves", text: "Przetwory" },
   { value: "drinks, juices, water", text: "Napoje, soki, woda" },
   { value: "loose", text: "Produkty sypkie" },
-  { value: "spices", text: "Przyprawy" }
+  { value: "spices", text: "Przyprawy" },
+  { value: "fruits", text: "Owoce" },
+  { value: "vegetables", text: "Warzywa" }
 ];

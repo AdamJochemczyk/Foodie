@@ -9,7 +9,7 @@
   padding-left: 2rem;
   font-size: 2rem;
 }
-.menuBars:hover {
+.menuBars > *:hover {
   cursor: pointer;
 }
 

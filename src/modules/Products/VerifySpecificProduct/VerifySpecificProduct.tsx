@@ -26,12 +26,13 @@ export const VerifySpecificProduct = () => {
             <p className={styles.subtitle}>Podgląd wygladu:</p>
             <div className={styles.content}>
               <ProductCard
+                id={product[0].product_id}
                 name={product[0].name}
                 photo_link={product[0].photo_link}
                 category={product[0].category}
               />
               <p className={styles.person}>
-                Zgloszone przez: {product[0].users.email}
+                Zgloszone przez: {product[0].user.email}
               </p>
               <ActionButton
                 variant="danger"

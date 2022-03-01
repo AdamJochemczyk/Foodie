@@ -1,4 +1,5 @@
 import * as yup from "yup";
+import { categories } from "./Inputs/Select/categories";
 
 export const emailValidation = yup
   .string()
@@ -21,16 +22,7 @@ export const passwordValidation = yup.string().required("Hasło jest wymagane");
 
 export const categoryValidation = yup
   .string()
-  .oneOf([
-    "meat, eggs",
-    "fish, seafood",
-    "cereal products",
-    "milk, dairy products",
-    "preserves",
-    "drinks, juices, water",
-    "loose",
-    "spices"
-  ])
+  .oneOf(categories.map(category => category.value))
   .required("Prosze wybierz kategorie");
 
 export const gtinCodeValidation = yup

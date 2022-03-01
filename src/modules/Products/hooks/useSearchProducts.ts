@@ -1,3 +1,4 @@
+import { useUserId } from "./../../../utils/useUser";
 import { toast } from "react-toastify";
 import { supabase } from "./../../../utils/supabaseClient";
 import { useQuery } from "react-query";
@@ -10,12 +11,22 @@ export interface SearchProducts {
 const fetchProducts = async (
   searchName: string,
   category: string,
-  favorites: boolean
+  favorites: boolean,
+  verified: boolean,
+  userId: string
 ) => {
+  const isQueryForUser = verified
+    ? `product_id,name,category,photo_link,isFav:fav_users_products${
+        // eslint-disable-next-line sonarjs/no-nested-template-literals
+        favorites ? `!inner(user_id)` : `(user_id)`
+      }`
+    : `product_id,name,category,photo_link,proposal_user_id`;
+
   const query = supabase
     .from("products")
-    .select("category,name,photo_link,product_id")
-    .eq("verified", true);
+    .select(isQueryForUser)
+    .eq("verified", verified);
+
   if (searchName) {
     query.ilike("name", `%${searchName}%`);
   }
@@ -23,8 +34,7 @@ const fetchProducts = async (
     query.match({ category: category });
   }
   if (favorites) {
-    //TODO: favorites wait for table on BE
-    //TODO: implement it
+    query.filter("fav_users_products.user_id", "eq", userId);
   }
   const { data: products, error } = await query;
 
@@ -34,14 +44,21 @@ const fetchProducts = async (
   return products;
 };
 
-export const useSearchProducts = ({
-  searchName,
-  category,
-  favorites
-}: SearchProducts) => {
+export const useSearchProducts = (
+  queryParams: SearchProducts,
+  verified: boolean
+) => {
+  const { userId } = useUserId();
   const { error, data, isLoading, refetch } = useQuery(
-    ["getProducts", searchName, category, favorites],
-    () => fetchProducts(searchName, category, favorites)
+    ["getProducts", queryParams],
+    () =>
+      fetchProducts(
+        queryParams.searchName,
+        queryParams.category,
+        queryParams.favorites,
+        verified,
+        userId || ""
+      )
   );
 
   if (error) {
