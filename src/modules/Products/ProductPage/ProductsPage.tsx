@@ -1,9 +1,11 @@
 import { FormikProvider, useFormik } from "formik";
+import Link from "next/link";
 import { useState } from "react";
 import { ActionButton } from "../../../common/ActionButton/ActionButton";
 import { Checkbox } from "../../../common/Inputs/Checkbox/Checkbox";
 import { FormInput } from "../../../common/Inputs/FormInput/FormInput";
 import { CategorySelect } from "../../../common/Inputs/Select/CategorySelect";
+import { OrangeButton } from "../../../common/OrangeButton/OrangeButton";
 import { useSearchProducts } from "../hooks/useSearchProducts";
 import { ProductCard } from "../ProductCard/ProductCard";
 import styles from "./ProductsPage.module.css";
@@ -55,6 +57,13 @@ export const ProductsPage = () => {
             />
           </form>
         </FormikProvider>
+        <div className={styles.link}>
+          <Link href="/products/add" passHref>
+            <a>
+              <OrangeButton text="add new product" />
+            </a>
+          </Link>
+        </div>
       </section>
       <section className={styles.cards}>
         {!entitiesLoading && entities.length > 0 ? (
