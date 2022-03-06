@@ -59,7 +59,11 @@ export const ProductAddEdit = ({
             <ActionButton
               text={mode === "add" ? "Dodaj produkt" : "Edytuj"}
               onClick={formik.handleSubmit}
-              loading={createProductMutation.isLoading}
+              loading={
+                mode === "add"
+                  ? createProductMutation.isLoading
+                  : updateProductMutation.isLoading
+              }
             />
           </form>
         </FormikProvider>

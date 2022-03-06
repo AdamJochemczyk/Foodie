@@ -30,10 +30,11 @@ export const Select = ({ options, name, label }: SelectProperties) => {
         })}
         name={field.name}
         id={field.name}
-        value={field?.value}
         onChange={handleChange}
         onBlur={field.onBlur}
+        defaultValue="default"
       >
+        <option value="default" />
         {options.map(({ value, text }) => (
           <option key={value} value={value}>
             {text}

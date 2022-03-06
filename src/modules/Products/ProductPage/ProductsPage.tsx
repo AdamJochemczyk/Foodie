@@ -66,8 +66,10 @@ export const ProductsPage = () => {
               }
             />
           ))
-        ) : (
+        ) : entities.length === 0 ? (
           <p>Loading...</p>
+        ) : (
+          <p>No data</p>
         )}
       </section>
     </article>
