@@ -6,6 +6,7 @@
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
   transition: box-shadow 0.3s ease-in-out;
   position: relative;
+  max-height: 250px;
 }
 .cardDesc {
   display: flex;

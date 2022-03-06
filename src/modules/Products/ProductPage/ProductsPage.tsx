@@ -11,34 +11,21 @@ import { ProductCard } from "../ProductCard/ProductCard";
 import styles from "./ProductsPage.module.css";
 
 export const ProductsPage = () => {
-  const [searchName, setSearchName] = useState("");
-  const [category, setCategory] = useState("");
-  const [favorites, setFavorites] = useState(false);
+  const [queryParams, setQueryParams] = useState({
+    searchName: "",
+    category: "",
+    favorites: false
+  });
 
-  const {
-    entities,
-    isLoading: entitiesLoading,
-    refetch
-  } = useSearchProducts(
-    {
-      searchName,
-      category,
-      favorites
-    },
+  const { entities, isLoading: entitiesLoading } = useSearchProducts(
+    queryParams,
     true
   );
 
   const formik = useFormik({
-    initialValues: {
-      searchName,
-      category,
-      favorites
-    },
+    initialValues: queryParams,
     onSubmit: ({ searchName, category, favorites }) => {
-      setSearchName(searchName);
-      setCategory(category);
-      setFavorites(favorites);
-      refetch();
+      setQueryParams({ searchName, category, favorites });
     }
   });
 

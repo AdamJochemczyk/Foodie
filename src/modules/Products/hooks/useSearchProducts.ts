@@ -49,7 +49,7 @@ export const useSearchProducts = (
   verified: boolean
 ) => {
   const { userId } = useUserId();
-  const { error, data, isLoading, refetch } = useQuery(
+  const { error, data, isLoading } = useQuery(
     ["getProducts", queryParams],
     () =>
       fetchProducts(
@@ -67,7 +67,6 @@ export const useSearchProducts = (
 
   return {
     entities: data || [],
-    isLoading,
-    refetch
+    isLoading
   };
 };
