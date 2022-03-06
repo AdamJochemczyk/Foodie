@@ -1,8 +1,7 @@
-import clsx from "clsx";
 import { useField, useFormikContext } from "formik";
 import { useState } from "react";
-import { upperFirst } from "../../utils/stringMethods";
 import styles from "../FormInputs.module.css";
+import { FormLabel } from "../FormLabel/FormLabel";
 import fileInput from "./FileInput.module.css";
 
 interface FileInputProperties {
@@ -32,17 +31,11 @@ export const FileInput = ({ name, label }: FileInputProperties) => {
           }
         }}
       />
-      <label
-        htmlFor="file"
-        className={clsx(styles.fieldLabel, {
-          [styles.error]: meta.touched && Boolean(meta.error)
-        })}
-      >
-        {upperFirst(label)}
+      <FormLabel name="file" label={label} meta={meta}>
         <p className={fileInput.fileName}>
           {fileName} {fileSize}
         </p>
-      </label>
+      </FormLabel>
       <p className={styles.errorData}>{meta.touched ? meta.error : ""}</p>
     </div>
   );

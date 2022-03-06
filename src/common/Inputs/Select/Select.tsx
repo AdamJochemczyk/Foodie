@@ -1,7 +1,8 @@
+import clsx from "clsx";
 import { useField, useFormikContext } from "formik";
 import React, { useCallback } from "react";
-import { upperFirst } from "../../utils/stringMethods";
 import styles from "../FormInputs.module.css";
+import { FormLabel } from "../FormLabel/FormLabel";
 
 interface SelectProperties {
   options: { value: string; text: string }[];
@@ -22,11 +23,11 @@ export const Select = ({ options, name, label }: SelectProperties) => {
 
   return (
     <div className={styles.field}>
-      <label htmlFor={name} className={styles.fieldLabel}>
-        {upperFirst(label)}
-      </label>
+      <FormLabel name={name} label={label} meta={meta} />
       <select
-        className={styles.fieldInput}
+        className={clsx(styles.fieldInput, {
+          [styles.error]: meta.touched && Boolean(meta.error)
+        })}
         name={field.name}
         id={field.name}
         value={field?.value}

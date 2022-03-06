@@ -17,15 +17,15 @@
   border-radius: 20px;
 }
 .fieldInput.error {
-  border: solid 1px #dc3545;
-  color: #dc3545;
+  border: solid 1px var(--action-red);
+  color: var(--action-red);
 }
 .fieldLabel.error {
-  color: #dc3545;
+  color: var(--action-red);
 }
 .errorData {
   font-size: 1.25rem;
-  color: #dc3545;
+  color: var(--action-red);
 }
 .checkbox {
   margin-bottom: 1rem;
@@ -57,7 +57,7 @@
   filter: alpha(opacity=0);
   opacity: 0;
   outline: none;
-  background: white;
+  background: #fff;
   cursor: inherit;
   display: block;
 }

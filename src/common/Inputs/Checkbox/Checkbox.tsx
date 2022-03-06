@@ -1,7 +1,7 @@
 import { useField, useFormikContext } from "formik";
 import { useCallback } from "react";
-import { upperFirst } from "../../utils/stringMethods";
 import styles from "../FormInputs.module.css";
+import { FormLabel } from "../FormLabel/FormLabel";
 
 interface CheckboxProperties {
   label: string;
@@ -24,7 +24,7 @@ export const Checkbox = ({ label, name }: CheckboxProperties) => {
         checked={field.value}
         onChange={handleChange}
       />
-      <label htmlFor={name}>{upperFirst(label)}</label>
+      <FormLabel name={name} label={label} />
     </div>
   );
 };

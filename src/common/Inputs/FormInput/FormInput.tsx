@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { useField } from "formik";
-import { upperFirst } from "../../utils/stringMethods";
 import styles from "../FormInputs.module.css";
+import { FormLabel } from "../FormLabel/FormLabel";
 
 export const FormInput = ({
   name,
@@ -13,21 +13,14 @@ export const FormInput = ({
   name: string;
   label: string;
   autocomplete?: "new-password" | "email" | "password" | "off";
-  type?: "text" | "email" | "password";
+  type?: "text" | "email" | "password" | "number";
   rounded?: boolean;
 }) => {
   const [field, meta] = useField(name);
 
   return (
     <div className={styles.field}>
-      <label
-        className={clsx(styles.fieldLabel, {
-          [styles.error]: meta.touched && Boolean(meta.error)
-        })}
-        htmlFor={name}
-      >
-        {upperFirst(label)}
-      </label>
+      <FormLabel name={name} label={label} meta={meta} />
       <input
         className={clsx(styles.fieldInput, {
           [styles.error]: meta.touched && Boolean(meta.error),
