@@ -7,12 +7,14 @@ import { FormInput } from "../../../common/Inputs/FormInput/FormInput";
 import { RecipeTypeSelect } from "../../../common/Inputs/Select/RecipeTypeSelect";
 import { TextArea } from "../../../common/Inputs/TextArea/TextArea";
 import { addRecipeValidation } from "../../../common/validation";
+import { useAddRecipe } from "../hooks/useCreateRecipe";
 import styles from "./RecipeAddEdit.module.css";
 
 interface RecipeAddEditProperties {
   mode: "add" | "edit";
 }
 export const RecipeAddEdit = ({ mode = "add" }: RecipeAddEditProperties) => {
+  const addRecipeMutation = useAddRecipe();
   const formik = useFormik({
     initialValues: {
       title: "",
@@ -26,9 +28,9 @@ export const RecipeAddEdit = ({ mode = "add" }: RecipeAddEditProperties) => {
     },
     enableReinitialize: true,
     validationSchema: addRecipeValidation,
-    onSubmit: () => {
+    onSubmit: values => {
       if (mode === "add") {
-        //TODO: implement it
+        addRecipeMutation.mutate(values);
       }
     }
   });

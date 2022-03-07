@@ -55,7 +55,7 @@ export default function ResetPassword() {
               <FormInput
                 name="password"
                 type="password"
-                label="password"
+                label="hasło"
                 autocomplete="new-password"
                 rounded
               />
