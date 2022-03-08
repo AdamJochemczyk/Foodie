@@ -1,7 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import { IconContext } from "react-icons/lib";
+import { FavButton } from "../../../common/FavButton/FavButton";
 import { useAddToFavProduct } from "../hooks/useAddToFavProduct";
 import { useRemoveFavProduct } from "../hooks/useRemoveFavProduct";
 import styles from "./ProductCard.module.css";
@@ -31,17 +30,11 @@ export const ProductCard = ({
         <p className={styles.name}>{name}</p>
         <p>Category: {category}</p>
       </div>
-      {typeof isUserFav !== "undefined" ? (
-        <div className={styles.heart}>
-          <IconContext.Provider value={{ size: "2rem", color: "red" }}>
-            {isUserFav ? (
-              <AiFillHeart onClick={() => removeFromFav.mutate(id)} />
-            ) : (
-              <AiOutlineHeart onClick={() => addToFav.mutate(id)} />
-            )}
-          </IconContext.Provider>
-        </div>
-      ) : null}
+      <FavButton
+        isUserFav={isUserFav}
+        removeFromFav={() => removeFromFav.mutate(id)}
+        addToFav={() => addToFav.mutate(id)}
+      />
     </div>
   );
 };
