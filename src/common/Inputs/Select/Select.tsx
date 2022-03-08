@@ -32,9 +32,9 @@ export const Select = ({ options, name, label }: SelectProperties) => {
         id={field.name}
         onChange={handleChange}
         onBlur={field.onBlur}
-        defaultValue="default"
+        defaultValue=""
       >
-        <option value="default" />
+        <option value="" />
         {options.map(({ value, text }) => (
           <option key={value} value={value}>
             {text}

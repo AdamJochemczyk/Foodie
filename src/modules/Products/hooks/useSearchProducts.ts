@@ -15,6 +15,7 @@ const fetchProducts = async (
   verified: boolean,
   userId: string
 ) => {
+  //TODO: can rafactor this
   const isQueryForUser = verified
     ? `product_id,name,category,photo_link,isFav:fav_users_products${
         // eslint-disable-next-line sonarjs/no-nested-template-literals

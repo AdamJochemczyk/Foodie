@@ -15,46 +15,25 @@ const RecipesPage = () => {
   const [queryParams, setQueryParams] = useState({
     title: "",
     recipeType: "",
-    mealPortions: "",
-    kcalPerPortionFrom: "",
-    kcalPerPortionTo: "",
+    mealPortions: 0,
+    kcalPerPortionFrom: 0,
+    kcalPerPortionTo: 0,
     isVegan: false,
-    isVegetarian: false
+    isVegetarian: false,
+    isFavorites: false
   });
 
-  //TODO: implement searching
-  const { entities, isLoading: entitiesLoading } =
-    useSearchRecipes(queryParams);
+  //TODO: rozbic formularz na glowne i szczegolowe
+  const { entities, isLoading: entitiesLoading } = useSearchRecipes(
+    queryParams,
+    true
+  );
 
   const formik = useFormik({
-    initialValues: {
-      title: "",
-      recipeType: "",
-      mealPortions: "",
-      kcalPerPortionFrom: "",
-      kcalPerPortionTo: "",
-      isVegan: false,
-      isVegetarian: false
-    },
+    initialValues: queryParams,
     validationSchema: searchRecipeValidation,
-    onSubmit: ({
-      title,
-      recipeType,
-      mealPortions,
-      kcalPerPortionFrom,
-      kcalPerPortionTo,
-      isVegan,
-      isVegetarian
-    }) => {
-      setQueryParams({
-        title,
-        recipeType,
-        mealPortions,
-        kcalPerPortionFrom,
-        kcalPerPortionTo,
-        isVegan,
-        isVegetarian
-      });
+    onSubmit: values => {
+      setQueryParams(values);
     }
   });
 
@@ -71,6 +50,7 @@ const RecipesPage = () => {
             <FormInput name="kcalPerPortionTo" label="max" type="number" />
             <Checkbox name="isVegan" label="Wegański" />
             <Checkbox name="isVegetarian" label="Wegetariański" />
+            <Checkbox name="isFavorites" label="ulubione" />
             <ActionButton
               text="Filtruj"
               type="submit"
@@ -81,27 +61,42 @@ const RecipesPage = () => {
         <div className={styles.link}>
           <Link href="/recipes/add" passHref>
             <a>
-              <OrangeButton text="add new recipe" />
+              <OrangeButton text="dodaj nowy przepis" />
             </a>
           </Link>
         </div>
       </section>
       <section className={styles.cards}>
-        {/* //TODO: implement searching */}
-        {entitiesLoading
-          ? entities.map(() => (
-              <RecipeCard
-                key={1}
-                photoLink="/link"
-                title="Jajecznica"
-                description="jajecznica po zbojecku"
-                recipeType="sniadanie"
-                mealPortions={2}
-                kcalPerPortions={400}
-                isVegan={false}
-                isVegetarian={false}
-              />
-            ))
+        {!entitiesLoading
+          ? entities.length > 0 &&
+            entities.map(
+              ({
+                title,
+                recipe_id,
+                photo_link,
+                meal_portions,
+                kcal_per_portion,
+                isvegetarian,
+                isvegan,
+                description,
+                recipe_type
+              }) => (
+                <Link key={recipe_id} href={`/recipes/${recipe_id}`} passHref>
+                  <a>
+                    <RecipeCard
+                      photoLink={photo_link}
+                      title={title}
+                      description={description}
+                      recipeType={recipe_type}
+                      mealPortions={meal_portions}
+                      kcalPerPortions={kcal_per_portion}
+                      isVegan={isvegan}
+                      isVegetarian={isvegetarian}
+                    />
+                  </a>
+                </Link>
+              )
+            )
           : "Loading..."}
       </section>
     </article>

@@ -24,8 +24,8 @@ export const ProductsPage = () => {
 
   const formik = useFormik({
     initialValues: queryParams,
-    onSubmit: ({ searchName, category, favorites }) => {
-      setQueryParams({ searchName, category, favorites });
+    onSubmit: values => {
+      setQueryParams(values);
     }
   });
 
