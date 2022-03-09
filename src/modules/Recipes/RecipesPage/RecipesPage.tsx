@@ -79,22 +79,25 @@ const RecipesPage = () => {
                 isvegetarian,
                 isvegan,
                 description,
-                recipe_type
+                recipe_type,
+                isFav
               }) => (
-                <Link key={recipe_id} href={`/recipes/${recipe_id}`} passHref>
-                  <a>
-                    <RecipeCard
-                      photoLink={photo_link}
-                      title={title}
-                      description={description}
-                      recipeType={recipe_type}
-                      mealPortions={meal_portions}
-                      kcalPerPortions={kcal_per_portion}
-                      isVegan={isvegan}
-                      isVegetarian={isvegetarian}
-                    />
-                  </a>
-                </Link>
+                <RecipeCard
+                  key={recipe_id}
+                  photoLink={photo_link}
+                  title={title}
+                  description={description}
+                  recipeType={recipe_type}
+                  mealPortions={meal_portions}
+                  kcalPerPortions={kcal_per_portion}
+                  isVegan={isvegan}
+                  isVegetarian={isvegetarian}
+                  recipeId={recipe_id}
+                  isUserFav={
+                    typeof isFav === "undefined" ? false : isFav.length > 0
+                  }
+                  href={`/recipes/${recipe_id}`}
+                />
               )
             )
           : "Loading..."}

@@ -16,7 +16,7 @@ export const FavButton = ({
   if (typeof isUserFav === "boolean") {
     return (
       <div className={styles.heart}>
-        <IconContext.Provider value={{ size: "2rem", color: "red" }}>
+        <IconContext.Provider value={{ size: "2.5rem", color: "red" }}>
           {isUserFav ? (
             <AiFillHeart onClick={removeFromFav} />
           ) : (

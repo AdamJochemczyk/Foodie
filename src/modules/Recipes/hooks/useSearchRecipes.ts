@@ -27,19 +27,14 @@ const fetchRecipes = async ({
   isVegan,
   isVegetarian,
   isFavorites,
-  verified
+  verified,
+  userId
 }: SearchQueryParams) => {
-  //TODO: fav by inner join and userId from query params
-  //TODO: can rafactor this
-  /*
-  isFav:fav_users_products${
-        // eslint-disable-next-line sonarjs/no-nested-template-literals
-        favorites ? `!inner(user_id)` : `(user_id)`
-      }`
-*/
-
   const isQueryForUser = verified
-    ? `recipe_id,title,description,photo_link,meal_portions,kcal_per_portion,isvegan,isvegetarian,recipe_type`
+    ? `recipe_id,title,description,photo_link,meal_portions,kcal_per_portion,isvegan,isvegetarian,recipe_type,isFav:fav_users_recipes${
+        // eslint-disable-next-line sonarjs/no-nested-template-literals
+        isFavorites ? `!inner(user_id)` : `(user_id)`
+      }`
     : `recipe_id,title,description,photo_link,meal_portions,kcal_per_portion,isvegan,isvegetarian,recipe_type, proposal_user_id`;
 
   const query = supabase
@@ -67,8 +62,7 @@ const fetchRecipes = async ({
     query.eq("isvegetarian", isVegetarian);
   }
   if (isFavorites) {
-    //TODO: wait for new table for store fav user recipes
-    //query.filter("fav_users_recipes.user_id", "eq", userId);
+    query.filter("fav_users_recipes.user_id", "eq", userId);
   }
   const { data: recipes, error } = await query;
   if (error) {
