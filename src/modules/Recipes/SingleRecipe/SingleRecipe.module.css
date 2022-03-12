@@ -1,0 +1,47 @@
+.container {
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  padding: 0 1rem;
+}
+.card {
+  max-width: 1000px;
+  padding: 0 1.5rem;
+}
+.imageBox {
+  height: 200px;
+  position: relative;
+}
+.title {
+  font-size: 3rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+.recipeInfo {
+  margin: 1rem;
+}
+.desc {
+  padding: 1rem;
+  font-size: 1.6rem;
+}
+.descIngredients {
+  margin: 1rem;
+  padding: 1.5rem;
+  border: solid 2px var(--cta-orange);
+}
+.subTitle {
+  color: var(--cta-orange);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+@media screen and (min-width: 350px) {
+  .imageBox {
+    height: 300px;
+  }
+  .descBox {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin-top: 2rem;
+    gap: 2rem;
+  }
+}

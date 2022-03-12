@@ -25,7 +25,9 @@ export const ProductCard = ({
 
   return (
     <div className={styles.card}>
-      <Image height={150} width={250} src={photo_link} alt={name} />
+      <div className={styles.imgBox}>
+        <Image layout="fill" objectFit="cover" src={photo_link} alt={name} />
+      </div>
       <div className={styles.cardDesc}>
         <p className={styles.name}>{name}</p>
         <p>Category: {category}</p>

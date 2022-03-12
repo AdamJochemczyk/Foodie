@@ -1,15 +1,18 @@
 .card {
   border-radius: 6px;
   width: 300px;
-  overflow: hidden;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
   transition: box-shadow 0.3s ease-in-out;
   position: relative;
   max-height: 400px;
 }
+.imgBox {
+  position: relative;
+  height: 180px;
+}
 .desc {
-  padding: 1rem 1.5rem;
+  padding: 0 1.5rem;
 }
 .title {
   text-align: center;
@@ -17,9 +20,9 @@
 }
 .text {
   font-size: 1.5rem;
+  padding: 1rem 0;
 }
 .params {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
 }
