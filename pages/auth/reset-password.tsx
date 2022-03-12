@@ -51,7 +51,7 @@ export default function ResetPassword() {
         <div className={sign.form}>
           <h1 className={sign.title}> Zresetuj hasło</h1>
           <FormikProvider value={formik}>
-            <form>
+            <form onSubmit={formik.handleSubmit}>
               <FormInput
                 name="password"
                 type="password"
@@ -66,12 +66,7 @@ export default function ResetPassword() {
                 autocomplete="new-password"
                 rounded
               />
-              <ActionButton
-                text="Zresetuj hasło"
-                onClick={formik.handleSubmit}
-                type="submit"
-                rounded
-              />
+              <ActionButton text="Zresetuj hasło" type="submit" rounded />
             </form>
           </FormikProvider>
         </div>

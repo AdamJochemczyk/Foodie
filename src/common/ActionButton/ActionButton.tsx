@@ -6,7 +6,7 @@ import styles from "./ActionButton.module.css";
 
 interface ActionButtonProperties {
   text: string;
-  onClick: () => void;
+  onClick?: () => void;
   loading?: boolean;
   type?: "submit" | "button";
   rounded?: boolean;

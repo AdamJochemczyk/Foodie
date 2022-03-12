@@ -33,7 +33,7 @@ export default function Signup() {
         <div className={sign.form}>
           <h1 className={sign.title}>Zarejestruj się</h1>
           <FormikProvider value={formik}>
-            <form>
+            <form onSubmit={formik.handleSubmit}>
               <FormInput
                 name="email"
                 type="email"
@@ -50,8 +50,8 @@ export default function Signup() {
               />
               <ActionButton
                 text="Stwórz konto"
-                onClick={formik.handleSubmit}
                 loading={createUserMutation.isLoading}
+                type="submit"
                 rounded
               />
             </form>

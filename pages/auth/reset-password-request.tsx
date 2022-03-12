@@ -27,18 +27,16 @@ export default function ResetPasswordRequest() {
         <div className={sign.form}>
           <h1 className={sign.title}> Zresetuj hasło</h1>
           <FormikProvider value={formik}>
-            <FormInput
-              name="email"
-              type="email"
-              label="email"
-              autocomplete="email"
-              rounded
-            />
-            <ActionButton
-              text="Zresetuj hasło"
-              onClick={formik.handleSubmit}
-              rounded
-            />
+            <form onSubmit={formik.handleSubmit}>
+              <FormInput
+                name="email"
+                type="email"
+                label="email"
+                autocomplete="email"
+                rounded
+              />
+              <ActionButton text="Zresetuj hasło" type="submit" rounded />
+            </form>
             <div className={sign.footer}>
               <p>
                 Wyślemy do Ciebie maila z potwierdzeniem prośby o zmianę hasła
