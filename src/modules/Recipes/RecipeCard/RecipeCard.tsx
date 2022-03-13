@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FavButton } from "../../../common/FavButton/FavButton";
+import { OrangeButton } from "../../../common/OrangeButton/OrangeButton";
 import { Tag } from "../../../common/Tag/Tag";
 import { upperFirst } from "../../../common/utils/stringMethods";
 import { useAddToFavRecipe } from "../hooks/useAddToFavRecipe";
@@ -40,31 +41,30 @@ export const RecipeCard = ({
 
   return (
     <div className={styles.card}>
-      <Link href={href} passHref>
-        <a>
-          <div className={styles.imgBox}>
-            <Image
-              src={photoLink}
-              objectFit="cover"
-              layout="fill"
-              alt={title}
-            />
-          </div>
-          <div className={styles.desc}>
-            <h2 className={styles.title}>{upperFirst(title)}</h2>
-            <p className={styles.text}>
-              {upperFirst(description.substring(0, 100)) + "..."}
-            </p>
-            <div className={styles.params}>
-              <Tag name={recipeType} />
-              <Tag name={`${mealPortions} porcji`} />
-              <Tag name={`${kcalPerPortions} kcal`} />
-              {isVegan ? <Tag name="wegańskie" /> : null}
-              {isVegetarian ? <Tag name="wegetariańskie" /> : null}
-            </div>
-          </div>
-        </a>
-      </Link>
+      <div className={styles.imgBox}>
+        <Image src={photoLink} objectFit="cover" layout="fill" alt={title} />
+      </div>
+      <div className={styles.desc}>
+        <h2 className={styles.title}>{upperFirst(title)}</h2>
+        <p className={styles.text}>
+          {upperFirst(description.substring(0, 100)) + "..."}
+        </p>
+        <div className={styles.params}>
+          <Tag name={recipeType} />
+          <Tag name={`${mealPortions} porcji`} />
+          <Tag name={`${kcalPerPortions} kcal`} />
+          {isVegan ? <Tag name="wegańskie" /> : null}
+          {isVegetarian ? <Tag name="wegetariańskie" /> : null}
+        </div>
+        <div className={styles.link}>
+          <Link href={href} passHref>
+            <a>
+              <OrangeButton text="czytaj więcej..." size="small" />
+            </a>
+          </Link>
+        </div>
+      </div>
+
       <FavButton
         isUserFav={isUserFav}
         removeFromFav={() => removeFromFav.mutate(recipeId)}

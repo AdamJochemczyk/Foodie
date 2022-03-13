@@ -61,7 +61,7 @@ const RecipesPage = () => {
         <div className={styles.link}>
           <Link href="/recipes/add" passHref>
             <a>
-              <OrangeButton text="dodaj nowy przepis" />
+              <OrangeButton text="dodaj nowy przepis" size="small" />
             </a>
           </Link>
         </div>
