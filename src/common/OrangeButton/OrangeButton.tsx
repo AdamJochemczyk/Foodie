@@ -7,16 +7,19 @@ interface OrangeButtonProperties {
   variant?: "primary" | "secondary";
   size?: "big" | "small";
   type?: "button" | "submit";
+  onClick?: () => void;
 }
 
 export const OrangeButton = ({
   text,
   variant = "primary",
   size = "big",
-  type = "button"
+  type = "button",
+  onClick
 }: OrangeButtonProperties) => {
   return (
     <button
+      onClick={onClick}
       type={type}
       className={clsx(styles.root, {
         [styles.primary]: variant === "primary",

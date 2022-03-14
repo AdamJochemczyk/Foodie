@@ -6,3 +6,8 @@
   width: 80%;
   max-width: 600px;
 }
+.ingredientSubForm {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
