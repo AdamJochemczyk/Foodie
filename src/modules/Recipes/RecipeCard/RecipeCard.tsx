@@ -47,7 +47,9 @@ export const RecipeCard = ({
       <div className={styles.desc}>
         <h2 className={styles.title}>{upperFirst(title)}</h2>
         <p className={styles.text}>
-          {upperFirst(description.substring(0, 100)) + "..."}
+          {description.length > 100
+            ? upperFirst(description.substring(0, 100)) + "..."
+            : description}
         </p>
         <div className={styles.params}>
           <Tag name={recipeType} />
@@ -56,13 +58,13 @@ export const RecipeCard = ({
           {isVegan ? <Tag name="wegańskie" /> : null}
           {isVegetarian ? <Tag name="wegetariańskie" /> : null}
         </div>
-        <div className={styles.link}>
-          <Link href={href} passHref>
-            <a>
-              <OrangeButton text="czytaj więcej..." size="small" />
-            </a>
-          </Link>
-        </div>
+      </div>
+      <div className={styles.link}>
+        <Link href={href} passHref>
+          <a>
+            <OrangeButton text="czytaj więcej..." size="small" />
+          </a>
+        </Link>
       </div>
 
       <FavButton
