@@ -21,6 +21,7 @@ interface RecipeCardProperties {
   recipeId: string;
   isUserFav?: boolean;
   href: string;
+  btnText: string;
 }
 
 export const RecipeCard = ({
@@ -34,7 +35,8 @@ export const RecipeCard = ({
   isVegetarian,
   isUserFav,
   recipeId,
-  href
+  href,
+  btnText
 }: RecipeCardProperties) => {
   const addToFav = useAddToFavRecipe();
   const removeFromFav = useRemoveFavRecipe();
@@ -62,7 +64,7 @@ export const RecipeCard = ({
       <div className={styles.link}>
         <Link href={href} passHref>
           <a>
-            <OrangeButton text="czytaj więcej..." size="small" />
+            <OrangeButton text={btnText} size="small" />
           </a>
         </Link>
       </div>

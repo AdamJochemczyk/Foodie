@@ -2,9 +2,7 @@ import { FormikProvider, useFormik } from "formik";
 import Link from "next/link";
 import { useState } from "react";
 import { ActionButton } from "../../../common/ActionButton/ActionButton";
-import { Checkbox } from "../../../common/Inputs/Checkbox/Checkbox";
-import { FormInput } from "../../../common/Inputs/FormInput/FormInput";
-import { CategorySelect } from "../../../common/Inputs/Select/CategorySelect";
+import { FormInput, CategorySelect, Checkbox } from "../../../common/Inputs";
 import { OrangeButton } from "../../../common/OrangeButton/OrangeButton";
 import { useSearchProducts } from "../hooks/useSearchProducts";
 import { ProductCard } from "../ProductCard/ProductCard";
@@ -17,10 +15,7 @@ export const ProductsPage = () => {
     favorites: false
   });
 
-  const { entities, isLoading: entitiesLoading } = useSearchProducts(
-    queryParams,
-    true
-  );
+  const { entities, isLoading } = useSearchProducts(queryParams, true);
 
   const formik = useFormik({
     initialValues: queryParams,
@@ -53,7 +48,7 @@ export const ProductsPage = () => {
         </div>
       </section>
       <section className={styles.cards}>
-        {!entitiesLoading && entities.length > 0 ? (
+        {!isLoading && entities.length > 0 ? (
           entities.map(({ category, name, photo_link, product_id, isFav }) => (
             <ProductCard
               key={product_id}

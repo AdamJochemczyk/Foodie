@@ -2,9 +2,7 @@ import { FormikProvider, useFormik } from "formik";
 import Link from "next/link";
 import { useState } from "react";
 import { ActionButton } from "../../../common/ActionButton/ActionButton";
-import { Checkbox } from "../../../common/Inputs/Checkbox/Checkbox";
-import { FormInput } from "../../../common/Inputs/FormInput/FormInput";
-import { RecipeTypeSelect } from "../../../common/Inputs/Select/RecipeTypeSelect";
+import { FormInput, Checkbox, RecipeTypeSelect } from "../../../common/Inputs";
 import { OrangeButton } from "../../../common/OrangeButton/OrangeButton";
 import { searchRecipeValidation } from "../../../common/validation";
 import { useSearchRecipes } from "../hooks/useSearchRecipes";
@@ -24,10 +22,8 @@ const RecipesPage = () => {
   });
 
   //TODO: rozbic formularz na glowne i szczegolowe
-  const { entities, isLoading: entitiesLoading } = useSearchRecipes(
-    queryParams,
-    true
-  );
+  const { entities, isLoading: entitiesLoading } =
+    useSearchRecipes(queryParams);
 
   const formik = useFormik({
     initialValues: queryParams,
@@ -97,6 +93,7 @@ const RecipesPage = () => {
                     typeof isFav === "undefined" ? false : isFav.length > 0
                   }
                   href={`/recipes/${recipe_id}`}
+                  btnText="Szczegóły"
                 />
               )
             )

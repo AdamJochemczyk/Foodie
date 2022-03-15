@@ -1,6 +1,6 @@
 import { FormikProvider, useFormik } from "formik";
 import { ActionButton } from "../../src/common/ActionButton/ActionButton";
-import { FormInput } from "../../src/common/Inputs/FormInput/FormInput";
+import { FormInput } from "../../src/common/Inputs";
 import { SignBox } from "../../src/modules/Auth/SignBox/SignBox";
 import common from "../../styles/common.module.css";
 import sign from "../../src/modules/Auth/Sign.module.css";

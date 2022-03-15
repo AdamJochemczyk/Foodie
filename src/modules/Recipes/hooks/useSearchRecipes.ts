@@ -71,10 +71,7 @@ const fetchRecipes = async ({
   return recipes;
 };
 
-export const useSearchRecipes = (
-  queryParams: QueryParams,
-  verified: boolean
-) => {
+export const useSearchRecipes = (queryParams: QueryParams, verified = true) => {
   const { userId } = useUserId();
   const { error, data, isLoading } = useQuery(["getRecipes", queryParams], () =>
     fetchRecipes({ ...queryParams, verified, userId: userId || "" })

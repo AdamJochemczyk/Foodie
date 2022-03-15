@@ -1,14 +1,16 @@
 import { FormikProvider, useFormik } from "formik";
 import React from "react";
 import { ActionButton } from "../../../common/ActionButton/ActionButton";
-import { Checkbox } from "../../../common/Inputs/Checkbox/Checkbox";
-import { FileInput } from "../../../common/Inputs/FileInput/FileInput";
-import { FormInput } from "../../../common/Inputs/FormInput/FormInput";
-import { MeasureTypeSelect } from "../../../common/Inputs/Select/MeasureTypeSelect";
-import { RecipeTypeSelect } from "../../../common/Inputs/Select/RecipeTypeSelect";
-import { TextArea } from "../../../common/Inputs/TextArea/TextArea";
+import {
+  FormInput,
+  FileInput,
+  Checkbox,
+  MeasureTypeSelect,
+  RecipeTypeSelect,
+  TextArea,
+  SearchWithAPI
+} from "../../../common/Inputs";
 import { OrangeButton } from "../../../common/OrangeButton/OrangeButton";
-import { SearchWithAPI } from "../../../common/Inputs/SearchWithApi/SearchWithAPI";
 import { addRecipeValidation } from "../../../common/validation";
 import { useFindProductByName } from "../../Products/hooks/useFindProductByName";
 import { RecipeProducts, useAddRecipe } from "../hooks/useCreateRecipe";

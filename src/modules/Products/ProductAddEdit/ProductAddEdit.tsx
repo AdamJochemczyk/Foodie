@@ -1,14 +1,12 @@
 import { FormikProvider, useFormik } from "formik";
 import React from "react";
-import { FormInput } from "../../../common/Inputs/FormInput/FormInput";
-import { CategorySelect } from "../../../common/Inputs/Select/CategorySelect";
+import { FormInput, CategorySelect, FileInput } from "../../../common/Inputs";
 import { ActionButton } from "../../../common/ActionButton/ActionButton";
 import { useCreateProduct } from "../hooks/useCreateProduct";
 import {
   productAddValidationWithPhoto,
   productAddValidation
 } from "../../../common/validation";
-import { FileInput } from "../../../common/Inputs/FileInput/FileInput";
 import styles from "./ProductAddEdit.module.css";
 import { useUpdateProduct } from "../hooks/useUpadateProduct";
 
