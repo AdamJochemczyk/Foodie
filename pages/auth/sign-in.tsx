@@ -22,8 +22,11 @@ export default function Signin() {
   useEffect(() => {
     if (typeof window !== "undefined") {
       setRememberedEmail(localStorage.getItem("loginEmail") || "");
+      if (rememberedEmail) {
+        setRememberMe(true);
+      }
     }
-  }, []);
+  }, [rememberedEmail]);
 
   const formik = useFormik({
     initialValues: { email: rememberedEmail, password: "" },
