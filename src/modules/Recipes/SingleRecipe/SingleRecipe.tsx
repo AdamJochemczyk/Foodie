@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { definitions } from "../../../../types/supabase";
 import { Tag } from "../../../common/Tag/Tag";
+import { useFindIngredients } from "../hooks/useFindIngredients";
 import styles from "./SingleRecipe.module.css";
 
 export const SingleRecipe = ({
@@ -19,6 +20,9 @@ export const SingleRecipe = ({
     isvegan,
     isvegetarian
   } = recipe;
+
+  const { entities, isLoading } = useFindIngredients();
+
   return (
     <article className={styles.container}>
       <section className={styles.card}>
@@ -37,8 +41,17 @@ export const SingleRecipe = ({
         <div className={styles.descBox}>
           <div className={styles.descIngredients}>
             <h3 className={styles.subTitle}>Składniki</h3>
-            {/*TODO: składniki */}
-            Coming soon...
+            {!isLoading ? (
+              entities.length > 0 &&
+              entities.map(el => (
+                <p key={el.product_id}>
+                  {el.ingredient.name} {el.product_count}
+                  {el.measure}
+                </p>
+              ))
+            ) : (
+              <p>Loading...</p>
+            )}
           </div>
           <div className={styles.desc}>
             <h3 className={styles.subTitle}>Przygotowanie</h3>

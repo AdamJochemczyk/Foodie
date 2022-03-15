@@ -1,7 +1,9 @@
-import { useFormikContext } from "formik";
+import { useField, useFormikContext } from "formik";
 import React, { useState } from "react";
 import Select from "react-select";
-import { debounce } from "../utils/debounce";
+import { debounce } from "../../utils/debounce";
+import styles from "../FormInputs.module.css";
+import { FormLabel } from "../FormLabel/FormLabel";
 
 interface Option {
   value: string;
@@ -19,6 +21,7 @@ export const SearchWithAPI = ({
 }: SeatchWithApiProperties) => {
   const [search, setSearch] = useState("");
   const { options, isLoading } = dataSource(search);
+  const [field, meta] = useField(name);
 
   const { setFieldValue } = useFormikContext();
 
@@ -31,17 +34,19 @@ export const SearchWithAPI = ({
   }, 500);
 
   return (
-    <div>
+    <div className={styles.field}>
+      <FormLabel name={name} label={label} meta={meta} />
       <Select
-        id={name}
-        instanceId={name}
-        name={name}
+        id={field.name}
+        instanceId={field.name}
+        name={field.name}
         placeholder={label}
         options={options}
         onInputChange={onInputChange}
         onChange={handleChange}
         isLoading={isLoading}
       />
+      <p className={styles.errorData}>{meta.error}</p>
     </div>
   );
 };

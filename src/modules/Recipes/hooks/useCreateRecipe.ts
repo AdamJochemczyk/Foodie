@@ -6,6 +6,11 @@ import { uploadImage } from "../../../utils/uploadImage";
 import { getImageUrl } from "../../../utils/getImageUrl";
 import { insertRecipe } from "./insertRecipe";
 
+export interface RecipeProducts {
+  product: { value: string; label: string };
+  measureType: string;
+  count: number;
+}
 interface CreateRecipeProperties {
   title: string;
   desc: string;
@@ -15,6 +20,7 @@ interface CreateRecipeProperties {
   isVegan: boolean;
   isVegetarian: boolean;
   photo: File | null;
+  recipeProducts: RecipeProducts[];
 }
 
 export const useAddRecipe = () => {
@@ -29,7 +35,8 @@ export const useAddRecipe = () => {
       kcalPerPortion,
       isVegan,
       isVegetarian,
-      photo
+      photo,
+      recipeProducts
     }: CreateRecipeProperties) => {
       if (photo === null) {
         throw new Error("Zdjecie musi zostac podane");
@@ -52,7 +59,8 @@ export const useAddRecipe = () => {
             kcalPerPortion,
             isVegan,
             isVegetarian,
-            proposalUserId: typeof userId === "string" ? userId : ""
+            proposalUserId: typeof userId === "string" ? userId : "",
+            recipeProducts
           });
         } else {
           throw new Error("Error on image upload");
