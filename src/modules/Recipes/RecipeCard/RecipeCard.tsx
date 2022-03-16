@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { FavButton } from "../../../common/FavButton/FavButton";
-import { OrangeButton } from "../../../common/OrangeButton/OrangeButton";
-import { Tag } from "../../../common/Tag/Tag";
-import { upperFirst } from "../../../common/utils/stringMethods";
+import { FavButton } from "src/common/FavButton/FavButton";
+import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
+import { Tag } from "src/common/Tag/Tag";
+import { upperFirst } from "src/common/utils/stringMethods";
 import { useAddToFavRecipe } from "../hooks/useAddToFavRecipe";
 import { useRemoveFavRecipe } from "../hooks/useRemoveFromFavRecipe";
 import styles from "./RecipeCard.module.css";

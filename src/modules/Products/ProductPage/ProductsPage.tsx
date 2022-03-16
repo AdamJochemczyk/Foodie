@@ -1,9 +1,9 @@
 import { FormikProvider, useFormik } from "formik";
 import Link from "next/link";
 import { useState } from "react";
-import { ActionButton } from "../../../common/ActionButton/ActionButton";
-import { FormInput, CategorySelect, Checkbox } from "../../../common/Inputs";
-import { OrangeButton } from "../../../common/OrangeButton/OrangeButton";
+import { ActionButton } from "src/common/ActionButton/ActionButton";
+import { FormInput, CategorySelect, Checkbox } from "src/common/Inputs";
+import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
 import { useSearchProducts } from "../hooks/useSearchProducts";
 import { ProductCard } from "../ProductCard/ProductCard";
 import styles from "./ProductsPage.module.css";

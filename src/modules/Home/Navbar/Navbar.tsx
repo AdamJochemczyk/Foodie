@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { OrangeButton } from "../../../common/OrangeButton/OrangeButton";
+import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
 import styles from "./Navbar.module.css";
 
 export const Navbar = () => (

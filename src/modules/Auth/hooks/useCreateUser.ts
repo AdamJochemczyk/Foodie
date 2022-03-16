@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useMutation } from "react-query";
 import { toast } from "react-toastify";
-import { supabase } from "../../../utils/supabaseClient";
+import { supabase } from "src/utils/supabaseClient";
 import { User } from "./types";
 
 const createUser = async (userData: User) => {

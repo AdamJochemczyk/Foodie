@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { FavButton } from "../../../common/FavButton/FavButton";
+import { FavButton } from "src/common/FavButton/FavButton";
 import { useAddToFavProduct } from "../hooks/useAddToFavProduct";
 import { useRemoveFavProduct } from "../hooks/useRemoveFavProduct";
 import styles from "./ProductCard.module.css";

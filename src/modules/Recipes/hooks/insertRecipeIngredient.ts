@@ -1,4 +1,4 @@
-import { supabase } from "./../../../utils/supabaseClient";
+import { supabase } from "src/utils/supabaseClient";
 import { toast } from "react-toastify";
 interface RecipeIngredient {
   product_id: string;

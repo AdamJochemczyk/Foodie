@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
-import { supabase } from "./../../../utils/supabaseClient";
+import { supabase } from "src/utils/supabaseClient";
 
 export const getRecipeById = async (id: string) => {
   const { data, error } = await supabase

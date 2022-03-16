@@ -1,11 +1,11 @@
 import { FormikProvider, useFormik } from "formik";
-import { ActionButton } from "../../src/common/ActionButton/ActionButton";
-import { FormInput } from "../../src/common/Inputs";
-import { SignBox } from "../../src/modules/Auth/SignBox/SignBox";
-import common from "../../styles/common.module.css";
-import sign from "../../src/modules/Auth/Sign.module.css";
+import { ActionButton } from "src/common/ActionButton/ActionButton";
+import { FormInput } from "src/common/Inputs";
+import { SignBox } from "src/modules/Auth/SignBox/SignBox";
+import common from "styles/common.module.css";
+import sign from "src/modules/Auth/Sign.module.css";
 import * as yup from "yup";
-import { emailValidation } from "../../src/common/validation";
+import { emailValidation } from "src/common/validation";
 import { useResetPasswordForEmailRequest } from "../../src/modules/Auth/hooks/useResetPasswordRequest";
 import clsx from "clsx";
 

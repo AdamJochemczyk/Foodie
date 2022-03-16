@@ -1,10 +1,10 @@
 import { FormikProvider, useFormik } from "formik";
 import Link from "next/link";
 import { useState } from "react";
-import { ActionButton } from "../../../common/ActionButton/ActionButton";
-import { FormInput, Checkbox, RecipeTypeSelect } from "../../../common/Inputs";
-import { OrangeButton } from "../../../common/OrangeButton/OrangeButton";
-import { searchRecipeValidation } from "../../../common/validation";
+import { ActionButton } from "src/common/ActionButton/ActionButton";
+import { FormInput, Checkbox, RecipeTypeSelect } from "src/common/Inputs";
+import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
+import { searchRecipeValidation } from "src/common/validation";
 import { useSearchRecipes } from "../hooks/useSearchRecipes";
 import { RecipeCard } from "../RecipeCard/RecipeCard";
 import styles from "./RecipesPage.module.css";

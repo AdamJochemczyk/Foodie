@@ -1,5 +1,5 @@
 import React from "react";
-import { VerifyGallery } from "../../../common/VerifyGallery/VerifyGallery";
+import { VerifyGallery } from "src/common/VerifyGallery/VerifyGallery";
 import { useSearchRecipes } from "../hooks/useSearchRecipes";
 import { RecipeCard } from "../RecipeCard/RecipeCard";
 

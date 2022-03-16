@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
-import { definitions } from "../../../../types/supabase";
-import { Tag } from "../../../common/Tag/Tag";
+import { definitions } from "types/supabase";
+import { Tag } from "src/common/Tag/Tag";
 import { useFindIngredients } from "../hooks/useFindIngredients";
 import styles from "./SingleRecipe.module.css";
 
