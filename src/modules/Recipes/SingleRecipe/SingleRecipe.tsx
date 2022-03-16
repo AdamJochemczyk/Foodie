@@ -21,7 +21,7 @@ export const SingleRecipe = ({
     isvegetarian
   } = recipe;
 
-  const { entities, isLoading } = useFindIngredients();
+  const { ingredients, isLoading } = useFindIngredients();
 
   return (
     <article className={styles.container}>
@@ -42,10 +42,10 @@ export const SingleRecipe = ({
           <div className={styles.descIngredients}>
             <h3 className={styles.subTitle}>Składniki</h3>
             {!isLoading ? (
-              entities.length > 0 &&
-              entities.map(el => (
-                <p key={el.product_id}>
-                  {el.ingredient.name} {el.product_count}
+              ingredients.length > 0 &&
+              ingredients.map(el => (
+                <p key={el.id}>
+                  {el.name} {el.count}
                   {el.measure}
                 </p>
               ))

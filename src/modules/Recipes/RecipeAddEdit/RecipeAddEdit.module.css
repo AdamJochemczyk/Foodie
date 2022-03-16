@@ -20,3 +20,7 @@
   padding: 1rem;
   border: solid 1px black;
 }
+.imgBox {
+  display: flex;
+  justify-content: center;
+}

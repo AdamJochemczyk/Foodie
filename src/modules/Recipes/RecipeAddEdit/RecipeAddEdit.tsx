@@ -16,10 +16,11 @@ import { useFindProductByName } from "../../Products/hooks/useFindProductByName"
 import { RecipeProducts, useAddRecipe } from "../hooks/useCreateRecipe";
 import styles from "./RecipeAddEdit.module.css";
 import { toast } from "react-toastify";
+import { useRemoveIngredient } from "../hooks/useRemoveIngredient";
+import { useRouter } from "next/router";
+import Image from "next/image";
+import { insertRecipeIngredient } from "../hooks/insertRecipeIngredient";
 
-interface RecipeAddEditProperties {
-  mode: "add" | "edit";
-}
 interface AddRecipeForm {
   title: string;
   desc: string;
@@ -34,29 +35,46 @@ interface AddRecipeForm {
   measureType: string;
   recipeProducts: RecipeProducts[];
 }
+interface RecipeAddEditProperties {
+  mode: "add" | "edit";
+  initialValues?: AddRecipeForm;
+  photoLink?: string;
+  ingredientsLoading?: boolean;
+}
 
-export const RecipeAddEdit = ({ mode = "add" }: RecipeAddEditProperties) => {
+export const RecipeAddEdit = ({
+  mode = "add",
+  initialValues = {
+    title: "",
+    desc: "",
+    recipeType: "",
+    mealPortions: 1,
+    kcalPerPortion: 1,
+    isVegan: false,
+    isVegetarian: false,
+    photo: null,
+    product: null,
+    count: 0,
+    measureType: "",
+    recipeProducts: []
+  },
+  photoLink,
+  ingredientsLoading = false
+}: RecipeAddEditProperties) => {
   const addRecipeMutation = useAddRecipe();
+  const removeIngredient = useRemoveIngredient();
+  const router = useRouter();
+
   const formik = useFormik<AddRecipeForm>({
-    initialValues: {
-      title: "",
-      desc: "",
-      recipeType: "",
-      mealPortions: 1,
-      kcalPerPortion: 1,
-      isVegan: false,
-      isVegetarian: false,
-      photo: null,
-      product: null,
-      count: 0,
-      measureType: "",
-      recipeProducts: []
-    },
+    initialValues: initialValues,
     enableReinitialize: true,
     validationSchema: addRecipeValidation,
     onSubmit: values => {
       if (mode === "add") {
         addRecipeMutation.mutate(values);
+      } else if (mode === "edit") {
+        //TODO: values without recipeProducts <- empty array
+        //TODO: update mutation
       }
     }
   });
@@ -64,37 +82,50 @@ export const RecipeAddEdit = ({ mode = "add" }: RecipeAddEditProperties) => {
   const handleAddIngredient = () => {
     const { product, count, measureType } = formik.values;
     if (!product) {
-      toast.error("Wybierz produkt");
+      return toast.error("Wybierz produkt");
     }
     if (count <= 0) {
-      toast.error("Ilość musi być dodatnia");
+      return toast.error("Ilość musi być dodatnia");
     }
     if (!measureType) {
-      toast.error("Wybierz jednostkę");
+      return toast.error("Wybierz jednostkę");
+    }
+    if (
+      formik.values.recipeProducts.some(
+        el => el.product.label === product.label
+      )
+    ) {
+      return toast.error("Skladnik został już dodany");
     }
     if (product && count > 0 && measureType) {
-      if (
-        formik.values.recipeProducts.some(
-          el => el.product.value === product.value
-        )
-      ) {
-        toast.error("Skladnik juz został dodany");
-      } else {
-        formik.setFieldValue("recipeProducts", [
-          ...formik.values.recipeProducts,
-          { product, count, measureType }
-        ]);
-        formik.setFieldValue("count", "");
+      formik.setFieldValue("recipeProducts", [
+        ...formik.values.recipeProducts,
+        { product, count, measureType }
+      ]);
+      formik.setFieldValue("count", "");
+    }
+    if (product && count > 0 && measureType && mode === "edit") {
+      const { recipe_id } = router.query;
+      if (typeof recipe_id === "string") {
+        insertRecipeIngredient({
+          product_id: product.value,
+          recipe_id,
+          product_count: count,
+          measure: measureType
+        });
       }
     }
   };
 
-  const handleRemoveProduct = (productId: string) => {
+  const handleRemoveProduct = (id: string) => {
     const { recipeProducts } = formik.values;
     const filteredProducts = recipeProducts.filter(
-      el => el.product.value !== productId
+      el => el.product.value !== id
     );
     formik.setFieldValue("recipeProducts", filteredProducts);
+    if (mode === "edit") {
+      removeIngredient.mutate(id);
+    }
   };
 
   return (
@@ -104,6 +135,11 @@ export const RecipeAddEdit = ({ mode = "add" }: RecipeAddEditProperties) => {
           <form>
             <FormInput name="title" label="tytuł" />
             <TextArea name="desc" label="opis" />
+            {mode === "edit" && typeof photoLink === "string" ? (
+              <div className={styles.imgBox}>
+                <Image src={photoLink} alt="recipe" width={300} height={300} />
+              </div>
+            ) : null}
             <FileInput name="photo" label="zdjecie przepisu" />
             <RecipeTypeSelect name="recipeType" />
             <FormInput
@@ -133,35 +169,39 @@ export const RecipeAddEdit = ({ mode = "add" }: RecipeAddEditProperties) => {
                 onClick={handleAddIngredient}
               />
             </div>
-            <table className={styles.table}>
-              <thead>
-                <tr>
-                  <td>Produkt</td>
-                  <td>Ilość</td>
-                  <td>Jednostka</td>
-                  <td>Akcja</td>
-                </tr>
-              </thead>
-              <tbody>
-                {formik.values.recipeProducts.map(
-                  ({ product, count, measureType }) => (
-                    <tr key={product.value}>
-                      <td>{product.label}</td>
-                      <td>{count}</td>
-                      <td>{measureType}</td>
-                      <td>
-                        <OrangeButton
-                          variant="secondary"
-                          text="Usun produkt"
-                          size="small"
-                          onClick={() => handleRemoveProduct(product.value)}
-                        />
-                      </td>
-                    </tr>
-                  )
-                )}
-              </tbody>
-            </table>
+            {!ingredientsLoading ? (
+              <table className={styles.table}>
+                <thead>
+                  <tr>
+                    <td>Produkt</td>
+                    <td>Ilość</td>
+                    <td>Jednostka</td>
+                    <td>Akcja</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {formik.values.recipeProducts.map(
+                    ({ product, count, measureType }) => (
+                      <tr key={product.value}>
+                        <td>{product.label}</td>
+                        <td>{count}</td>
+                        <td>{measureType}</td>
+                        <td>
+                          <OrangeButton
+                            variant="secondary"
+                            text="Usun produkt"
+                            size="small"
+                            onClick={() => handleRemoveProduct(product.value)}
+                          />
+                        </td>
+                      </tr>
+                    )
+                  )}
+                </tbody>
+              </table>
+            ) : (
+              <p>Loading...</p>
+            )}
             <ActionButton
               text={mode === "add" ? "Dodaj przepis" : "Edytuj"}
               onClick={formik.handleSubmit}

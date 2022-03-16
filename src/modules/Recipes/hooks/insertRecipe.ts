@@ -1,6 +1,6 @@
 import { supabase } from "../../../utils/supabaseClient";
+import { insertRecipeIngredient } from "./insertRecipeIngredient";
 import { RecipeProducts } from "./useCreateRecipe";
-
 interface RecipeProperties {
   photoLink: string;
   title: string;
@@ -13,24 +13,6 @@ interface RecipeProperties {
   proposalUserId: string;
   recipeProducts: RecipeProducts[];
 }
-
-const insertRecipeIngredient = async (
-  product_id: string,
-  recipe_id: string,
-  product_count: number,
-  measure: string
-) => {
-  const { data, error } = await supabase.from("ingredients").insert({
-    product_id,
-    recipe_id,
-    product_count,
-    measure
-  });
-  if (error) {
-    throw error;
-  }
-  return data;
-};
 
 export const insertRecipe = async ({
   photoLink,
@@ -56,14 +38,14 @@ export const insertRecipe = async ({
     proposal_user_id: proposalUserId
   });
   const recipeId = data ? (data[0].recipe_id as string) : "";
-  if (recipeId) {
+  if (recipeId && recipeProducts.length > 0) {
     recipeProducts.forEach(ingredient => {
-      insertRecipeIngredient(
-        ingredient.product.value,
-        recipeId,
-        ingredient.count,
-        ingredient.measureType
-      );
+      insertRecipeIngredient({
+        product_id: ingredient.product.value,
+        recipe_id: recipeId,
+        product_count: ingredient.count,
+        measure: ingredient.measureType
+      });
     });
   }
   if (error) {

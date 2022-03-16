@@ -8,12 +8,9 @@ import { definitions } from "../../types/supabase";
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const recipe_id = query.recipe_id;
-  const { error, data } = await getRecipeById(
+  const data = await getRecipeById(
     typeof recipe_id === "string" ? recipe_id : ""
   );
-  if (error) {
-    return { notFound: true };
-  }
   return {
     props: {
       data

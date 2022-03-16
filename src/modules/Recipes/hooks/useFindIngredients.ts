@@ -7,7 +7,7 @@ const fetchRecipeIngredients = async (recipe_id: string) => {
   const { data, error } = await supabase
     .from("ingredients")
     .select(
-      "recipe_id,product_id,product_count,measure,ingredient:product_id!inner(name)"
+      "id,recipe_id,product_id,product_count,measure,ingredient:product_id!inner(name)"
     )
     .eq("recipe_id", recipe_id);
   if (error) {
@@ -31,5 +31,14 @@ export const useFindIngredients = () => {
   if (error) {
     toast.error(error as string);
   }
-  return { entities: data || [], isLoading };
+  return {
+    ingredients:
+      data?.map(el => ({
+        id: el.id,
+        name: el.ingredient.name,
+        measure: el.measure,
+        count: el.product_count
+      })) || [],
+    isLoading
+  };
 };
