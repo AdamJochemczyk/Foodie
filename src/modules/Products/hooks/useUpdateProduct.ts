@@ -1,9 +1,9 @@
 import { toast } from "react-toastify";
-import { supabase } from "./../../../utils/supabaseClient";
+import { supabase } from "src/utils/supabaseClient";
 import { useMutation } from "react-query";
 import { useRouter } from "next/router";
-import { uploadImage } from "../../../utils/uploadImage";
-import { getImageUrl } from "../../../utils/getImageUrl";
+import { uploadImage } from "src/utils/uploadImage";
+import { getImageUrl } from "src/utils/getImageUrl";
 
 interface UpdateProductProperties {
   category: string;

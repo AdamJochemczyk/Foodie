@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { useMutation } from "react-query";
-import { supabase } from "../../../utils/supabaseClient";
+import { supabase } from "src/utils/supabaseClient";
 import { User } from "./types";
 
 export const useLogin = () => {

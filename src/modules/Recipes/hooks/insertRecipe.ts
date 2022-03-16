@@ -1,4 +1,4 @@
-import { supabase } from "../../../utils/supabaseClient";
+import { supabase } from "src/utils/supabaseClient";
 import { insertRecipeIngredient } from "./insertRecipeIngredient";
 import { RecipeProducts } from "./useCreateRecipe";
 interface RecipeProperties {

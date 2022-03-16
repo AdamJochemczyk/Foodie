@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./Footer.module.css";
 import Image from "next/image";
-import { SocialButton } from "../../../common/SocialButton/SocialButton";
-import { OrangeButton } from "../../../common/OrangeButton/OrangeButton";
+import { SocialButton } from "src/common/SocialButton/SocialButton";
+import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
 import Link from "next/link";
 import { socials } from "../constants";
 

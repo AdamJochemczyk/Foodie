@@ -1,10 +1,10 @@
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
-import { Footer } from "../src/modules/Home/Footer/Footer";
-import { Navbar } from "../src/modules/Home/Navbar/Navbar";
-import { Hero } from "../src/modules/Home/Hero/Hero";
-import { Features } from "../src/modules/Home/Features/Features";
-import { Testimonials } from "../src/modules/Home/Testimonials/Testimonials";
+import { Footer } from "src/modules/Home/Footer/Footer";
+import { Navbar } from "src/modules/Home/Navbar/Navbar";
+import { Hero } from "src/modules/Home/Hero/Hero";
+import { Features } from "src/modules/Home/Features/Features";
+import { Testimonials } from "src/modules/Home/Testimonials/Testimonials";
 import { useEffect } from "react";
 
 const Home: NextPage = () => {

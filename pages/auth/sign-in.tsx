@@ -1,16 +1,13 @@
 import { FormikProvider, useFormik } from "formik";
 import Link from "next/link";
-import { ActionButton } from "../../src/common/ActionButton/ActionButton";
-import { FormInput } from "../../src/common/Inputs";
-import { SignBox } from "../../src/modules/Auth/SignBox/SignBox";
-import common from "../../styles/common.module.css";
-import sign from "../../src/modules/Auth/Sign.module.css";
+import { ActionButton } from "src/common/ActionButton/ActionButton";
+import { FormInput } from "src/common/Inputs";
+import { SignBox } from "src/modules/Auth/SignBox/SignBox";
+import common from "styles/common.module.css";
+import sign from "src/modules/Auth/Sign.module.css";
 import * as yup from "yup";
-import {
-  emailValidation,
-  passwordValidation
-} from "../../src/common/validation";
-import { useLogin } from "../../src/modules/Auth/hooks/useLogin";
+import { emailValidation, passwordValidation } from "src/common/validation";
+import { useLogin } from "src/modules/Auth/hooks/useLogin";
 import { useCallback, useEffect, useState } from "react";
 import clsx from "clsx";
 

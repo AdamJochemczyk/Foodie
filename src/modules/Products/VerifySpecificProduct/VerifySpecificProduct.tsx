@@ -1,5 +1,5 @@
 import React from "react";
-import { ActionButton } from "../../../common/ActionButton/ActionButton";
+import { ActionButton } from "src/common/ActionButton/ActionButton";
 import { useDeleteProduct } from "../hooks/useDeleteProduct";
 import { useGetProduct } from "../hooks/useGetProduct";
 import { ProductAddEdit } from "../ProductAddEdit/ProductAddEdit";

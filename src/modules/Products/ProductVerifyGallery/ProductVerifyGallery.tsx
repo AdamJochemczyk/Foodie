@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { VerifyGallery } from "../../../common/VerifyGallery/VerifyGallery";
+import { VerifyGallery } from "src/common/VerifyGallery/VerifyGallery";
 import { useSearchProducts } from "../hooks/useSearchProducts";
 import { ProductCard } from "../ProductCard/ProductCard";
 

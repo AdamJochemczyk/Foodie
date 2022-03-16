@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
-import { supabase } from "./../../../utils/supabaseClient";
+import { supabase } from "src/utils/supabaseClient";
 import { useMutation } from "react-query";
 const resetPassword = async (authToken: string, password: string) => {
   const { error, data } = await supabase.auth.api.updateUser(authToken, {

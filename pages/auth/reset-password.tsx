@@ -1,14 +1,14 @@
 import { FormikProvider, useFormik } from "formik";
-import { ActionButton } from "../../src/common/ActionButton/ActionButton";
-import { FormInput } from "../../src/common/Inputs";
-import { SignBox } from "../../src/modules/Auth/SignBox/SignBox";
-import common from "../../styles/common.module.css";
-import sign from "../../src/modules/Auth/Sign.module.css";
+import { ActionButton } from "src/common/ActionButton/ActionButton";
+import { FormInput } from "src/common/Inputs";
+import { SignBox } from "src/modules/Auth/SignBox/SignBox";
+import common from "styles/common.module.css";
+import sign from "src/modules/Auth/Sign.module.css";
 import * as yup from "yup";
-import { createPasswordValidation } from "../../src/common/validation";
+import { createPasswordValidation } from "src/common/validation";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { useResetPassword } from "../../src/modules/Auth/hooks/useResetPassword";
+import { useResetPassword } from "src/modules/Auth/hooks/useResetPassword";
 import clsx from "clsx";
 
 const validationSchema = yup.object().shape({

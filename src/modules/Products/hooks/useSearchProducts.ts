@@ -1,6 +1,6 @@
-import { useUserId } from "./../../../utils/useUser";
+import { useUserId } from "src/utils/useUser";
 import { toast } from "react-toastify";
-import { supabase } from "./../../../utils/supabaseClient";
+import { supabase } from "src/utils/supabaseClient";
 import { useQuery } from "react-query";
 export interface SearchProducts {
   searchName: string;

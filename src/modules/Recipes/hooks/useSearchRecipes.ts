@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
-import { useUserId } from "./../../../utils/useUser";
-import { supabase } from "../../../utils/supabaseClient";
+import { useUserId } from "src/utils/useUser";
+import { supabase } from "src/utils/supabaseClient";
 import { toast } from "react-toastify";
 
 interface QueryParams {

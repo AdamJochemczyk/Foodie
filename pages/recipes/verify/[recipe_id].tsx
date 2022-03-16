@@ -1,9 +1,9 @@
 import React from "react";
-import { Layout } from "../../../src/common/Layout/Layout";
-import { ProtectedWrapper } from "../../../src/common/ProtectedWrapper/ProtectedWrapper";
-import { useFindIngredients } from "../../../src/modules/Recipes/hooks/useFindIngredients";
-import { useGetRecipeById } from "../../../src/modules/Recipes/hooks/useGetRecipeById";
-import { RecipeAddEdit } from "../../../src/modules/Recipes/RecipeAddEdit/RecipeAddEdit";
+import { Layout } from "src/common/Layout/Layout";
+import { ProtectedWrapper } from "src/common/ProtectedWrapper/ProtectedWrapper";
+import { useFindIngredients } from "src/modules/Recipes/hooks/useFindIngredients";
+import { useGetRecipeById } from "src/modules/Recipes/hooks/useGetRecipeById";
+import { RecipeAddEdit } from "src/modules/Recipes/RecipeAddEdit/RecipeAddEdit";
 
 const VerifyRecipe = () => {
   const { recipe, isLoading } = useGetRecipeById();

@@ -1,8 +1,8 @@
-import { supabase } from "./../../../utils/supabaseClient";
+import { supabase } from "src/utils/supabaseClient";
 import { useMutation, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
-import { removeImage } from "../../../utils/removeImage";
+import { removeImage } from "src/utils/removeImage";
 
 export const useDeleteProduct = () => {
   const router = useRouter();

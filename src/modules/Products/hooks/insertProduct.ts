@@ -1,4 +1,4 @@
-import { supabase } from "./../../../utils/supabaseClient";
+import { supabase } from "src/utils/supabaseClient";
 
 export const insertProduct = async ({
   gtin_code,

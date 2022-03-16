@@ -1,5 +1,5 @@
-import { supabase } from "./../../../utils/supabaseClient";
-import { useUserId } from "./../../../utils/useUser";
+import { supabase } from "src/utils/supabaseClient";
+import { useUserId } from "src/utils/useUser";
 import { toast } from "react-toastify";
 import { useMutation, useQueryClient } from "react-query";
 

@@ -1,9 +1,9 @@
 import { insertProduct } from "./insertProduct";
-import { useUserId } from "./../../../utils/useUser";
-import { getImageUrl } from "./../../../utils/getImageUrl";
+import { useUserId } from "src/utils/useUser";
+import { getImageUrl } from "src/utils/getImageUrl";
 import { toast } from "react-toastify";
 import { useMutation } from "react-query";
-import { uploadImage } from "../../../utils/uploadImage";
+import { uploadImage } from "src/utils/uploadImage";
 import { useRouter } from "next/router";
 
 interface CreateProductProperties {

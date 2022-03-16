@@ -1,6 +1,6 @@
 import { FormikProvider, useFormik } from "formik";
 import React from "react";
-import { ActionButton } from "../../../common/ActionButton/ActionButton";
+import { ActionButton } from "src/common/ActionButton/ActionButton";
 import {
   FormInput,
   FileInput,
@@ -9,10 +9,10 @@ import {
   RecipeTypeSelect,
   TextArea,
   SearchWithAPI
-} from "../../../common/Inputs";
-import { OrangeButton } from "../../../common/OrangeButton/OrangeButton";
-import { addRecipeValidation } from "../../../common/validation";
-import { useFindProductByName } from "../../Products/hooks/useFindProductByName";
+} from "src/common/Inputs";
+import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
+import { addRecipeValidation } from "src/common/validation";
+import { useFindProductByName } from "src/modules/Products/hooks/useFindProductByName";
 import { RecipeProducts, useAddRecipe } from "../hooks/useCreateRecipe";
 import styles from "./RecipeAddEdit.module.css";
 import { toast } from "react-toastify";

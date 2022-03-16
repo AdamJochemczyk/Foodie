@@ -1,16 +1,16 @@
 import Link from "next/link";
-import { SignBox } from "../../src/modules/Auth/SignBox/SignBox";
-import common from "../../styles/common.module.css";
-import sign from "../../src/modules/Auth/Sign.module.css";
+import { SignBox } from "src/modules/Auth/SignBox/SignBox";
+import common from "styles/common.module.css";
+import sign from "src/modules/Auth/Sign.module.css";
 import { FormikProvider, useFormik } from "formik";
-import { FormInput } from "../../src/common/Inputs";
+import { FormInput } from "src/common/Inputs";
 import * as yup from "yup";
-import { ActionButton } from "../../src/common/ActionButton/ActionButton";
+import { ActionButton } from "src/common/ActionButton/ActionButton";
 import {
   createPasswordValidation,
   emailValidation
-} from "../../src/common/validation";
-import { useCreateUser } from "../../src/modules/Auth/hooks/useCreateUser";
+} from "src/common/validation";
+import { useCreateUser } from "src/modules/Auth/hooks/useCreateUser";
 import clsx from "clsx";
 
 //register

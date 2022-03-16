@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { supabase } from "../../../utils/supabaseClient";
+import { supabase } from "src/utils/supabaseClient";
 
 const getProduct = async (name: string) => {
   const { data, error } = await supabase

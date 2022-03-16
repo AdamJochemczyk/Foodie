@@ -1,9 +1,9 @@
 import { toast } from "react-toastify";
 import { useMutation } from "react-query";
 import { useRouter } from "next/router";
-import { useUserId } from "./../../../utils/useUser";
-import { uploadImage } from "../../../utils/uploadImage";
-import { getImageUrl } from "../../../utils/getImageUrl";
+import { useUserId } from "src/utils/useUser";
+import { uploadImage } from "src/utils/uploadImage";
+import { getImageUrl } from "src/utils/getImageUrl";
 import { insertRecipe } from "./insertRecipe";
 
 export interface RecipeProducts {
