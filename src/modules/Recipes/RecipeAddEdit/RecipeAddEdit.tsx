@@ -206,6 +206,7 @@ export const RecipeAddEdit = ({
             <ActionButton
               text={mode === "add" ? "Dodaj przepis" : "Edytuj"}
               onClick={formik.handleSubmit}
+              type="submit"
             />
           </form>
         </FormikProvider>

@@ -11,6 +11,7 @@ interface ActionButtonProperties {
   type?: "submit" | "button";
   rounded?: boolean;
   variant?: "danger" | "action";
+  disabled?: boolean;
 }
 
 export const ActionButton = ({
@@ -19,16 +20,19 @@ export const ActionButton = ({
   loading = false,
   type = "button",
   rounded = false,
-  variant = "action"
+  variant = "action",
+  disabled = false
 }: ActionButtonProperties) => {
   return (
     <button
       className={clsx(styles.button, {
         [styles.rounded]: rounded,
-        [styles.danger]: variant === "danger"
+        [styles.danger]: variant === "danger",
+        [styles.disabled]: disabled
       })}
       onClick={onClick}
       type={type}
+      disabled={disabled}
     >
       {loading && <Loader />}
       {upperFirst(text)}

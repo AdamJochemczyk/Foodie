@@ -7,7 +7,8 @@ const getProduct = async (id: string) => {
   const { data, error } = await supabase
     .from("products")
     .select(`*,user:proposal_user_id!inner(email)`)
-    .eq("product_id", id);
+    .eq("product_id", id)
+    .single();
   if (error) {
     throw error.message;
   }

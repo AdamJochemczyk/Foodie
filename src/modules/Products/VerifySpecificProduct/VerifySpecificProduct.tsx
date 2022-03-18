@@ -16,9 +16,9 @@ export const VerifySpecificProduct = () => {
           <ProductAddEdit
             mode="edit"
             initialValues={{
-              category: product[0].category,
-              name: product[0].name,
-              gtin_code: product[0].gtin_code,
+              category: product.category,
+              name: product.name,
+              gtin_code: product.gtin_code,
               photo: null
             }}
           />
@@ -26,21 +26,21 @@ export const VerifySpecificProduct = () => {
             <p className={styles.subtitle}>Podgląd wygladu:</p>
             <div className={styles.content}>
               <ProductCard
-                id={product[0].product_id}
-                name={product[0].name}
-                photo_link={product[0].photo_link}
-                category={product[0].category}
+                id={product.product_id}
+                name={product.name}
+                photo_link={product.photo_link}
+                category={product.category}
               />
               <p className={styles.person}>
-                Zgloszone przez: {product[0].user.email}
+                Zgloszone przez: {product.user.email}
               </p>
               <ActionButton
                 variant="danger"
                 text="usuń produkt"
                 onClick={() =>
                   removeProductMutation.mutate({
-                    id: product[0].product_id,
-                    gtin_code: product[0].gtin_code
+                    id: product.product_id,
+                    gtin_code: product.gtin_code
                   })
                 }
               />

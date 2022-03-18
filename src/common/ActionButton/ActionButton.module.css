@@ -16,3 +16,8 @@
 .button:hover {
   cursor: pointer;
 }
+.disabled {
+  pointer-events: none;
+  background-color: gray;
+  border: solid 2px gray;
+}
