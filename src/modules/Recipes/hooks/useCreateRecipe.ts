@@ -13,7 +13,7 @@ export interface RecipeProducts {
 }
 interface CreateRecipeProperties {
   title: string;
-  desc: string;
+  description: string;
   recipeType: string;
   mealPortions: number;
   kcalPerPortion: number;
@@ -29,7 +29,7 @@ export const useAddRecipe = () => {
   return useMutation(
     async ({
       title,
-      desc,
+      description,
       recipeType,
       mealPortions,
       kcalPerPortion,
@@ -43,7 +43,8 @@ export const useAddRecipe = () => {
       }
       const { data, error: uploadError } = await uploadImage(
         `recipes/${title}`,
-        photo
+        photo,
+        false
       );
       if (uploadError) {
         throw new Error("Error on upload");
@@ -53,7 +54,7 @@ export const useAddRecipe = () => {
           return await insertRecipe({
             photoLink,
             title,
-            desc,
+            description,
             recipeType,
             mealPortions,
             kcalPerPortion,

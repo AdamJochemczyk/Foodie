@@ -79,9 +79,9 @@ export const searchRecipeValidation = yup.object().shape({
   isVegetarian: yup.boolean()
 });
 
-export const addRecipeValidation = yup.object().shape({
+export const recipeValidation = yup.object().shape({
   title: yup.string().required("Tytuł jest wymagany"),
-  desc: yup
+  description: yup
     .string()
     .required("Opis jest wymagany")
     .max(2100, "Opis moze mieć max 2100 znaków"),
@@ -97,7 +97,10 @@ export const addRecipeValidation = yup.object().shape({
     .number()
     .positive("Liczba kcal musi być dodatania")
     .required("Liczba kcal na porcję jest wymagana"),
-  photo: fileValidation,
   isVegan: yup.boolean(),
   isVegetarian: yup.boolean()
+});
+
+export const addRecipeValidation = recipeValidation.shape({
+  photo: fileValidation
 });

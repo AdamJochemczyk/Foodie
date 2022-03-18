@@ -11,7 +11,7 @@ import {
   SearchWithAPI
 } from "src/common/Inputs";
 import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
-import { addRecipeValidation } from "src/common/validation";
+import { addRecipeValidation, recipeValidation } from "src/common/validation";
 import { useFindProductByName } from "src/modules/Products/hooks/useFindProductByName";
 import { RecipeProducts, useAddRecipe } from "../hooks/useCreateRecipe";
 import styles from "./RecipeAddEdit.module.css";
@@ -20,10 +20,11 @@ import { useRemoveIngredient } from "../hooks/useRemoveIngredient";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { insertRecipeIngredient } from "../hooks/insertRecipeIngredient";
+import { useUpdateRecipe } from "../hooks/useUpdateRecipe";
 
-interface AddRecipeForm {
+interface RecipeForm {
   title: string;
-  desc: string;
+  description: string;
   recipeType: string;
   mealPortions: number;
   kcalPerPortion: number;
@@ -37,7 +38,7 @@ interface AddRecipeForm {
 }
 interface RecipeAddEditProperties {
   mode: "add" | "edit";
-  initialValues?: AddRecipeForm;
+  initialValues?: RecipeForm;
   photoLink?: string;
   ingredientsLoading?: boolean;
 }
@@ -46,7 +47,7 @@ export const RecipeAddEdit = ({
   mode = "add",
   initialValues = {
     title: "",
-    desc: "",
+    description: "",
     recipeType: "",
     mealPortions: 1,
     kcalPerPortion: 1,
@@ -63,18 +64,18 @@ export const RecipeAddEdit = ({
 }: RecipeAddEditProperties) => {
   const addRecipeMutation = useAddRecipe();
   const removeIngredient = useRemoveIngredient();
+  const updateMutation = useUpdateRecipe();
   const router = useRouter();
 
-  const formik = useFormik<AddRecipeForm>({
+  const formik = useFormik<RecipeForm>({
     initialValues: initialValues,
     enableReinitialize: true,
-    validationSchema: addRecipeValidation,
+    validationSchema: mode === "add" ? addRecipeValidation : recipeValidation,
     onSubmit: values => {
       if (mode === "add") {
         addRecipeMutation.mutate(values);
       } else if (mode === "edit") {
-        //TODO: values without recipeProducts <- empty array
-        //TODO: update mutation
+        updateMutation.mutate(values);
       }
     }
   });
@@ -134,7 +135,7 @@ export const RecipeAddEdit = ({
         <FormikProvider value={formik}>
           <form>
             <FormInput name="title" label="tytuł" />
-            <TextArea name="desc" label="opis" />
+            <TextArea name="description" label="opis" />
             {mode === "edit" && typeof photoLink === "string" ? (
               <div className={styles.imgBox}>
                 <Image src={photoLink} alt="recipe" width={300} height={300} />

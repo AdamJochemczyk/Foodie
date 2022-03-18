@@ -4,7 +4,7 @@ import { RecipeProducts } from "./useCreateRecipe";
 interface RecipeProperties {
   photoLink: string;
   title: string;
-  desc: string;
+  description: string;
   recipeType: string;
   mealPortions: number;
   kcalPerPortion: number;
@@ -17,7 +17,7 @@ interface RecipeProperties {
 export const insertRecipe = async ({
   photoLink,
   title,
-  desc,
+  description,
   recipeType,
   mealPortions,
   kcalPerPortion,
@@ -28,7 +28,7 @@ export const insertRecipe = async ({
 }: RecipeProperties) => {
   const { data, error } = await supabase.from("recipes").insert({
     title,
-    description: desc,
+    description,
     recipe_type: recipeType,
     meal_portions: mealPortions,
     photo_link: photoLink,

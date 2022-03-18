@@ -19,7 +19,7 @@ const VerifyRecipe = () => {
             ingredientsLoading={ingredientsLoading}
             initialValues={{
               title: recipe.title,
-              desc: recipe.description,
+              description: recipe.description,
               recipeType: recipe.recipe_type,
               mealPortions: recipe.meal_portions,
               kcalPerPortion: recipe.kcal_per_portion,

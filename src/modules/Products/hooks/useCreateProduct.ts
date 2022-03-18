@@ -24,7 +24,8 @@ export const useCreateProduct = () => {
       }
       const { data, error: uploadError } = await uploadImage(
         `products/${gtin_code}`,
-        photo
+        photo,
+        false
       );
       if (uploadError) {
         throw new Error("Error on upload");
