@@ -1,4 +1,3 @@
-import Link from "next/link";
 import React, { useCallback, useState } from "react";
 import styles from "./Layout.module.css";
 import { FaBars } from "react-icons/fa";
@@ -9,6 +8,7 @@ import { sidebarData } from "./sideardata";
 import { FiLogOut } from "react-icons/fi";
 import Image from "next/image";
 import { useLogout } from "../../modules/Auth/hooks/useLogout";
+import { LinkWrapper } from "../LinkWrapper/LinkWrapper";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const [sidebar, setSidebar] = useState(false);
@@ -41,16 +41,14 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                 alt="Foodie"
               />
             </li>
-            {sidebarData.map(item => {
+            {sidebarData.map(({ title, path, icon }) => {
               return (
-                <Link key={item.title} href={item.path} passHref>
-                  <a>
-                    <li className={styles.navText}>
-                      {item.icon}
-                      <span>{item.title}</span>
-                    </li>
-                  </a>
-                </Link>
+                <LinkWrapper key={title} link={path}>
+                  <li className={styles.navText}>
+                    {icon}
+                    <span>{title}</span>
+                  </li>
+                </LinkWrapper>
               );
             })}
             <li className={styles.navText} onClick={handleLogout}>

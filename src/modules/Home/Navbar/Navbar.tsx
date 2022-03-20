@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
+import { LinkWrapper } from "src/common/LinkWrapper/LinkWrapper";
 import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
 import styles from "./Navbar.module.css";
 
@@ -13,36 +13,20 @@ export const Navbar = () => (
       alt="Foodie"
     />
     <div className={styles.menuItems}>
-      <Link href="#przepisy" passHref>
-        <a>Przepisy</a>
-      </Link>
-      <Link href="#dieta" passHref>
-        <a>Dieta</a>
-      </Link>
-      <Link href="#lodowka" passHref>
-        <a>Lodówka</a>
-      </Link>
-      <Link href="#zakupy" passHref>
-        <a>Zakupy</a>
-      </Link>
-      <Link href="#raporty" passHref>
-        <a>Raporty</a>
-      </Link>
-      <Link href="#opinie" passHref>
-        <a>Opinie</a>
-      </Link>
+      <LinkWrapper link="#przepisy">Przepisy</LinkWrapper>
+      <LinkWrapper link="#dieta">Dieta</LinkWrapper>
+      <LinkWrapper link="#lodowka">Lodówka</LinkWrapper>
+      <LinkWrapper link="#zakupy">Zakupy</LinkWrapper>
+      <LinkWrapper link="#raporty">Raporty</LinkWrapper>
+      <LinkWrapper link="#opinie">Opinie</LinkWrapper>
     </div>
     <div className={styles.actionBtns}>
-      <Link href="/auth/sign-up" passHref>
-        <a>
-          <OrangeButton text="zarejestruj się" size="small" />
-        </a>
-      </Link>
-      <Link href="/auth/sign-in" passHref>
-        <a>
-          <OrangeButton variant="secondary" text="zaloguj się" size="small" />
-        </a>
-      </Link>
+      <LinkWrapper link="/auth/sign-up">
+        <OrangeButton text="zarejestruj się" size="small" />
+      </LinkWrapper>
+      <LinkWrapper link="/auth/sign-in">
+        <OrangeButton variant="secondary" text="zaloguj się" size="small" />
+      </LinkWrapper>
     </div>
   </nav>
 );

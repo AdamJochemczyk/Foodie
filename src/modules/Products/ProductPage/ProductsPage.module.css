@@ -1,5 +1,6 @@
 .link {
-  margin-top: 1.5rem;
   display: flex;
   justify-content: center;
+  align-items: center;
+  padding: 1rem;
 }

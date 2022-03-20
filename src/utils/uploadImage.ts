@@ -9,5 +9,8 @@ export const uploadImage = async (
     .upload(image_path, file, {
       upsert
     });
-  return { data, error };
+  if (error) {
+    throw new Error("Error on upload");
+  }
+  return data;
 };

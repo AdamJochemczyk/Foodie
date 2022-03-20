@@ -3,9 +3,9 @@ import styles from "./ProductsPage.module.css";
 import { ActionButton } from "src/common/ActionButton/ActionButton";
 import { FormInput, CategorySelect, Checkbox } from "src/common/Inputs";
 import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
-import Link from "next/link";
 import { FormikProps, FormikProvider } from "formik";
 import { SearchProducts } from "../types";
+import { LinkWrapper } from "src/common/LinkWrapper/LinkWrapper";
 
 export const ProductForm = ({
   formik,
@@ -33,11 +33,9 @@ export const ProductForm = ({
         </form>
       </FormikProvider>
       <div className={styles.link}>
-        <Link href="/products/add" passHref>
-          <a>
-            <OrangeButton text="add new product" />
-          </a>
-        </Link>
+        <LinkWrapper link="/products/add">
+          <OrangeButton text="add new product" />
+        </LinkWrapper>
       </div>
     </>
   );

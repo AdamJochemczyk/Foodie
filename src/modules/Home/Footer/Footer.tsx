@@ -3,8 +3,8 @@ import styles from "./Footer.module.css";
 import Image from "next/image";
 import { SocialButton } from "src/common/SocialButton/SocialButton";
 import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
-import Link from "next/link";
 import { socials } from "../constants";
+import { LinkWrapper } from "src/common/LinkWrapper/LinkWrapper";
 
 export const Footer = () => (
   <footer>
@@ -48,9 +48,9 @@ export const Footer = () => (
           <p>+48 123 456 798</p>
         </address>
         <p>
-          <Link href="https://storyset.com" passHref>
-            <a>Illustrations by Storyset</a>
-          </Link>
+          <LinkWrapper link="https://storyset.com">
+            Illustrations by Storyset
+          </LinkWrapper>
         </p>
         <div>
           <form

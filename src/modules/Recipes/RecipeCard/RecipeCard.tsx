@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import { FavButton } from "src/common/FavButton/FavButton";
+import { LinkWrapper } from "src/common/LinkWrapper/LinkWrapper";
 import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
 import { Tag } from "src/common/Tag/Tag";
 import { upperFirst } from "src/common/utils/stringMethods";
@@ -62,11 +62,9 @@ export const RecipeCard = ({
         </div>
       </div>
       <div className={styles.link}>
-        <Link href={href} passHref>
-          <a>
-            <OrangeButton text={btnText} size="small" />
-          </a>
-        </Link>
+        <LinkWrapper link={href}>
+          <OrangeButton text={btnText} size="small" />
+        </LinkWrapper>
       </div>
 
       <FavButton

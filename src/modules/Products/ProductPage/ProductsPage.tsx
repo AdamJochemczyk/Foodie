@@ -12,11 +12,11 @@ export const ProductsPage = ({
 }: {
   mode?: "user" | "admin";
 }) => {
-  const [queryParams, setQueryParams] = useState({
+  const [queryParams, setQueryParams] = useState<SearchProducts>({
     searchName: "",
     category: "",
     favorites: false,
-    verified: false
+    verified: mode === "user"
   });
 
   const { entities, isLoading } = useSearchProducts(queryParams);

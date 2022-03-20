@@ -1,5 +1,5 @@
-import Link from "next/link";
 import React from "react";
+import { LinkWrapper } from "src/common/LinkWrapper/LinkWrapper";
 import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
 import styles from "./Hero.module.css";
 
@@ -14,20 +14,16 @@ export const Hero = () => {
           <strong>zdrowym ciele zdrowy duch!</strong>
         </p>
         <div className={styles.heroBtns}>
-          <Link href="#przepisy" passHref>
-            <a>
-              <OrangeButton text="zobacz ofertę" size="small" />
-            </a>
-          </Link>
-          <Link href="/auth/sign-in" passHref>
-            <a>
-              <OrangeButton
-                text="przejdź do apki"
-                size="small"
-                variant="secondary"
-              />
-            </a>
-          </Link>
+          <LinkWrapper link="#przepisy">
+            <OrangeButton text="zobacz ofertę" size="small" />
+          </LinkWrapper>
+          <LinkWrapper link="/auth/sign-in">
+            <OrangeButton
+              text="przejdź do apki"
+              size="small"
+              variant="secondary"
+            />
+          </LinkWrapper>
         </div>
       </div>
     </section>

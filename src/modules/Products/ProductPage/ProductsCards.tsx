@@ -1,19 +1,7 @@
-import Link from "next/link";
 import React from "react";
+import { LinkWrapper } from "src/common/LinkWrapper/LinkWrapper";
 import { definitions } from "types/supabase";
 import { ProductCard } from "../ProductCard/ProductCard";
-
-const LinkWrapper = ({
-  productId,
-  children
-}: {
-  productId: string;
-  children: React.ReactNode;
-}) => (
-  <Link key={productId} href={`/products/edit/${productId}`} passHref>
-    <a>{children}</a>
-  </Link>
-);
 
 export const ProductCards = ({
   entities,
@@ -41,7 +29,10 @@ export const ProductCards = ({
             );
             if (withEditLink) {
               return (
-                <LinkWrapper key={productid} productId={productid}>
+                <LinkWrapper
+                  key={productid}
+                  link={`/products/edit/${productid}`}
+                >
                   {Card}
                 </LinkWrapper>
               );
