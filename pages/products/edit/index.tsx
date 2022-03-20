@@ -1,7 +1,7 @@
 import React from "react";
 import { Layout } from "src/common/Layout/Layout";
 import { ProtectedWrapper } from "src/common/ProtectedWrapper/ProtectedWrapper";
-import { ProductsPage } from "src/modules/Products/ProductPage/ProductsPage";
+import { ProductsPage } from "src/modules/Products/components/ProductPage/ProductsPage";
 
 const ProductVerification = () => {
   return (

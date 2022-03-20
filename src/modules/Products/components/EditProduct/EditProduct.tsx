@@ -3,8 +3,7 @@
 import { useRouter } from "next/router";
 import React from "react";
 import { ActionButton } from "src/common/ActionButton/ActionButton";
-import { useDeleteProduct } from "../hooks/useDeleteProduct";
-import { useGetProduct } from "../hooks/useGetProduct";
+import { useDeleteProduct, useGetProduct } from "../../hooks";
 import { ProductAddEdit } from "../ProductAddEdit/ProductAddEdit";
 import { ProductCard } from "../ProductCard/ProductCard";
 import styles from "./EditProduct.module.css";

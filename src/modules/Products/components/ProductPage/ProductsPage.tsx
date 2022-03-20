@@ -2,8 +2,8 @@ import { useFormik } from "formik";
 
 import { useState } from "react";
 import { CardsAndFormLayout } from "src/common/CardsAndFormLayout/CardsAndFormLayout";
-import { useSearchProducts } from "../hooks/useSearchProducts";
-import { SearchProducts } from "../types";
+import { useSearchProducts } from "../../hooks";
+import { SearchProducts } from "../../types";
 import { ProductForm } from "./ProductForm";
 import { ProductCards } from "./ProductsCards";
 

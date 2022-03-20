@@ -4,7 +4,7 @@ import { ActionButton } from "src/common/ActionButton/ActionButton";
 import { FormInput, CategorySelect, Checkbox } from "src/common/Inputs";
 import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
 import { FormikProps, FormikProvider } from "formik";
-import { SearchProducts } from "../types";
+import { SearchProducts } from "../../types";
 import { LinkWrapper } from "src/common/LinkWrapper/LinkWrapper";
 
 export const ProductForm = ({

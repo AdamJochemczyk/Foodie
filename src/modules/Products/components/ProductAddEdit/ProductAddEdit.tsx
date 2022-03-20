@@ -2,14 +2,13 @@ import { FormikProvider, useFormik } from "formik";
 import React from "react";
 import { FormInput, CategorySelect, FileInput } from "src/common/Inputs";
 import { ActionButton } from "src/common/ActionButton/ActionButton";
-import { useCreateProduct } from "../hooks/useCreateProduct";
+import { useCreateProduct, useUpdateProduct } from "../../hooks";
 import {
   productAddValidationWithPhoto,
   productAddValidation
 } from "src/common/validation";
 import styles from "./ProductAddEdit.module.css";
-import { useUpdateProduct } from "../hooks/useUpdateProduct";
-import { ProductAddEditProperties } from "../types";
+import { ProductAddEditProperties } from "../../types";
 
 export const ProductAddEdit = ({
   mode = "add",
