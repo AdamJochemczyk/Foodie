@@ -5,42 +5,35 @@ import { toast } from "react-toastify";
 import { useMutation } from "react-query";
 import { uploadImage } from "src/utils/uploadImage";
 import { useRouter } from "next/router";
-
-interface CreateProductProperties {
-  category: string;
-  name: string;
-  gtin_code: string;
-  photo: File | null;
-}
+import { ProductProperties } from "../types";
 
 export const useCreateProduct = () => {
   const { userId } = useUserId();
   const router = useRouter();
 
   return useMutation(
-    async ({ gtin_code, photo, name, category }: CreateProductProperties) => {
-      if (photo === null) {
-        throw new Error("Zdjecie musi zostac podane");
-      }
-      const { data, error: uploadError } = await uploadImage(
-        `products/${gtin_code}`,
-        photo,
-        false
-      );
-      if (uploadError) {
-        throw new Error("Error on upload");
-      } else if (data) {
-        const photo_link = await getImageUrl(`products/${gtin_code}`);
-        if (photo_link) {
-          return await insertProduct({
-            gtin_code,
-            name,
-            photo_link,
-            category,
-            proposal_user_id: typeof userId === "string" ? userId : ""
-          });
-        } else {
-          throw new Error("Error on image upload");
+    async ({ gtinCode, photo, name, category }: ProductProperties) => {
+      if (!photo) {
+        throw new Error("Photo not provided");
+      } else {
+        const isImageAdded = await uploadImage(
+          `products/${gtinCode}`,
+          photo,
+          false
+        );
+        if (isImageAdded) {
+          const photoLink = await getImageUrl(`products/${gtinCode}`);
+          if (photoLink) {
+            return await insertProduct({
+              gtinCode,
+              name,
+              photoLink,
+              category,
+              proposalUserId: typeof userId === "string" ? userId : ""
+            });
+          } else {
+            throw new Error("Error on image upload");
+          }
         }
       }
     },

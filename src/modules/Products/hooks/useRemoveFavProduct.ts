@@ -8,12 +8,12 @@ export const useRemoveFavProduct = () => {
   const queryClient = useQueryClient();
 
   return useMutation(
-    async (product_id: string) => {
+    async (productId: string) => {
       const { data, error } = await supabase
-        .from("fav_users_products")
+        .from("favusersproducts")
         .delete()
-        .eq("user_id", userId || "")
-        .eq("product_id", product_id);
+        .eq("userid", userId || "")
+        .eq("productid", productId);
       if (error) {
         throw error;
       }

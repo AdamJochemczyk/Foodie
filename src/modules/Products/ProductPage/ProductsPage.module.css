@@ -1,26 +1,5 @@
-@media screen and (min-width: 600px) {
-  .products {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-  }
-}
-.filters {
-  width: 300px;
-  padding: 1rem;
-}
 .link {
   margin-top: 1.5rem;
   display: flex;
   justify-content: center;
-}
-.cards {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-  padding: 1rem;
-}
-@media screen and (max-width: 600px) {
-  .cards {
-    justify-content: center;
-  }
 }

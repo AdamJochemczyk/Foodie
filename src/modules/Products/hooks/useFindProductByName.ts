@@ -1,11 +1,12 @@
+import { definitions } from "./../../../../types/supabase";
 import { useQuery } from "react-query";
 import { supabase } from "src/utils/supabaseClient";
 
 const getProduct = async (name: string) => {
   const { data, error } = await supabase
-    .from("products")
+    .from<definitions["products"]>("products")
     .select("product_id,name")
-    .ilike("name", `%${name}%`)
+    .ilike("productname", `%${name}%`)
     .eq("verified", true)
     .limit(10);
   if (error) {
@@ -21,9 +22,10 @@ export const useFindProductByName = (name: string) => {
 
   return {
     options:
-      data?.map(({ product_id, name }) => {
-        return { value: product_id, label: name };
-      }) || [],
+      data?.map(({ productid, productname }) => ({
+        value: productid,
+        label: productname
+      })) || [],
     isLoading
   };
 };

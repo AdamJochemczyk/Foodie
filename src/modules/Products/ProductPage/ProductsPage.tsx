@@ -1,72 +1,41 @@
-import { FormikProvider, useFormik } from "formik";
-import Link from "next/link";
-import { useState } from "react";
-import { ActionButton } from "src/common/ActionButton/ActionButton";
-import { FormInput, CategorySelect, Checkbox } from "src/common/Inputs";
-import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
-import { useSearchProducts } from "../hooks/useSearchProducts";
-import { ProductCard } from "../ProductCard/ProductCard";
-import styles from "./ProductsPage.module.css";
+import { useFormik } from "formik";
 
-export const ProductsPage = () => {
+import { useState } from "react";
+import { CardsAndFormLayout } from "src/common/CardsAndFormLayout/CardsAndFormLayout";
+import { useSearchProducts } from "../hooks/useSearchProducts";
+import { SearchProducts } from "../types";
+import { ProductForm } from "./ProductForm";
+import { ProductCards } from "./ProductsCards";
+
+export const ProductsPage = ({
+  mode = "user"
+}: {
+  mode?: "user" | "admin";
+}) => {
   const [queryParams, setQueryParams] = useState({
     searchName: "",
     category: "",
-    favorites: false
+    favorites: false,
+    verified: false
   });
 
-  const { entities, isLoading } = useSearchProducts(queryParams, true);
+  const { entities, isLoading } = useSearchProducts(queryParams);
 
-  const formik = useFormik({
-    initialValues: queryParams,
+  const formik = useFormik<SearchProducts>({
+    initialValues: { ...queryParams, verified: false },
     onSubmit: values => {
       setQueryParams(values);
     }
   });
 
   return (
-    <article className={styles.products}>
-      <section className={styles.filters}>
-        <FormikProvider value={formik}>
-          <form>
-            <FormInput name="searchName" label="Search by" autocomplete="off" />
-            <CategorySelect name="category" />
-            <Checkbox name="favorites" label="pokaz ulubione" />
-            <ActionButton
-              text="Filtruj"
-              type="submit"
-              onClick={formik.handleSubmit}
-            />
-          </form>
-        </FormikProvider>
-        <div className={styles.link}>
-          <Link href="/products/add" passHref>
-            <a>
-              <OrangeButton text="add new product" />
-            </a>
-          </Link>
-        </div>
-      </section>
-      <section className={styles.cards}>
-        {!isLoading && entities.length > 0 ? (
-          entities.map(({ category, name, photo_link, product_id, isFav }) => (
-            <ProductCard
-              key={product_id}
-              id={product_id}
-              photo_link={photo_link}
-              name={name}
-              category={category}
-              isUserFav={
-                typeof isFav === "undefined" ? false : isFav.length > 0
-              }
-            />
-          ))
-        ) : entities.length === 0 ? (
-          <p>Loading...</p>
-        ) : (
-          <p>No data</p>
-        )}
-      </section>
-    </article>
+    <CardsAndFormLayout
+      title={mode === "user" ? "Produkty" : "Edytuj produkty"}
+      isLoading={isLoading}
+      form={<ProductForm formik={formik} changeVerified={mode === "admin"} />}
+      cards={
+        <ProductCards entities={entities} withEditLink={mode === "admin"} />
+      }
+    />
   );
 };

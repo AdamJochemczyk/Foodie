@@ -1,3 +1,4 @@
+import { UpdateProduct } from "./../types";
 import { supabase } from "src/utils/supabaseClient";
 import { useMutation, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
@@ -9,13 +10,16 @@ export const useDeleteProduct = () => {
   const queryClient = useQueryClient();
 
   return useMutation(
-    async ({ id, gtin_code }: { id: string; gtin_code: string }) => {
+    async ({
+      productId,
+      gtinCode
+    }: Pick<UpdateProduct, "productId" | "gtinCode">) => {
       const { data, error } = await supabase
         .from("products")
         .delete()
-        .eq("product_id", id);
+        .eq("productid", productId);
 
-      const { error: imageError } = await removeImage(`products/${gtin_code}`);
+      const { error: imageError } = await removeImage(`products/${gtinCode}`);
       if (error || imageError) {
         throw error || imageError;
       }
@@ -24,7 +28,7 @@ export const useDeleteProduct = () => {
     {
       onSuccess: () => {
         toast.success("Usunałes produkt");
-        router.push("/products/verify");
+        router.push("/products/edit");
         queryClient.invalidateQueries("getProducts");
       },
       onError: (error: { message: string }) => {

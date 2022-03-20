@@ -1,0 +1,23 @@
+.title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+@media screen and (min-width: 600px) {
+  .wrapper {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+  }
+}
+@media screen and (max-width: 600px) {
+  .cards {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding: 1rem;
+    justify-content: center;
+  }
+}
+.filters {
+  width: 300px;
+  padding: 1rem;
+}

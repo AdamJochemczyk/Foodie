@@ -34,6 +34,8 @@
     "unicorn/filename-case": "off",
     "prefer-const": "error",
     "@typescript-eslint/no-unused-vars": "error",
-    "@typescript-eslint/no-explicit-any": "error"
+    //TODO: remove no-explicit-any and ban-ts-comment rules
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/ban-ts-comment": "off"
   }
 }

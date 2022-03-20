@@ -1,23 +1,18 @@
+import { InsertProduct } from "./../types";
 import { supabase } from "src/utils/supabaseClient";
 
 export const insertProduct = async ({
-  gtin_code,
+  gtinCode,
   name,
-  photo_link,
+  photoLink,
   category,
-  proposal_user_id
-}: {
-  gtin_code: string;
-  name: string;
-  photo_link: string;
-  category: string;
-  proposal_user_id: string;
-}) => {
+  proposalUserId
+}: InsertProduct) => {
   return await supabase.from("products").insert({
-    gtin_code,
+    gtinCode,
     name,
-    photo_link,
+    photoLink,
     category,
-    proposal_user_id
+    proposalUserId
   });
 };

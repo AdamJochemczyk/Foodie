@@ -3,22 +3,16 @@ import React from "react";
 import { FavButton } from "src/common/FavButton/FavButton";
 import { useAddToFavProduct } from "../hooks/useAddToFavProduct";
 import { useRemoveFavProduct } from "../hooks/useRemoveFavProduct";
+import { ProductCardProperties } from "../types";
 import styles from "./ProductCard.module.css";
 
-interface ProductCardProperties {
-  photo_link: string;
-  name: string;
-  category: string;
-  id: string;
-  isUserFav?: boolean;
-}
-
 export const ProductCard = ({
-  photo_link,
+  photoLink,
   name,
   category,
-  id,
-  isUserFav
+  productId,
+  isUserFav,
+  showFavButton = true
 }: ProductCardProperties) => {
   const addToFav = useAddToFavProduct();
   const removeFromFav = useRemoveFavProduct();
@@ -26,17 +20,19 @@ export const ProductCard = ({
   return (
     <div className={styles.card}>
       <div className={styles.imgBox}>
-        <Image layout="fill" objectFit="cover" src={photo_link} alt={name} />
+        <Image layout="fill" objectFit="cover" src={photoLink} alt={name} />
       </div>
       <div className={styles.cardDesc}>
         <p className={styles.name}>{name}</p>
         <p>Category: {category}</p>
       </div>
-      <FavButton
-        isUserFav={isUserFav}
-        removeFromFav={() => removeFromFav.mutate(id)}
-        addToFav={() => addToFav.mutate(id)}
-      />
+      {showFavButton ? (
+        <FavButton
+          isUserFav={typeof isUserFav === "undefined" ? false : isUserFav}
+          removeFromFav={() => removeFromFav.mutate(productId)}
+          addToFav={() => addToFav.mutate(productId)}
+        />
+      ) : null}
     </div>
   );
 };

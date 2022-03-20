@@ -12,13 +12,13 @@ export interface paths {
       };
     };
   };
-  "/fav_users_products": {
+  "/favusersproducts": {
     get: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.fav_users_products.id"];
-          user_id?: parameters["rowFilter.fav_users_products.user_id"];
-          product_id?: parameters["rowFilter.fav_users_products.product_id"];
+          id?: parameters["rowFilter.favusersproducts.id"];
+          userid?: parameters["rowFilter.favusersproducts.userid"];
+          productid?: parameters["rowFilter.favusersproducts.productid"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -40,7 +40,7 @@ export interface paths {
       responses: {
         /** OK */
         200: {
-          schema: definitions["fav_users_products"][];
+          schema: definitions["favusersproducts"][];
         };
         /** Partial Content */
         206: unknown;
@@ -49,8 +49,8 @@ export interface paths {
     post: {
       parameters: {
         body: {
-          /** fav_users_products */
-          fav_users_products?: definitions["fav_users_products"];
+          /** favusersproducts */
+          favusersproducts?: definitions["favusersproducts"];
         };
         query: {
           /** Filtering Columns */
@@ -69,9 +69,9 @@ export interface paths {
     delete: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.fav_users_products.id"];
-          user_id?: parameters["rowFilter.fav_users_products.user_id"];
-          product_id?: parameters["rowFilter.fav_users_products.product_id"];
+          id?: parameters["rowFilter.favusersproducts.id"];
+          userid?: parameters["rowFilter.favusersproducts.userid"];
+          productid?: parameters["rowFilter.favusersproducts.productid"];
         };
         header: {
           /** Preference */
@@ -86,13 +86,13 @@ export interface paths {
     patch: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.fav_users_products.id"];
-          user_id?: parameters["rowFilter.fav_users_products.user_id"];
-          product_id?: parameters["rowFilter.fav_users_products.product_id"];
+          id?: parameters["rowFilter.favusersproducts.id"];
+          userid?: parameters["rowFilter.favusersproducts.userid"];
+          productid?: parameters["rowFilter.favusersproducts.productid"];
         };
         body: {
-          /** fav_users_products */
-          fav_users_products?: definitions["fav_users_products"];
+          /** favusersproducts */
+          favusersproducts?: definitions["favusersproducts"];
         };
         header: {
           /** Preference */
@@ -105,13 +105,13 @@ export interface paths {
       };
     };
   };
-  "/fav_users_recipes": {
+  "/favusersrecipes": {
     get: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.fav_users_recipes.id"];
-          user_id?: parameters["rowFilter.fav_users_recipes.user_id"];
-          recipe_id?: parameters["rowFilter.fav_users_recipes.recipe_id"];
+          id?: parameters["rowFilter.favusersrecipes.id"];
+          userid?: parameters["rowFilter.favusersrecipes.userid"];
+          recipeid?: parameters["rowFilter.favusersrecipes.recipeid"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -133,7 +133,7 @@ export interface paths {
       responses: {
         /** OK */
         200: {
-          schema: definitions["fav_users_recipes"][];
+          schema: definitions["favusersrecipes"][];
         };
         /** Partial Content */
         206: unknown;
@@ -142,8 +142,8 @@ export interface paths {
     post: {
       parameters: {
         body: {
-          /** fav_users_recipes */
-          fav_users_recipes?: definitions["fav_users_recipes"];
+          /** favusersrecipes */
+          favusersrecipes?: definitions["favusersrecipes"];
         };
         query: {
           /** Filtering Columns */
@@ -162,9 +162,9 @@ export interface paths {
     delete: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.fav_users_recipes.id"];
-          user_id?: parameters["rowFilter.fav_users_recipes.user_id"];
-          recipe_id?: parameters["rowFilter.fav_users_recipes.recipe_id"];
+          id?: parameters["rowFilter.favusersrecipes.id"];
+          userid?: parameters["rowFilter.favusersrecipes.userid"];
+          recipeid?: parameters["rowFilter.favusersrecipes.recipeid"];
         };
         header: {
           /** Preference */
@@ -179,13 +179,13 @@ export interface paths {
     patch: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.fav_users_recipes.id"];
-          user_id?: parameters["rowFilter.fav_users_recipes.user_id"];
-          recipe_id?: parameters["rowFilter.fav_users_recipes.recipe_id"];
+          id?: parameters["rowFilter.favusersrecipes.id"];
+          userid?: parameters["rowFilter.favusersrecipes.userid"];
+          recipeid?: parameters["rowFilter.favusersrecipes.recipeid"];
         };
         body: {
-          /** fav_users_recipes */
-          fav_users_recipes?: definitions["fav_users_recipes"];
+          /** favusersrecipes */
+          favusersrecipes?: definitions["favusersrecipes"];
         };
         header: {
           /** Preference */
@@ -198,16 +198,15 @@ export interface paths {
       };
     };
   };
-  "/product_in_fridge": {
+  "/ingredients": {
     get: {
       parameters: {
         query: {
-          product_in_fridge_id?: parameters["rowFilter.product_in_fridge.product_in_fridge_id"];
-          user_id?: parameters["rowFilter.product_in_fridge.user_id"];
-          product_id?: parameters["rowFilter.product_in_fridge.product_id"];
-          product_count?: parameters["rowFilter.product_in_fridge.product_count"];
-          measure?: parameters["rowFilter.product_in_fridge.measure"];
-          best_before_date?: parameters["rowFilter.product_in_fridge.best_before_date"];
+          ingredientid?: parameters["rowFilter.ingredients.ingredientid"];
+          productid?: parameters["rowFilter.ingredients.productid"];
+          recipeid?: parameters["rowFilter.ingredients.recipeid"];
+          productcount?: parameters["rowFilter.ingredients.productcount"];
+          measure?: parameters["rowFilter.ingredients.measure"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -229,7 +228,7 @@ export interface paths {
       responses: {
         /** OK */
         200: {
-          schema: definitions["product_in_fridge"][];
+          schema: definitions["ingredients"][];
         };
         /** Partial Content */
         206: unknown;
@@ -238,8 +237,8 @@ export interface paths {
     post: {
       parameters: {
         body: {
-          /** product_in_fridge */
-          product_in_fridge?: definitions["product_in_fridge"];
+          /** ingredients */
+          ingredients?: definitions["ingredients"];
         };
         query: {
           /** Filtering Columns */
@@ -258,12 +257,11 @@ export interface paths {
     delete: {
       parameters: {
         query: {
-          product_in_fridge_id?: parameters["rowFilter.product_in_fridge.product_in_fridge_id"];
-          user_id?: parameters["rowFilter.product_in_fridge.user_id"];
-          product_id?: parameters["rowFilter.product_in_fridge.product_id"];
-          product_count?: parameters["rowFilter.product_in_fridge.product_count"];
-          measure?: parameters["rowFilter.product_in_fridge.measure"];
-          best_before_date?: parameters["rowFilter.product_in_fridge.best_before_date"];
+          ingredientid?: parameters["rowFilter.ingredients.ingredientid"];
+          productid?: parameters["rowFilter.ingredients.productid"];
+          recipeid?: parameters["rowFilter.ingredients.recipeid"];
+          productcount?: parameters["rowFilter.ingredients.productcount"];
+          measure?: parameters["rowFilter.ingredients.measure"];
         };
         header: {
           /** Preference */
@@ -278,115 +276,15 @@ export interface paths {
     patch: {
       parameters: {
         query: {
-          product_in_fridge_id?: parameters["rowFilter.product_in_fridge.product_in_fridge_id"];
-          user_id?: parameters["rowFilter.product_in_fridge.user_id"];
-          product_id?: parameters["rowFilter.product_in_fridge.product_id"];
-          product_count?: parameters["rowFilter.product_in_fridge.product_count"];
-          measure?: parameters["rowFilter.product_in_fridge.measure"];
-          best_before_date?: parameters["rowFilter.product_in_fridge.best_before_date"];
+          ingredientid?: parameters["rowFilter.ingredients.ingredientid"];
+          productid?: parameters["rowFilter.ingredients.productid"];
+          recipeid?: parameters["rowFilter.ingredients.recipeid"];
+          productcount?: parameters["rowFilter.ingredients.productcount"];
+          measure?: parameters["rowFilter.ingredients.measure"];
         };
         body: {
-          /** product_in_fridge */
-          product_in_fridge?: definitions["product_in_fridge"];
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferReturn"];
-        };
-      };
-      responses: {
-        /** No Content */
-        204: never;
-      };
-    };
-  };
-  "/product_recipes": {
-    get: {
-      parameters: {
-        query: {
-          id?: parameters["rowFilter.product_recipes.id"];
-          product_id?: parameters["rowFilter.product_recipes.product_id"];
-          recipe_id?: parameters["rowFilter.product_recipes.recipe_id"];
-          product_count?: parameters["rowFilter.product_recipes.product_count"];
-          measure?: parameters["rowFilter.product_recipes.measure"];
-          /** Filtering Columns */
-          select?: parameters["select"];
-          /** Ordering */
-          order?: parameters["order"];
-          /** Limiting and Pagination */
-          offset?: parameters["offset"];
-          /** Limiting and Pagination */
-          limit?: parameters["limit"];
-        };
-        header: {
-          /** Limiting and Pagination */
-          Range?: parameters["range"];
-          /** Limiting and Pagination */
-          "Range-Unit"?: parameters["rangeUnit"];
-          /** Preference */
-          Prefer?: parameters["preferCount"];
-        };
-      };
-      responses: {
-        /** OK */
-        200: {
-          schema: definitions["product_recipes"][];
-        };
-        /** Partial Content */
-        206: unknown;
-      };
-    };
-    post: {
-      parameters: {
-        body: {
-          /** product_recipes */
-          product_recipes?: definitions["product_recipes"];
-        };
-        query: {
-          /** Filtering Columns */
-          select?: parameters["select"];
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferReturn"];
-        };
-      };
-      responses: {
-        /** Created */
-        201: unknown;
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          id?: parameters["rowFilter.product_recipes.id"];
-          product_id?: parameters["rowFilter.product_recipes.product_id"];
-          recipe_id?: parameters["rowFilter.product_recipes.recipe_id"];
-          product_count?: parameters["rowFilter.product_recipes.product_count"];
-          measure?: parameters["rowFilter.product_recipes.measure"];
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferReturn"];
-        };
-      };
-      responses: {
-        /** No Content */
-        204: never;
-      };
-    };
-    patch: {
-      parameters: {
-        query: {
-          id?: parameters["rowFilter.product_recipes.id"];
-          product_id?: parameters["rowFilter.product_recipes.product_id"];
-          recipe_id?: parameters["rowFilter.product_recipes.recipe_id"];
-          product_count?: parameters["rowFilter.product_recipes.product_count"];
-          measure?: parameters["rowFilter.product_recipes.measure"];
-        };
-        body: {
-          /** product_recipes */
-          product_recipes?: definitions["product_recipes"];
+          /** ingredients */
+          ingredients?: definitions["ingredients"];
         };
         header: {
           /** Preference */
@@ -403,13 +301,13 @@ export interface paths {
     get: {
       parameters: {
         query: {
-          product_id?: parameters["rowFilter.products.product_id"];
-          gtin_code?: parameters["rowFilter.products.gtin_code"];
-          name?: parameters["rowFilter.products.name"];
-          photo_link?: parameters["rowFilter.products.photo_link"];
+          productid?: parameters["rowFilter.products.productid"];
+          gtincode?: parameters["rowFilter.products.gtincode"];
+          productname?: parameters["rowFilter.products.productname"];
+          photolink?: parameters["rowFilter.products.photolink"];
           category?: parameters["rowFilter.products.category"];
           verified?: parameters["rowFilter.products.verified"];
-          proposal_user_id?: parameters["rowFilter.products.proposal_user_id"];
+          proposaluserid?: parameters["rowFilter.products.proposaluserid"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -460,13 +358,13 @@ export interface paths {
     delete: {
       parameters: {
         query: {
-          product_id?: parameters["rowFilter.products.product_id"];
-          gtin_code?: parameters["rowFilter.products.gtin_code"];
-          name?: parameters["rowFilter.products.name"];
-          photo_link?: parameters["rowFilter.products.photo_link"];
+          productid?: parameters["rowFilter.products.productid"];
+          gtincode?: parameters["rowFilter.products.gtincode"];
+          productname?: parameters["rowFilter.products.productname"];
+          photolink?: parameters["rowFilter.products.photolink"];
           category?: parameters["rowFilter.products.category"];
           verified?: parameters["rowFilter.products.verified"];
-          proposal_user_id?: parameters["rowFilter.products.proposal_user_id"];
+          proposaluserid?: parameters["rowFilter.products.proposaluserid"];
         };
         header: {
           /** Preference */
@@ -481,13 +379,13 @@ export interface paths {
     patch: {
       parameters: {
         query: {
-          product_id?: parameters["rowFilter.products.product_id"];
-          gtin_code?: parameters["rowFilter.products.gtin_code"];
-          name?: parameters["rowFilter.products.name"];
-          photo_link?: parameters["rowFilter.products.photo_link"];
+          productid?: parameters["rowFilter.products.productid"];
+          gtincode?: parameters["rowFilter.products.gtincode"];
+          productname?: parameters["rowFilter.products.productname"];
+          photolink?: parameters["rowFilter.products.photolink"];
           category?: parameters["rowFilter.products.category"];
           verified?: parameters["rowFilter.products.verified"];
-          proposal_user_id?: parameters["rowFilter.products.proposal_user_id"];
+          proposaluserid?: parameters["rowFilter.products.proposaluserid"];
         };
         body: {
           /** products */
@@ -508,15 +406,15 @@ export interface paths {
     get: {
       parameters: {
         query: {
-          recipe_id?: parameters["rowFilter.recipes.recipe_id"];
-          photo_link?: parameters["rowFilter.recipes.photo_link"];
+          recipeid?: parameters["rowFilter.recipes.recipeid"];
+          photolink?: parameters["rowFilter.recipes.photolink"];
           title?: parameters["rowFilter.recipes.title"];
           description?: parameters["rowFilter.recipes.description"];
-          recipe_type?: parameters["rowFilter.recipes.recipe_type"];
-          meal_portions?: parameters["rowFilter.recipes.meal_portions"];
-          kcal_per_portion?: parameters["rowFilter.recipes.kcal_per_portion"];
+          recipetype?: parameters["rowFilter.recipes.recipetype"];
+          mealportions?: parameters["rowFilter.recipes.mealportions"];
+          kcalperportion?: parameters["rowFilter.recipes.kcalperportion"];
           verified?: parameters["rowFilter.recipes.verified"];
-          proposal_user_id?: parameters["rowFilter.recipes.proposal_user_id"];
+          proposaluserid?: parameters["rowFilter.recipes.proposaluserid"];
           isvegan?: parameters["rowFilter.recipes.isvegan"];
           isvegetarian?: parameters["rowFilter.recipes.isvegetarian"];
           /** Filtering Columns */
@@ -569,15 +467,15 @@ export interface paths {
     delete: {
       parameters: {
         query: {
-          recipe_id?: parameters["rowFilter.recipes.recipe_id"];
-          photo_link?: parameters["rowFilter.recipes.photo_link"];
+          recipeid?: parameters["rowFilter.recipes.recipeid"];
+          photolink?: parameters["rowFilter.recipes.photolink"];
           title?: parameters["rowFilter.recipes.title"];
           description?: parameters["rowFilter.recipes.description"];
-          recipe_type?: parameters["rowFilter.recipes.recipe_type"];
-          meal_portions?: parameters["rowFilter.recipes.meal_portions"];
-          kcal_per_portion?: parameters["rowFilter.recipes.kcal_per_portion"];
+          recipetype?: parameters["rowFilter.recipes.recipetype"];
+          mealportions?: parameters["rowFilter.recipes.mealportions"];
+          kcalperportion?: parameters["rowFilter.recipes.kcalperportion"];
           verified?: parameters["rowFilter.recipes.verified"];
-          proposal_user_id?: parameters["rowFilter.recipes.proposal_user_id"];
+          proposaluserid?: parameters["rowFilter.recipes.proposaluserid"];
           isvegan?: parameters["rowFilter.recipes.isvegan"];
           isvegetarian?: parameters["rowFilter.recipes.isvegetarian"];
         };
@@ -594,15 +492,15 @@ export interface paths {
     patch: {
       parameters: {
         query: {
-          recipe_id?: parameters["rowFilter.recipes.recipe_id"];
-          photo_link?: parameters["rowFilter.recipes.photo_link"];
+          recipeid?: parameters["rowFilter.recipes.recipeid"];
+          photolink?: parameters["rowFilter.recipes.photolink"];
           title?: parameters["rowFilter.recipes.title"];
           description?: parameters["rowFilter.recipes.description"];
-          recipe_type?: parameters["rowFilter.recipes.recipe_type"];
-          meal_portions?: parameters["rowFilter.recipes.meal_portions"];
-          kcal_per_portion?: parameters["rowFilter.recipes.kcal_per_portion"];
+          recipetype?: parameters["rowFilter.recipes.recipetype"];
+          mealportions?: parameters["rowFilter.recipes.mealportions"];
+          kcalperportion?: parameters["rowFilter.recipes.kcalperportion"];
           verified?: parameters["rowFilter.recipes.verified"];
-          proposal_user_id?: parameters["rowFilter.recipes.proposal_user_id"];
+          proposaluserid?: parameters["rowFilter.recipes.proposaluserid"];
           isvegan?: parameters["rowFilter.recipes.isvegan"];
           isvegetarian?: parameters["rowFilter.recipes.isvegetarian"];
         };
@@ -717,7 +615,7 @@ export interface paths {
 }
 
 export interface definitions {
-  fav_users_products: {
+  favusersproducts: {
     /**
      * Format: uuid
      * @description Note:
@@ -730,15 +628,15 @@ export interface definitions {
      * @description Note:
      * This is a Foreign Key to `users.id`.<fk table='users' column='id'/>
      */
-    user_id: string;
+    userid: string;
     /**
      * Format: uuid
      * @description Note:
-     * This is a Foreign Key to `products.product_id`.<fk table='products' column='product_id'/>
+     * This is a Foreign Key to `products.productid`.<fk table='products' column='productid'/>
      */
-    product_id: string;
+    productid: string;
   };
-  fav_users_recipes: {
+  favusersrecipes: {
     /**
      * Format: uuid
      * @description Note:
@@ -751,89 +649,51 @@ export interface definitions {
      * @description Note:
      * This is a Foreign Key to `users.id`.<fk table='users' column='id'/>
      */
-    user_id: string;
+    userid: string;
     /**
      * Format: uuid
      * @description Note:
-     * This is a Foreign Key to `recipes.recipe_id`.<fk table='recipes' column='recipe_id'/>
+     * This is a Foreign Key to `recipes.recipeid`.<fk table='recipes' column='recipeid'/>
      */
-    recipe_id: string;
+    recipeid: string;
   };
-  product_in_fridge: {
+  ingredients: {
     /**
      * Format: uuid
      * @description Note:
      * This is a Primary Key.<pk/>
      * @default extensions.uuid_generate_v4()
      */
-    product_in_fridge_id: string;
+    ingredientid: string;
     /**
      * Format: uuid
      * @description Note:
-     * This is a Foreign Key to `users.id`.<fk table='users' column='id'/>
+     * This is a Foreign Key to `products.productid`.<fk table='products' column='productid'/>
      */
-    user_id: string;
+    productid: string;
     /**
      * Format: uuid
      * @description Note:
-     * This is a Foreign Key to `products.product_id`.<fk table='products' column='product_id'/>
+     * This is a Foreign Key to `recipes.recipeid`.<fk table='recipes' column='recipeid'/>
      */
-    product_id: string;
+    recipeid: string;
     /**
      * Format: numeric
      * @default 1
      */
-    product_count: number;
+    productcount?: number;
     /**
      * Format: public.measure_type
      * @enum {string}
      */
     measure:
-      | "pinchg"
+      | "pinch"
+      | "g"
       | "kg"
       | "teaspoon"
       | "tablespoon"
-      | "glassml"
-      | "litr"
-      | "piece";
-    /** Format: date */
-    best_before_date?: string;
-  };
-  product_recipes: {
-    /**
-     * Format: uuid
-     * @description Note:
-     * This is a Primary Key.<pk/>
-     * @default extensions.uuid_generate_v4()
-     */
-    id: string;
-    /**
-     * Format: uuid
-     * @description Note:
-     * This is a Foreign Key to `products.product_id`.<fk table='products' column='product_id'/>
-     */
-    product_id: string;
-    /**
-     * Format: uuid
-     * @description Note:
-     * This is a Foreign Key to `recipes.recipe_id`.<fk table='recipes' column='recipe_id'/>
-     */
-    recipe_id: string;
-    /**
-     * Format: numeric
-     * @default 1
-     */
-    product_count?: number;
-    /**
-     * Format: public.measure_type
-     * @enum {string}
-     */
-    measure:
-      | "pinchg"
-      | "kg"
-      | "teaspoon"
-      | "tablespoon"
-      | "glassml"
+      | "glass"
+      | "ml"
       | "litr"
       | "piece";
   };
@@ -844,13 +704,13 @@ export interface definitions {
      * This is a Primary Key.<pk/>
      * @default extensions.uuid_generate_v4()
      */
-    product_id: string;
+    productid: string;
     /** Format: numeric */
-    gtin_code: number;
+    gtincode: number;
     /** Format: text */
-    name: string;
+    productname: string;
     /** Format: text */
-    photo_link: string;
+    photolink: string;
     /**
      * Format: public.product_category
      * @enum {string}
@@ -878,7 +738,7 @@ export interface definitions {
      * @description Note:
      * This is a Foreign Key to `users.id`.<fk table='users' column='id'/>
      */
-    proposal_user_id: string;
+    proposaluserid: string;
   };
   recipes: {
     /**
@@ -887,9 +747,9 @@ export interface definitions {
      * This is a Primary Key.<pk/>
      * @default extensions.uuid_generate_v4()
      */
-    recipe_id: string;
+    recipeid: string;
     /** Format: text */
-    photo_link: string;
+    photolink: string;
     /** Format: text */
     title: string;
     /** Format: text */
@@ -898,11 +758,11 @@ export interface definitions {
      * Format: public.recipe_type
      * @enum {string}
      */
-    recipe_type: "breakfast" | "lunch" | "dinner" | "snacks" | "dessert";
+    recipetype: "breakfast" | "lunch" | "dinner" | "snacks" | "dessert";
     /** Format: numeric */
-    meal_portions: number;
+    mealportions: number;
     /** Format: numeric */
-    kcal_per_portion: number;
+    kcalperportion: number;
     /** Format: boolean */
     verified: boolean;
     /**
@@ -910,11 +770,11 @@ export interface definitions {
      * @description Note:
      * This is a Foreign Key to `users.id`.<fk table='users' column='id'/>
      */
-    proposal_user_id: string;
+    proposaluserid: string;
     /** Format: boolean */
-    isvegan?: boolean;
+    isvegan: boolean;
     /** Format: boolean */
-    isvegetarian?: boolean;
+    isvegetarian: boolean;
   };
   users: {
     /**
@@ -967,84 +827,70 @@ export interface parameters {
   offset: string;
   /** @description Limiting and Pagination */
   limit: string;
-  /** @description fav_users_products */
-  "body.fav_users_products": definitions["fav_users_products"];
+  /** @description favusersproducts */
+  "body.favusersproducts": definitions["favusersproducts"];
   /** Format: uuid */
-  "rowFilter.fav_users_products.id": string;
+  "rowFilter.favusersproducts.id": string;
   /** Format: uuid */
-  "rowFilter.fav_users_products.user_id": string;
+  "rowFilter.favusersproducts.userid": string;
   /** Format: uuid */
-  "rowFilter.fav_users_products.product_id": string;
-  /** @description fav_users_recipes */
-  "body.fav_users_recipes": definitions["fav_users_recipes"];
+  "rowFilter.favusersproducts.productid": string;
+  /** @description favusersrecipes */
+  "body.favusersrecipes": definitions["favusersrecipes"];
   /** Format: uuid */
-  "rowFilter.fav_users_recipes.id": string;
+  "rowFilter.favusersrecipes.id": string;
   /** Format: uuid */
-  "rowFilter.fav_users_recipes.user_id": string;
+  "rowFilter.favusersrecipes.userid": string;
   /** Format: uuid */
-  "rowFilter.fav_users_recipes.recipe_id": string;
-  /** @description product_in_fridge */
-  "body.product_in_fridge": definitions["product_in_fridge"];
+  "rowFilter.favusersrecipes.recipeid": string;
+  /** @description ingredients */
+  "body.ingredients": definitions["ingredients"];
   /** Format: uuid */
-  "rowFilter.product_in_fridge.product_in_fridge_id": string;
+  "rowFilter.ingredients.ingredientid": string;
   /** Format: uuid */
-  "rowFilter.product_in_fridge.user_id": string;
+  "rowFilter.ingredients.productid": string;
   /** Format: uuid */
-  "rowFilter.product_in_fridge.product_id": string;
+  "rowFilter.ingredients.recipeid": string;
   /** Format: numeric */
-  "rowFilter.product_in_fridge.product_count": string;
+  "rowFilter.ingredients.productcount": string;
   /** Format: public.measure_type */
-  "rowFilter.product_in_fridge.measure": string;
-  /** Format: date */
-  "rowFilter.product_in_fridge.best_before_date": string;
-  /** @description product_recipes */
-  "body.product_recipes": definitions["product_recipes"];
-  /** Format: uuid */
-  "rowFilter.product_recipes.id": string;
-  /** Format: uuid */
-  "rowFilter.product_recipes.product_id": string;
-  /** Format: uuid */
-  "rowFilter.product_recipes.recipe_id": string;
-  /** Format: numeric */
-  "rowFilter.product_recipes.product_count": string;
-  /** Format: public.measure_type */
-  "rowFilter.product_recipes.measure": string;
+  "rowFilter.ingredients.measure": string;
   /** @description products */
   "body.products": definitions["products"];
   /** Format: uuid */
-  "rowFilter.products.product_id": string;
+  "rowFilter.products.productid": string;
   /** Format: numeric */
-  "rowFilter.products.gtin_code": string;
+  "rowFilter.products.gtincode": string;
   /** Format: text */
-  "rowFilter.products.name": string;
+  "rowFilter.products.productname": string;
   /** Format: text */
-  "rowFilter.products.photo_link": string;
+  "rowFilter.products.photolink": string;
   /** Format: public.product_category */
   "rowFilter.products.category": string;
   /** Format: boolean */
   "rowFilter.products.verified": string;
   /** Format: uuid */
-  "rowFilter.products.proposal_user_id": string;
+  "rowFilter.products.proposaluserid": string;
   /** @description recipes */
   "body.recipes": definitions["recipes"];
   /** Format: uuid */
-  "rowFilter.recipes.recipe_id": string;
+  "rowFilter.recipes.recipeid": string;
   /** Format: text */
-  "rowFilter.recipes.photo_link": string;
+  "rowFilter.recipes.photolink": string;
   /** Format: text */
   "rowFilter.recipes.title": string;
   /** Format: text */
   "rowFilter.recipes.description": string;
   /** Format: public.recipe_type */
-  "rowFilter.recipes.recipe_type": string;
+  "rowFilter.recipes.recipetype": string;
   /** Format: numeric */
-  "rowFilter.recipes.meal_portions": string;
+  "rowFilter.recipes.mealportions": string;
   /** Format: numeric */
-  "rowFilter.recipes.kcal_per_portion": string;
+  "rowFilter.recipes.kcalperportion": string;
   /** Format: boolean */
   "rowFilter.recipes.verified": string;
   /** Format: uuid */
-  "rowFilter.recipes.proposal_user_id": string;
+  "rowFilter.recipes.proposaluserid": string;
   /** Format: boolean */
   "rowFilter.recipes.isvegan": string;
   /** Format: boolean */

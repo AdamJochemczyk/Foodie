@@ -1,16 +1,16 @@
 import React from "react";
 import { Layout } from "src/common/Layout/Layout";
 import { ProtectedWrapper } from "src/common/ProtectedWrapper/ProtectedWrapper";
-import { ProductVerifyGallery } from "src/modules/Products/ProductVerifyGallery/ProductVerifyGallery";
+import { EditProduct } from "src/modules/Products/EditProduct/EditProduct";
 
-const ProductVerification = () => {
+const index = () => {
   return (
     <ProtectedWrapper adminRestrictions>
       <Layout>
-        <ProductVerifyGallery />
+        <EditProduct />
       </Layout>
     </ProtectedWrapper>
   );
 };
 
-export default ProductVerification;
+export default index;

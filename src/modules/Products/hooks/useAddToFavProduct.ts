@@ -8,10 +8,10 @@ export const useAddToFavProduct = () => {
   const queryClient = useQueryClient();
 
   return useMutation(
-    async (product_id: string) => {
-      const { data, error } = await supabase.from("fav_users_products").insert({
-        user_id: userId,
-        product_id
+    async (productId: string) => {
+      const { data, error } = await supabase.from("favusersproducts").insert({
+        userId,
+        productId
       });
       if (error) {
         throw error;

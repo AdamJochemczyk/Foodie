@@ -1,13 +1,13 @@
+import { definitions } from "./../../../../types/supabase";
 import { toast } from "react-toastify";
-import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 import { supabase } from "src/utils/supabaseClient";
 
-const getProduct = async (id: string) => {
+const getProduct = async (productId: string) => {
   const { data, error } = await supabase
-    .from("products")
-    .select(`*,user:proposal_user_id!inner(email)`)
-    .eq("product_id", id)
+    .from<definitions["products"]>("products")
+    .select(`*,user:proposaluserid!inner(email)`)
+    .eq("productid", productId)
     .single();
   if (error) {
     throw error.message;
@@ -15,13 +15,10 @@ const getProduct = async (id: string) => {
   return data;
 };
 
-export const useGetProduct = () => {
-  const router = useRouter();
-  const { id } = router.query;
-
-  const { error, data, isLoading } = useQuery(["getProduct", id], () => {
-    if (typeof id === "string") {
-      return getProduct(id);
+export const useGetProduct = (productId: string | string[] | undefined) => {
+  const { error, data, isLoading } = useQuery(["getProduct"], () => {
+    if (typeof productId === "string") {
+      return getProduct(productId);
     }
   });
   if (error) {

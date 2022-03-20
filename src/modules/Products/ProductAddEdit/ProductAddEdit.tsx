@@ -9,20 +9,11 @@ import {
 } from "src/common/validation";
 import styles from "./ProductAddEdit.module.css";
 import { useUpdateProduct } from "../hooks/useUpdateProduct";
-
-interface ProductAddEditProperties {
-  mode: "add" | "edit";
-  initialValues?: {
-    category: string;
-    name: string;
-    gtin_code: string;
-    photo: null | File;
-  };
-}
+import { ProductAddEditProperties } from "../types";
 
 export const ProductAddEdit = ({
   mode = "add",
-  initialValues = { category: "", name: "", gtin_code: "", photo: null }
+  initialValues = { category: "", name: "", gtinCode: "", photo: null }
 }: ProductAddEditProperties) => {
   const createProductMutation = useCreateProduct();
   const updateProductMutation = useUpdateProduct();
@@ -46,7 +37,7 @@ export const ProductAddEdit = ({
         <FormikProvider value={formik}>
           <form>
             <FormInput name="name" label="nazwa produktu" />
-            <FormInput name="gtin_code" label="kod produktu" />
+            <FormInput name="gtinCode" label="kod produktu" />
             <CategorySelect name="category" />
             <FileInput
               name="photo"
