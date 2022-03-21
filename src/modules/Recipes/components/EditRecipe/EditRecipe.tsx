@@ -2,8 +2,8 @@ import React from "react";
 import { ActionButton } from "src/common/ActionButton/ActionButton";
 import { useFindIngredients } from "src/modules/Recipes/hooks/useFindIngredients";
 import { useGetRecipeById } from "src/modules/Recipes/hooks/useGetRecipeById";
-import { RecipeAddEdit } from "src/modules/Recipes/RecipeAddEdit/RecipeAddEdit";
-import { useDeleteRecipe } from "../hooks/useDeleteRecipe";
+import { RecipeAddEdit } from "src/modules/Recipes/components/RecipeAddEdit/RecipeAddEdit";
+import { useDeleteRecipe } from "../../hooks/useDeleteRecipe";
 
 export const EditRecipe = () => {
   const { recipe, isLoading } = useGetRecipeById();

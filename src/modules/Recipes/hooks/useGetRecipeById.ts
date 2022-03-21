@@ -6,8 +6,8 @@ import { supabase } from "src/utils/supabaseClient";
 export const getRecipeById = async (id: string) => {
   const { data, error } = await supabase
     .from("recipes")
-    .select(`*,user:proposal_user_id!inner(email)`)
-    .eq("recipe_id", id)
+    .select(`*,user:proposaluserid!inner(email)`)
+    .eq("recipeid", id)
     .single();
   if (error) {
     throw error;

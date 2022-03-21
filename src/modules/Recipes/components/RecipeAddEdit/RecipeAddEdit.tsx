@@ -13,29 +13,18 @@ import {
 import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
 import { addRecipeValidation, recipeValidation } from "src/common/validation";
 import { useFindProductByName } from "src/modules/Products/hooks/useFindProductByName";
-import { RecipeProducts, useAddRecipe } from "../hooks/useCreateRecipe";
+import {
+  useCreateRecipe,
+  useRemoveIngredient,
+  insertRecipeIngredient,
+  useUpdateRecipe
+} from "../../hooks";
 import styles from "./RecipeAddEdit.module.css";
 import { toast } from "react-toastify";
-import { useRemoveIngredient } from "../hooks/useRemoveIngredient";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { insertRecipeIngredient } from "../hooks/insertRecipeIngredient";
-import { useUpdateRecipe } from "../hooks/useUpdateRecipe";
+import { RecipeForm } from "../../types";
 
-interface RecipeForm {
-  title: string;
-  description: string;
-  recipeType: string;
-  mealPortions: number;
-  kcalPerPortion: number;
-  isVegan: boolean;
-  isVegetarian: boolean;
-  photo: null | File;
-  product: { value: string; label: string } | null;
-  count: number;
-  measureType: string;
-  recipeProducts: RecipeProducts[];
-}
 interface RecipeAddEditProperties {
   mode: "add" | "edit";
   initialValues?: RecipeForm;
@@ -62,7 +51,7 @@ export const RecipeAddEdit = ({
   photoLink,
   ingredientsLoading = false
 }: RecipeAddEditProperties) => {
-  const addRecipeMutation = useAddRecipe();
+  const addRecipeMutation = useCreateRecipe();
   const removeIngredient = useRemoveIngredient();
   const updateMutation = useUpdateRecipe();
   const router = useRouter();
@@ -109,10 +98,10 @@ export const RecipeAddEdit = ({
       const { recipe_id } = router.query;
       if (typeof recipe_id === "string") {
         insertRecipeIngredient({
-          product_id: product.value,
-          recipe_id,
-          product_count: count,
-          measure: measureType
+          productid: product.value,
+          productcount: count,
+          measure: measureType,
+          recipeid: recipe_id
         });
       }
     }

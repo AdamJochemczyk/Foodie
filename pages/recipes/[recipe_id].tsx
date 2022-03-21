@@ -3,7 +3,7 @@ import React from "react";
 import { Layout } from "src/common/Layout/Layout";
 import { ProtectedWrapper } from "src/common/ProtectedWrapper/ProtectedWrapper";
 import { getRecipeById } from "src/modules/Recipes/hooks/useGetRecipeById";
-import { SingleRecipe } from "src/modules/Recipes/SingleRecipe/SingleRecipe";
+import { SingleRecipe } from "src/modules/Recipes/components/SingleRecipe/SingleRecipe";
 import { definitions } from "types/supabase";
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {

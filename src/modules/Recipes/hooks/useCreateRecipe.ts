@@ -5,63 +5,28 @@ import { useUserId } from "src/utils/useUser";
 import { uploadImage } from "src/utils/uploadImage";
 import { getImageUrl } from "src/utils/getImageUrl";
 import { insertRecipe } from "./insertRecipe";
+import { CreateRecipeProperties } from "../types";
 
-export interface RecipeProducts {
-  product: { value: string; label: string };
-  measureType: string;
-  count: number;
-}
-interface CreateRecipeProperties {
-  title: string;
-  description: string;
-  recipeType: string;
-  mealPortions: number;
-  kcalPerPortion: number;
-  isVegan: boolean;
-  isVegetarian: boolean;
-  photo: File | null;
-  recipeProducts: RecipeProducts[];
-}
-
-export const useAddRecipe = () => {
+export const useCreateRecipe = () => {
   const { userId } = useUserId();
   const router = useRouter();
   return useMutation(
-    async ({
-      title,
-      description,
-      recipeType,
-      mealPortions,
-      kcalPerPortion,
-      isVegan,
-      isVegetarian,
-      photo,
-      recipeProducts
-    }: CreateRecipeProperties) => {
-      if (photo === null) {
+    async (values: CreateRecipeProperties) => {
+      if (values.photo === null) {
         throw new Error("Zdjecie musi zostac podane");
       }
-      const { data, error: uploadError } = await uploadImage(
-        `recipes/${title}`,
-        photo,
+      const isImageAdded = await uploadImage(
+        `recipes/${values.title}`,
+        values.photo,
         false
       );
-      if (uploadError) {
-        throw new Error("Error on upload");
-      } else if (data) {
-        const photoLink = await getImageUrl(`recipes/${title}`);
+      if (isImageAdded) {
+        const photoLink = await getImageUrl(`recipes/${values.title}`);
         if (photoLink) {
           return await insertRecipe({
             photoLink,
-            title,
-            description,
-            recipeType,
-            mealPortions,
-            kcalPerPortion,
-            isVegan,
-            isVegetarian,
-            proposalUserId: typeof userId === "string" ? userId : "",
-            recipeProducts
+            ...values,
+            proposalUserId: typeof userId === "string" ? userId : ""
           });
         } else {
           throw new Error("Error on image upload");

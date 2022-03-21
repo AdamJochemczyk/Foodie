@@ -1,24 +1,9 @@
 import { supabase } from "src/utils/supabaseClient";
 import { toast } from "react-toastify";
-interface RecipeIngredient {
-  product_id: string;
-  recipe_id: string;
-  product_count: number;
-  measure: string;
-}
+import { RecipeIngredient } from "../types";
 
-export const insertRecipeIngredient = async ({
-  product_id,
-  recipe_id,
-  product_count,
-  measure
-}: RecipeIngredient) => {
-  const { data, error } = await supabase.from("ingredients").insert({
-    product_id,
-    recipe_id,
-    product_count,
-    measure
-  });
+export const insertRecipeIngredient = async (values: RecipeIngredient) => {
+  const { data, error } = await supabase.from("ingredients").insert(values);
   if (error) {
     throw error;
   }

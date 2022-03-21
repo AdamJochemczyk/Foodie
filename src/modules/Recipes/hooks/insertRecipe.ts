@@ -1,52 +1,20 @@
 import { supabase } from "src/utils/supabaseClient";
+import { RecipeProperties } from "../types";
 import { insertRecipeIngredient } from "./insertRecipeIngredient";
-import { RecipeProducts } from "./useCreateRecipe";
-interface RecipeProperties {
-  photoLink: string;
-  title: string;
-  description: string;
-  recipeType: string;
-  mealPortions: number;
-  kcalPerPortion: number;
-  isVegan: boolean;
-  isVegetarian: boolean;
-  proposalUserId: string;
-  recipeProducts: RecipeProducts[];
-}
 
-export const insertRecipe = async ({
-  photoLink,
-  title,
-  description,
-  recipeType,
-  mealPortions,
-  kcalPerPortion,
-  isVegan,
-  isVegetarian,
-  proposalUserId,
-  recipeProducts
-}: RecipeProperties) => {
-  const { data, error } = await supabase.from("recipes").insert({
-    title,
-    description,
-    recipe_type: recipeType,
-    meal_portions: mealPortions,
-    photo_link: photoLink,
-    kcal_per_portion: kcalPerPortion,
-    isvegan: isVegan,
-    isvegetarian: isVegetarian,
-    proposal_user_id: proposalUserId
-  });
+export const insertRecipe = async (values: RecipeProperties) => {
+  const { data, error } = await supabase.from("recipes").insert(values);
   const recipeId = data ? (data[0].recipe_id as string) : "";
-  if (recipeId && recipeProducts.length > 0) {
-    recipeProducts.forEach(ingredient => {
+  if (recipeId && values.recipeProducts.length > 0) {
+    const promises = values.recipeProducts.map(ingredient => {
       insertRecipeIngredient({
-        product_id: ingredient.product.value,
-        recipe_id: recipeId,
-        product_count: ingredient.count,
+        productid: ingredient.product.value,
+        recipeid: recipeId,
+        productcount: ingredient.count,
         measure: ingredient.measureType
       });
     });
+    await Promise.all(promises);
   }
   if (error) {
     throw error;

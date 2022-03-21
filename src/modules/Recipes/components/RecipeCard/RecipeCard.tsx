@@ -5,24 +5,9 @@ import { LinkWrapper } from "src/common/LinkWrapper/LinkWrapper";
 import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
 import { Tag } from "src/common/Tag/Tag";
 import { upperFirst } from "src/common/utils/stringMethods";
-import { useAddToFavRecipe } from "../hooks/useAddToFavRecipe";
-import { useRemoveFavRecipe } from "../hooks/useRemoveFromFavRecipe";
+import { useAddToFavRecipe, useRemoveFavRecipe } from "../../hooks";
+import { RecipeCardProperties } from "../../types";
 import styles from "./RecipeCard.module.css";
-
-interface RecipeCardProperties {
-  photoLink: string;
-  title: string;
-  description: string;
-  recipeType: string;
-  mealPortions: number;
-  kcalPerPortions: number;
-  isVegan: boolean;
-  isVegetarian: boolean;
-  recipeId: string;
-  isUserFav?: boolean;
-  href: string;
-  btnText: string;
-}
 
 export const RecipeCard = ({
   photoLink,

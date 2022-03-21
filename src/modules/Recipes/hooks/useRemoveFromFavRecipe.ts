@@ -10,10 +10,10 @@ export const useRemoveFavRecipe = () => {
   return useMutation(
     async (recipeId: string) => {
       const { data, error } = await supabase
-        .from("fav_users_recipes")
+        .from("favusersrecipes")
         .delete()
-        .eq("user_id", userId || "")
-        .eq("recipe_id", recipeId);
+        .eq("userid", userId || "")
+        .eq("recipeid", recipeId);
       if (error) {
         throw error;
       }
