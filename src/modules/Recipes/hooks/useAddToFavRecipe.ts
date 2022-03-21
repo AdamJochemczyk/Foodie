@@ -9,10 +9,10 @@ export const useAddToFavRecipe = () => {
   const queryClient = useQueryClient();
 
   return useMutation(
-    async (recipe_id: string) => {
-      const { data, error } = await supabase.from("fav_users_recipes").insert({
-        user_id: userId,
-        recipe_id
+    async (recipeid: string) => {
+      const { data, error } = await supabase.from("favusersrecipes").insert({
+        userid: userId,
+        recipeid
       });
       if (error) {
         throw error;

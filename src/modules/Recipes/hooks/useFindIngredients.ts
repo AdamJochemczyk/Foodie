@@ -3,13 +3,13 @@ import { supabase } from "src/utils/supabaseClient";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 
-const fetchRecipeIngredients = async (recipe_id: string) => {
+const fetchRecipeIngredients = async (recipeId: string) => {
   const { data, error } = await supabase
     .from("ingredients")
     .select(
-      "id,recipe_id,product_id,product_count,measure,ingredient:product_id!inner(name)"
+      "id,recipeid,productid,productcount,measure,ingredient:productid!inner(name)"
     )
-    .eq("recipe_id", recipe_id);
+    .eq("recipeid", recipeId);
   if (error) {
     throw error;
   }

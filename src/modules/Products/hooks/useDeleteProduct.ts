@@ -19,9 +19,10 @@ export const useDeleteProduct = () => {
         .delete()
         .eq("productid", productId);
 
-      const { error: imageError } = await removeImage(`products/${gtinCode}`);
-      if (error || imageError) {
-        throw error || imageError;
+      await removeImage(`products/${gtinCode}`);
+
+      if (error) {
+        throw error;
       }
       return data;
     },

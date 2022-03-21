@@ -1,7 +1,10 @@
 import { supabase } from "./supabaseClient";
-export const removeImage = async (image_path: string) => {
+export const removeImage = async (imagePath: string) => {
   const { data, error } = await supabase.storage
     .from("foodie")
-    .remove([image_path]);
-  return { data, error };
+    .remove([imagePath]);
+  if (error) {
+    throw new Error("Error on delete image");
+  }
+  return data;
 };

@@ -4,13 +4,7 @@ import { supabase } from "src/utils/supabaseClient";
 import { useMutation, useQueryClient } from "react-query";
 import { useRouter } from "next/router";
 import { useRemoveIngredient } from "./useRemoveIngredient";
-
-interface Ingredients {
-  id: string;
-  name: string;
-  measure: string;
-  count: number;
-}
+import { DeleteRecipe } from "../types";
 
 export const useDeleteRecipe = () => {
   const router = useRouter();
@@ -18,15 +12,7 @@ export const useDeleteRecipe = () => {
   const removeIngredient = useRemoveIngredient();
 
   return useMutation(
-    async ({
-      id,
-      title,
-      ingredients
-    }: {
-      id: string;
-      title: string;
-      ingredients: Ingredients[];
-    }) => {
+    async ({ id, title, ingredients }: DeleteRecipe) => {
       const promises = ingredients.map(({ id }) => removeIngredient.mutate(id));
       await Promise.all(promises).catch(() =>
         toast.error("Nie można usunąć składników")
@@ -35,8 +21,8 @@ export const useDeleteRecipe = () => {
         .from("recipes")
         .delete()
         .eq("recipe_id", id);
-      const { error: imageError } = await removeImage(`recipes/${title}`);
-      if (error || imageError) {
+      await removeImage(`recipes/${title}`);
+      if (error) {
         throw new Error("Cant delete recipe");
       }
       return data;

@@ -1,16 +1,15 @@
-import React from "react";
 import { Layout } from "src/common/Layout/Layout";
 import { ProtectedWrapper } from "src/common/ProtectedWrapper/ProtectedWrapper";
-import { EditRecipe } from "src/modules/Recipes/EditRecipe/EditRecipe";
+import RecipesPage from "src/modules/Recipes/components/RecipesPage/RecipesPage";
 
-const VerifyRecipe = () => {
+const RecipeEdit = () => {
   return (
     <ProtectedWrapper adminRestrictions>
       <Layout>
-        <EditRecipe />
+        <RecipesPage mode="admin" />
       </Layout>
     </ProtectedWrapper>
   );
 };
 
-export default VerifyRecipe;
+export default RecipeEdit;

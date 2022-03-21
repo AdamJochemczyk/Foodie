@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { definitions } from "types/supabase";
 import { Tag } from "src/common/Tag/Tag";
-import { useFindIngredients } from "../hooks/useFindIngredients";
+import { useFindIngredients } from "../../hooks/useFindIngredients";
 import styles from "./SingleRecipe.module.css";
 
 export const SingleRecipe = ({
@@ -11,12 +11,12 @@ export const SingleRecipe = ({
   recipe: definitions["recipes"];
 }) => {
   const {
-    photo_link,
+    photolink,
     title,
     description,
-    recipe_type,
-    kcal_per_portion,
-    meal_portions,
+    recipetype,
+    kcalperportion,
+    mealportions,
     isvegan,
     isvegetarian
   } = recipe;
@@ -27,16 +27,16 @@ export const SingleRecipe = ({
     <article className={styles.container}>
       <section className={styles.card}>
         <div className={styles.imageBox}>
-          <Image src={photo_link} alt={title} objectFit="cover" layout="fill" />
+          <Image src={photolink} alt={title} objectFit="cover" layout="fill" />
         </div>
         <h2 className={styles.title}>{title}</h2>
         <p className={styles.recipeInfo}>
-          Kcal per portion: {kcal_per_portion} | Portions: {meal_portions}
+          Kcal per portion: {kcalperportion} | Portions: {mealportions}
         </p>
         <p>
           {isvegan ? <Tag name="wegańskie" /> : null}
           {isvegetarian ? <Tag name="wegetariańskie" /> : null}
-          <Tag name={recipe_type} />
+          <Tag name={recipetype} />
         </p>
         <div className={styles.descBox}>
           <div className={styles.descIngredients}>
