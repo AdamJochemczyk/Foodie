@@ -1,19 +1,37 @@
 import { UpdateProduct, ProductProperties } from "./../types";
 import { toast } from "react-toastify";
 import { supabase } from "src/utils/supabaseClient";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { useRouter } from "next/router";
 import { uploadImage } from "src/utils/uploadImage";
 import { getImageUrl } from "src/utils/getImageUrl";
 
-const updateProduct = async (values: UpdateProduct) => {
+const updateProduct = async ({
+  name,
+  category,
+  gtincode,
+  productid,
+  photolink
+}: UpdateProduct) => {
   const { data, error } = await supabase
     .from("products")
-    .update({
-      ...values,
-      verified: true
-    })
-    .eq("product_id", values.productId);
+    .update(
+      photolink
+        ? {
+            name,
+            category,
+            gtincode,
+            photolink,
+            verified: true
+          }
+        : {
+            name,
+            category,
+            gtincode,
+            verified: true
+          }
+    )
+    .eq("productid", productid);
   if (error) {
     throw error;
   }
@@ -22,16 +40,16 @@ const updateProduct = async (values: UpdateProduct) => {
 
 const updatePhotoAndProduct = async (values: UpdateProduct) => {
   if (values.photo) {
-    const isFileAdded = await uploadImage(
-      `products/${values.gtinCode}`,
+    const { data: isFileAdded } = await uploadImage(
+      `products/${values.gtincode}`,
       values?.photo
     );
     if (isFileAdded) {
-      const photoLink = await getImageUrl(`products/${values.gtinCode}`);
-      if (photoLink) {
+      const photolink = await getImageUrl(`products/${values.gtincode}`);
+      if (photolink) {
         return await updateProduct({
           ...values,
-          photoLink
+          photolink
         });
       }
     } else {
@@ -42,21 +60,23 @@ const updatePhotoAndProduct = async (values: UpdateProduct) => {
 
 export const useUpdateProduct = () => {
   const router = useRouter();
-  const { id } = router.query;
+  const { product_id } = router.query;
+  const queryClient = useQueryClient();
 
   return useMutation(
     async (values: ProductProperties) => {
-      if (typeof id === "string") {
-        if (values.photo === null) {
-          return updateProduct({ ...values, productId: id });
+      if (typeof product_id === "string") {
+        if (!values.photo) {
+          return updateProduct({ ...values, productid: product_id });
         } else {
-          updatePhotoAndProduct({ ...values, productId: id });
+          updatePhotoAndProduct({ ...values, productid: product_id });
         }
       }
     },
     {
       onSuccess: () => {
-        toast.success("Zweryfikowałeś produkt");
+        toast.success("Zaktualizowałeś produkt");
+        queryClient.invalidateQueries("getProducts");
         router.push("/products/edit");
       },
       onError: () => {

@@ -2,7 +2,7 @@ import { supabase } from "./supabaseClient";
 
 export const getImageUrl = async (imagePath: string) => {
   const { data } = await supabase.storage
-    .from("foodie")
+    .from("images")
     .getPublicUrl(imagePath);
   return data?.publicURL;
 };

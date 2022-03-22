@@ -15,7 +15,6 @@ export const ProductCard = ({
 }: ProductCardProperties) => {
   const addToFav = useAddToFavProduct();
   const removeFromFav = useRemoveFavProduct();
-
   return (
     <div className={styles.card}>
       <div className={styles.imgBox}>
@@ -27,7 +26,9 @@ export const ProductCard = ({
       </div>
       {showFavButton ? (
         <FavButton
-          isUserFav={typeof isUserFav === "undefined" ? false : isUserFav}
+          isUserFav={
+            typeof isUserFav === "undefined" ? false : isUserFav.length > 0
+          }
           removeFromFav={() => removeFromFav.mutate(productId)}
           addToFav={() => addToFav.mutate(productId)}
         />

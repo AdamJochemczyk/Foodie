@@ -12,7 +12,7 @@ const fetchProducts = async ({
   verified,
   userId
 }: FetchProducts) => {
-  const base = `productid,productname,category,photolink,verified,`;
+  const base = "productid,name,category,photolink,verified,";
   const isQueryForUser = verified
     ? `${base}isFav:favusersproducts${
         // eslint-disable-next-line sonarjs/no-nested-template-literals
@@ -29,7 +29,7 @@ const fetchProducts = async ({
   }
 
   if (searchName) {
-    query.ilike("productname", `%${searchName}%`);
+    query.ilike("name", `%${searchName}%`);
   }
   if (category) {
     query.match({ category: category });

@@ -7,33 +7,56 @@ import { uploadImage } from "src/utils/uploadImage";
 import { useRouter } from "next/router";
 import { ProductProperties } from "../types";
 
+const insertProductWithPhoto = async ({
+  gtincode,
+  name,
+  category,
+  userid,
+  photolink
+}: {
+  gtincode: string;
+  name: string;
+  category: string;
+  userid: string;
+  photolink?: string;
+}) => {
+  if (photolink) {
+    const { error, data } = await insertProduct({
+      gtincode,
+      name,
+      photolink,
+      category,
+      proposaluserid: userid
+    });
+    if (error) {
+      throw new Error("Error on product upload");
+    }
+    return data;
+  } else {
+    throw new Error("Error on image upload");
+  }
+};
+
 export const useCreateProduct = () => {
   const { userId } = useUserId();
   const router = useRouter();
 
   return useMutation(
-    async ({ gtinCode, photo, name, category }: ProductProperties) => {
-      if (!photo) {
+    async (values: ProductProperties) => {
+      if (!values.photo) {
         throw new Error("Photo not provided");
       } else {
         const isImageAdded = await uploadImage(
-          `products/${gtinCode}`,
-          photo,
-          false
+          `products/${values.gtincode}`,
+          values.photo
         );
         if (isImageAdded) {
-          const photoLink = await getImageUrl(`products/${gtinCode}`);
-          if (photoLink) {
-            return await insertProduct({
-              gtinCode,
-              name,
-              photoLink,
-              category,
-              proposalUserId: typeof userId === "string" ? userId : ""
-            });
-          } else {
-            throw new Error("Error on image upload");
-          }
+          const photolink = await getImageUrl(`products/${values.gtincode}`);
+          return await insertProductWithPhoto({
+            ...values,
+            userid: typeof userId === "string" ? userId : "",
+            photolink
+          });
         }
       }
     },

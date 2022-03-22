@@ -13,6 +13,7 @@ export const EditProduct = () => {
   const { product_id } = router.query;
   const { product, isLoading } = useGetProduct(product_id);
   const removeProductMutation = useDeleteProduct();
+
   return (
     <>
       {!isLoading && product ? (
@@ -21,8 +22,8 @@ export const EditProduct = () => {
             mode="edit"
             initialValues={{
               category: product.category,
-              name: product.productname,
-              gtinCode: product.gtincode.toString(),
+              name: product.name,
+              gtincode: product.gtincode.toString(),
               photo: null
             }}
           />
@@ -31,7 +32,7 @@ export const EditProduct = () => {
             <div className={styles.content}>
               <ProductCard
                 productId={product.productid}
-                name={product.productname}
+                name={product.name}
                 photoLink={product.photolink}
                 category={product.category}
                 showFavButton={false}
@@ -44,8 +45,8 @@ export const EditProduct = () => {
                 text="usuń produkt"
                 onClick={() =>
                   removeProductMutation.mutate({
-                    productId: product.productid,
-                    gtinCode: product.gtincode.toString()
+                    productid: product.productid,
+                    gtincode: product.gtincode.toString()
                   })
                 }
               />

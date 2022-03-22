@@ -1,16 +1,16 @@
 export interface ProductProperties {
   category: string;
   name: string;
-  gtinCode: string;
+  gtincode: string;
   photo?: File | null;
 }
 export interface UpdateProduct extends ProductProperties {
-  productId: string;
-  photoLink?: string;
+  productid: string;
+  photolink?: string;
 }
 export interface InsertProduct extends ProductProperties {
-  photoLink: string;
-  proposalUserId: string;
+  photolink: string;
+  proposaluserid: string;
 }
 export interface ProductAddEditProperties {
   mode: "add" | "edit";
@@ -22,7 +22,7 @@ export interface ProductCardProperties {
   category: string;
   productId: string;
   showFavButton?: boolean;
-  isUserFav?: boolean;
+  isUserFav?: Array<{ userid: string }>;
 }
 export interface SearchProducts {
   searchName: string;

@@ -12,7 +12,7 @@ import { ProductAddEditProperties } from "../../types";
 
 export const ProductAddEdit = ({
   mode = "add",
-  initialValues = { category: "", name: "", gtinCode: "", photo: null }
+  initialValues = { category: "", name: "", gtincode: "", photo: null }
 }: ProductAddEditProperties) => {
   const createProductMutation = useCreateProduct();
   const updateProductMutation = useUpdateProduct();
@@ -32,11 +32,12 @@ export const ProductAddEdit = ({
 
   return (
     <section className={styles.content}>
+      <h1>{mode === "add" ? "Dodaj produkt" : "Edytuj produkt"}</h1>
       <div className={styles.form}>
         <FormikProvider value={formik}>
           <form>
             <FormInput name="name" label="nazwa produktu" />
-            <FormInput name="gtinCode" label="kod produktu" />
+            <FormInput name="gtincode" label="kod produktu" />
             <CategorySelect name="category" />
             <FileInput
               name="photo"
@@ -45,7 +46,7 @@ export const ProductAddEdit = ({
               }
             />
             <ActionButton
-              text={mode === "add" ? "Dodaj produkt" : "Edytuj"}
+              text={mode === "add" ? "Dodaj" : "Edytuj"}
               onClick={formik.handleSubmit}
               loading={
                 mode === "add"

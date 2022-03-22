@@ -11,7 +11,7 @@ export const RecipesCards = ({
 }) => {
   return (
     <>
-      {entities.length > 0 &&
+      {entities.length > 0 ? (
         entities.map(
           ({
             title,
@@ -48,7 +48,10 @@ export const RecipesCards = ({
               btnText="Szczegóły"
             />
           )
-        )}
+        )
+      ) : (
+        <p>Brak wyników wyszukiwania</p>
+      )}
     </>
   );
 };

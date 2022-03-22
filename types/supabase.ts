@@ -303,7 +303,7 @@ export interface paths {
         query: {
           productid?: parameters["rowFilter.products.productid"];
           gtincode?: parameters["rowFilter.products.gtincode"];
-          productname?: parameters["rowFilter.products.productname"];
+          name?: parameters["rowFilter.products.name"];
           photolink?: parameters["rowFilter.products.photolink"];
           category?: parameters["rowFilter.products.category"];
           verified?: parameters["rowFilter.products.verified"];
@@ -360,7 +360,7 @@ export interface paths {
         query: {
           productid?: parameters["rowFilter.products.productid"];
           gtincode?: parameters["rowFilter.products.gtincode"];
-          productname?: parameters["rowFilter.products.productname"];
+          name?: parameters["rowFilter.products.name"];
           photolink?: parameters["rowFilter.products.photolink"];
           category?: parameters["rowFilter.products.category"];
           verified?: parameters["rowFilter.products.verified"];
@@ -381,7 +381,7 @@ export interface paths {
         query: {
           productid?: parameters["rowFilter.products.productid"];
           gtincode?: parameters["rowFilter.products.gtincode"];
-          productname?: parameters["rowFilter.products.productname"];
+          name?: parameters["rowFilter.products.name"];
           photolink?: parameters["rowFilter.products.photolink"];
           category?: parameters["rowFilter.products.category"];
           verified?: parameters["rowFilter.products.verified"];
@@ -708,7 +708,7 @@ export interface definitions {
     /** Format: numeric */
     gtincode: number;
     /** Format: text */
-    productname: string;
+    name: string;
     /** Format: text */
     photolink: string;
     /**
@@ -862,7 +862,7 @@ export interface parameters {
   /** Format: numeric */
   "rowFilter.products.gtincode": string;
   /** Format: text */
-  "rowFilter.products.productname": string;
+  "rowFilter.products.name": string;
   /** Format: text */
   "rowFilter.products.photolink": string;
   /** Format: public.product_category */

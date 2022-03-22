@@ -15,12 +15,12 @@ export const ProductCards = ({
       {entities.length > 0 ? (
         entities.map(
           //@ts-ignore
-          ({ category, productname, photolink, productid, isFav }) => {
+          ({ category, name, photolink, productid, isFav }) => {
             const Card = (
               <ProductCard
                 key={productid}
                 productId={productid}
-                name={productname}
+                name={name}
                 category={category}
                 photoLink={photolink}
                 isUserFav={isFav}

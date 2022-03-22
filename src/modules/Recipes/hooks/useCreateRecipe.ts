@@ -17,8 +17,7 @@ export const useCreateRecipe = () => {
       }
       const isImageAdded = await uploadImage(
         `recipes/${values.title}`,
-        values.photo,
-        false
+        values.photo
       );
       if (isImageAdded) {
         const photoLink = await getImageUrl(`recipes/${values.title}`);

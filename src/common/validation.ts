@@ -29,8 +29,8 @@ export const categoryValidation = yup
 export const gtinCodeValidation = yup
   .string()
   .matches(/^\d+$/, "Gtin code musi składać się z cyfr")
-  .min(14, "Gtin code musi mieć dokładnie 14 cyfr")
-  .max(14, "Gtin code musi mieć dokładnie 14 cyfr")
+  .min(8, "Gtin code musi mieć co najmniej 8 cyfr")
+  .max(14, "Gtin code musi mieć maksymalnie 14 cyfr")
   .required("Kod jest wymagany");
 
 const SUPPORTED_FORMATS = new Set(["image/jpg", "image/jpeg", "image/png"]);
@@ -52,14 +52,14 @@ export const fileValidation = yup
 
 export const productAddValidationWithPhoto = yup.object().shape({
   name: yup.string().required("Nazwa jest wymagana"),
-  gtin_code: gtinCodeValidation,
+  gtincode: gtinCodeValidation,
   photo: fileValidation,
   category: categoryValidation
 });
 
 export const productAddValidation = yup.object().shape({
   name: yup.string().required("Nazwa jest wymagana"),
-  gtin_code: gtinCodeValidation,
+  gtincode: gtinCodeValidation,
   category: categoryValidation
 });
 

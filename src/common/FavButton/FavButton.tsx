@@ -13,19 +13,15 @@ export const FavButton = ({
   removeFromFav,
   addToFav
 }: FavButtonProperties) => {
-  if (typeof isUserFav === "boolean") {
-    return (
-      <div className={styles.heart}>
-        <IconContext.Provider value={{ size: "2.5rem", color: "red" }}>
-          {isUserFav ? (
-            <AiFillHeart onClick={removeFromFav} />
-          ) : (
-            <AiOutlineHeart onClick={addToFav} />
-          )}
-        </IconContext.Provider>
-      </div>
-    );
-  } else {
-    return null;
-  }
+  return (
+    <div className={styles.heart}>
+      <IconContext.Provider value={{ size: "2.5rem", color: "red" }}>
+        {isUserFav ? (
+          <AiFillHeart onClick={removeFromFav} />
+        ) : (
+          <AiOutlineHeart onClick={addToFav} />
+        )}
+      </IconContext.Provider>
+    </div>
+  );
 };

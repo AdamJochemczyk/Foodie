@@ -11,15 +11,15 @@ export const useDeleteProduct = () => {
 
   return useMutation(
     async ({
-      productId,
-      gtinCode
-    }: Pick<UpdateProduct, "productId" | "gtinCode">) => {
+      productid,
+      gtincode
+    }: Pick<UpdateProduct, "productid" | "gtincode">) => {
       const { data, error } = await supabase
         .from("products")
         .delete()
-        .eq("productid", productId);
+        .eq("productid", productid);
 
-      await removeImage(`products/${gtinCode}`);
+      await removeImage(`products/${gtincode}`);
 
       if (error) {
         throw error;
