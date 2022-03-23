@@ -7,7 +7,7 @@ import { SearchRecipes } from "../../types";
 import { RecipeForm } from "./RecipeForm";
 import { RecipesCards } from "./RecipesCards";
 
-const RecipesPage = ({ mode }: { mode?: "user" | "admin" }) => {
+const RecipesPage = ({ mode = "user" }: { mode?: "user" | "admin" }) => {
   const [queryParams, setQueryParams] = useState<SearchRecipes>({
     title: "",
     recipeType: "",

@@ -21,22 +21,22 @@ export const EditRecipe = () => {
             initialValues={{
               title: recipe.title,
               description: recipe.description,
-              recipeType: recipe.recipe_type,
-              mealPortions: recipe.meal_portions,
-              kcalPerPortion: recipe.kcal_per_portion,
-              isVegan: recipe.isvegan,
-              isVegetarian: recipe.isvegan,
+              recipetype: recipe.recipetype,
+              mealportions: recipe.mealportions,
+              kcalperportion: recipe.kcalperportion,
+              isvegan: recipe.isvegan,
+              isvegetarian: recipe.isvegetarian,
               photo: null,
               product: null,
               count: 0,
-              measureType: "",
-              recipeProducts: ingredients.map(
+              measuretype: "",
+              recipeproducts: ingredients.map(
                 ({ id, name, measure, count }) => ({
                   product: {
                     value: id,
                     label: name
                   },
-                  measureType: measure,
+                  measuretype: measure,
                   count: count
                 })
               )
@@ -52,7 +52,7 @@ export const EditRecipe = () => {
         text="usuń przepis"
         onClick={() =>
           deleteRecipe.mutate({
-            id: recipe.recipe_id,
+            id: recipe.recipeid,
             title: recipe.title,
             ingredients
           })

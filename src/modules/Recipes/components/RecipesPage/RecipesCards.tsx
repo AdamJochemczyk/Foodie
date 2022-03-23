@@ -31,19 +31,18 @@ export const RecipesCards = ({
               photoLink={photolink}
               title={title}
               description={description}
-              recipeType={recipetype}
-              mealPortions={mealportions}
-              kcalPerPortions={kcalperportion}
-              isVegan={isvegan}
-              isVegetarian={isvegetarian}
+              recipetype={recipetype}
+              mealportions={mealportions}
+              kcalperportion={kcalperportion}
+              isvegan={isvegan}
+              isvegetarian={isvegetarian}
               recipeId={recipeid}
-              isUserFav={
-                typeof isFav === "undefined" ? false : isFav.length > 0
-              }
+              showFavButton={!withEditLink}
+              isUserFav={isFav}
               href={
                 withEditLink
-                  ? `/recipes/${recipeid}`
-                  : `/recipes/edit/${recipeid}`
+                  ? `/recipes/edit/${recipeid}`
+                  : `/recipes/${recipeid}`
               }
               btnText="Szczegóły"
             />

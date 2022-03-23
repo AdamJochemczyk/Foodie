@@ -65,18 +65,18 @@ export const productAddValidation = yup.object().shape({
 
 export const searchRecipeValidation = yup.object().shape({
   title: yup.string(),
-  recipeType: yup.string().oneOf(recipeTypes.map(recipe => recipe.value)),
-  mealPortions: yup.number().positive("Liczba porcji nie może być ujemna"),
-  kcalPerPortionFrom: yup.number().positive("Liczba kcal nie może być ujemna"),
-  kcalPerPortionTo: yup
+  recipetype: yup.string().oneOf(recipeTypes.map(recipe => recipe.value)),
+  mealportions: yup.number().positive("Liczba porcji nie może być ujemna"),
+  kcalperportionfrom: yup.number().positive("Liczba kcal nie może być ujemna"),
+  kcalperportionto: yup
     .number()
     .positive("Liczba kcal nie może być ujemna")
     .moreThan(
       yup.ref("kcalPerPortionFrom"),
       "Kcal na porcję max powinno być większe niż kcal min"
     ),
-  isVegan: yup.boolean(),
-  isVegetarian: yup.boolean()
+  isvegan: yup.boolean(),
+  isvegetarian: yup.boolean()
 });
 
 export const recipeValidation = yup.object().shape({
@@ -85,20 +85,20 @@ export const recipeValidation = yup.object().shape({
     .string()
     .required("Opis jest wymagany")
     .max(2100, "Opis moze mieć max 2100 znaków"),
-  recipeType: yup
+  recipetype: yup
     .string()
     .oneOf(recipeTypes.map(recipe => recipe.value))
     .required("Typ posiłku jest wymagany"),
-  mealPortions: yup
+  mealportions: yup
     .number()
     .positive("Liczba porcji nie może być ujemna")
     .required("Liczba porcji jest"),
-  kcalPerPortion: yup
+  kcalperportion: yup
     .number()
     .positive("Liczba kcal musi być dodatania")
     .required("Liczba kcal na porcję jest wymagana"),
-  isVegan: yup.boolean(),
-  isVegetarian: yup.boolean()
+  isvegan: yup.boolean(),
+  isvegetarian: yup.boolean()
 });
 
 export const addRecipeValidation = recipeValidation.shape({

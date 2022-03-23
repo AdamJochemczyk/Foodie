@@ -3,7 +3,7 @@ import { Layout } from "src/common/Layout/Layout";
 import { ProtectedWrapper } from "src/common/ProtectedWrapper/ProtectedWrapper";
 import { EditRecipe } from "src/modules/Recipes/components/EditRecipe/EditRecipe";
 
-const VerifyRecipe = () => {
+const EditRecipePage = () => {
   return (
     <ProtectedWrapper adminRestrictions>
       <Layout>
@@ -13,4 +13,4 @@ const VerifyRecipe = () => {
   );
 };
 
-export default VerifyRecipe;
+export default EditRecipePage;

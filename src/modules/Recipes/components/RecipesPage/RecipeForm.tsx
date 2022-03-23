@@ -29,7 +29,7 @@ export const RecipeForm = ({
           {changeVerified ? (
             <Checkbox name="verified" label="zweryfikowane" />
           ) : (
-            <Checkbox name="favorites" label="pokaz ulubione" />
+            <Checkbox name="isFavorites" label="pokaz ulubione" />
           )}
           <ActionButton
             text="Filtruj"

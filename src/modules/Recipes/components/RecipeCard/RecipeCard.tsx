@@ -13,15 +13,16 @@ export const RecipeCard = ({
   photoLink,
   title,
   description,
-  recipeType,
-  mealPortions,
-  kcalPerPortions,
-  isVegan,
-  isVegetarian,
+  recipetype,
+  mealportions,
+  kcalperportion,
+  isvegan,
+  isvegetarian,
   isUserFav,
   recipeId,
   href,
-  btnText
+  btnText,
+  showFavButton = true
 }: RecipeCardProperties) => {
   const addToFav = useAddToFavRecipe();
   const removeFromFav = useRemoveFavRecipe();
@@ -39,11 +40,11 @@ export const RecipeCard = ({
             : description}
         </p>
         <div className={styles.params}>
-          <Tag name={recipeType} />
-          <Tag name={`${mealPortions} porcji`} />
-          <Tag name={`${kcalPerPortions} kcal`} />
-          {isVegan ? <Tag name="wegańskie" /> : null}
-          {isVegetarian ? <Tag name="wegetariańskie" /> : null}
+          <Tag name={recipetype} />
+          <Tag name={`${mealportions} porcji`} />
+          <Tag name={`${kcalperportion} kcal`} />
+          {isvegan ? <Tag name="wegańskie" /> : null}
+          {isvegetarian ? <Tag name="wegetariańskie" /> : null}
         </div>
       </div>
       <div className={styles.link}>
@@ -52,11 +53,15 @@ export const RecipeCard = ({
         </LinkWrapper>
       </div>
 
-      <FavButton
-        isUserFav={isUserFav}
-        removeFromFav={() => removeFromFav.mutate(recipeId)}
-        addToFav={() => addToFav.mutate(recipeId)}
-      />
+      {showFavButton ? (
+        <FavButton
+          isUserFav={
+            typeof isUserFav === "undefined" ? false : isUserFav.length > 0
+          }
+          removeFromFav={() => removeFromFav.mutate(recipeId)}
+          addToFav={() => addToFav.mutate(recipeId)}
+        />
+      ) : null}
     </div>
   );
 };

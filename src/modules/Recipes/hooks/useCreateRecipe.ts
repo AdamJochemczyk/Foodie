@@ -23,9 +23,9 @@ export const useCreateRecipe = () => {
         const photoLink = await getImageUrl(`recipes/${values.title}`);
         if (photoLink) {
           return await insertRecipe({
-            photoLink,
             ...values,
-            proposalUserId: typeof userId === "string" ? userId : ""
+            photolink: photoLink,
+            proposaluserid: typeof userId === "string" ? userId : ""
           });
         } else {
           throw new Error("Error on image upload");

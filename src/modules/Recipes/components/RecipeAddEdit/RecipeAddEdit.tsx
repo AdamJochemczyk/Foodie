@@ -37,16 +37,16 @@ export const RecipeAddEdit = ({
   initialValues = {
     title: "",
     description: "",
-    recipeType: "",
-    mealPortions: 1,
-    kcalPerPortion: 1,
-    isVegan: false,
-    isVegetarian: false,
+    recipetype: "",
+    mealportions: 1,
+    kcalperportion: 1,
+    isvegan: false,
+    isvegetarian: false,
     photo: null,
     product: null,
     count: 0,
-    measureType: "",
-    recipeProducts: []
+    measuretype: "",
+    recipeproducts: []
   },
   photoLink,
   ingredientsLoading = false
@@ -70,49 +70,49 @@ export const RecipeAddEdit = ({
   });
 
   const handleAddIngredient = () => {
-    const { product, count, measureType } = formik.values;
+    const { product, count, measuretype } = formik.values;
     if (!product) {
       return toast.error("Wybierz produkt");
     }
     if (count <= 0) {
       return toast.error("Ilość musi być dodatnia");
     }
-    if (!measureType) {
+    if (!measuretype) {
       return toast.error("Wybierz jednostkę");
     }
     if (
-      formik.values.recipeProducts.some(
+      formik.values.recipeproducts.some(
         el => el.product.label === product.label
       )
     ) {
       return toast.error("Skladnik został już dodany");
     }
-    if (product && count > 0 && measureType) {
-      formik.setFieldValue("recipeProducts", [
-        ...formik.values.recipeProducts,
-        { product, count, measureType }
+    if (product && count > 0 && measuretype) {
+      formik.setFieldValue("recipeproducts", [
+        ...formik.values.recipeproducts,
+        { product, count, measuretype }
       ]);
       formik.setFieldValue("count", "");
     }
-    if (product && count > 0 && measureType && mode === "edit") {
+    if (product && count > 0 && measuretype && mode === "edit") {
       const { recipe_id } = router.query;
       if (typeof recipe_id === "string") {
         insertRecipeIngredient({
           productid: product.value,
+          recipeid: recipe_id,
           productcount: count,
-          measure: measureType,
-          recipeid: recipe_id
+          measure: measuretype
         });
       }
     }
   };
 
   const handleRemoveProduct = (id: string) => {
-    const { recipeProducts } = formik.values;
-    const filteredProducts = recipeProducts.filter(
+    const { recipeproducts } = formik.values;
+    const filteredProducts = recipeproducts.filter(
       el => el.product.value !== id
     );
-    formik.setFieldValue("recipeProducts", filteredProducts);
+    formik.setFieldValue("recipeproducts", filteredProducts);
     if (mode === "edit") {
       removeIngredient.mutate(id);
     }
@@ -131,19 +131,19 @@ export const RecipeAddEdit = ({
               </div>
             ) : null}
             <FileInput name="photo" label="zdjecie przepisu" />
-            <RecipeTypeSelect name="recipeType" />
+            <RecipeTypeSelect name="recipetype" />
             <FormInput
-              name="mealPortions"
+              name="mealportions"
               type="number"
               label="liczba porcji"
             />
             <FormInput
-              name="kcalPerPortion"
+              name="kcalperportion"
               type="number"
               label="kcal na porcje"
             />
-            <Checkbox name="isVegan" label="wegańskie" />
-            <Checkbox name="isVegetarian" label="wegetariańskie" />
+            <Checkbox name="isvegan" label="wegańskie" />
+            <Checkbox name="isvegetarian" label="wegetariańskie" />
             <p>Skladniki:</p>
             <div className={styles.ingredientSubForm}>
               <SearchWithAPI
@@ -152,7 +152,7 @@ export const RecipeAddEdit = ({
                 dataSource={useFindProductByName}
               />
               <FormInput name="count" label="ilość" type="number" />
-              <MeasureTypeSelect name="measureType" />
+              <MeasureTypeSelect name="measuretype" />
               <OrangeButton
                 text="dodaj składnik"
                 size="small"
@@ -170,12 +170,12 @@ export const RecipeAddEdit = ({
                   </tr>
                 </thead>
                 <tbody>
-                  {formik.values.recipeProducts.map(
-                    ({ product, count, measureType }) => (
+                  {formik.values.recipeproducts.map(
+                    ({ product, count, measuretype }) => (
                       <tr key={product.value}>
                         <td>{product.label}</td>
                         <td>{count}</td>
-                        <td>{measureType}</td>
+                        <td>{measuretype}</td>
                         <td>
                           <OrangeButton
                             variant="secondary"

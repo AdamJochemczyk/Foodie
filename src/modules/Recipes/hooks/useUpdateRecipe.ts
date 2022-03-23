@@ -10,10 +10,16 @@ const updateRecipe = async (values: UpdateRecipe) => {
   const { data, error } = await supabase
     .from("recipes")
     .update({
-      ...values,
+      title: values.title,
+      description: values.description,
+      recipetype: values.recipetype,
+      mealportions: values.mealportions,
+      kcalperportion: values.kcalperportion,
+      isvegan: values.isvegan,
+      isvegetarian: values.isvegetarian,
       verified: true
     })
-    .eq("recipeid", values.recipeId);
+    .eq("recipeid", values.recipeid);
   if (error) {
     throw error;
   }
@@ -29,7 +35,7 @@ const updatePhotoAndRecipe = async (values: UpdateRecipe) => {
     if (isImageAdded) {
       const photoLink = await getImageUrl(`recipes/${values.title}`);
       if (photoLink) {
-        return await updateRecipe({ ...values, photoLink });
+        return await updateRecipe({ ...values, photolink: photoLink });
       }
     } else {
       throw new Error("Error on image upload");
@@ -44,16 +50,16 @@ export const useUpdateRecipe = () => {
     async (values: Recipe) => {
       if (typeof recipe_id === "string") {
         if (values.photo === null) {
-          return await updateRecipe({ ...values, recipeId: recipe_id });
+          return await updateRecipe({ ...values, recipeid: recipe_id });
         } else {
-          return await updatePhotoAndRecipe({ ...values, recipeId: recipe_id });
+          return await updatePhotoAndRecipe({ ...values, recipeid: recipe_id });
         }
       }
     },
     {
       onSuccess: () => {
         toast.success("Zweryfikowałeś przepis");
-        router.push("/recipes/verify");
+        router.push("/recipes/edit");
       },
       onError: () => {
         toast.error("Something went wrong");

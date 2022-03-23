@@ -20,7 +20,7 @@ export const useDeleteRecipe = () => {
       const { data, error } = await supabase
         .from("recipes")
         .delete()
-        .eq("recipe_id", id);
+        .eq("recipeid", id);
       await removeImage(`recipes/${title}`);
       if (error) {
         throw new Error("Cant delete recipe");
@@ -30,7 +30,7 @@ export const useDeleteRecipe = () => {
     {
       onSuccess: () => {
         toast.success("Usunales przepis");
-        router.push("/recipes/verify");
+        router.push("/recipes/edit");
         queryClient.invalidateQueries("getRecipes");
       },
       onError: () => {

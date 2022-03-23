@@ -5,8 +5,8 @@ import { supabase } from "src/utils/supabaseClient";
 const getProduct = async (name: string) => {
   const { data, error } = await supabase
     .from<definitions["products"]>("products")
-    .select("product_id,name")
-    .ilike("productname", `%${name}%`)
+    .select("productid,name")
+    .ilike("name", `%${name}%`)
     .eq("verified", true)
     .limit(10);
   if (error) {
@@ -22,9 +22,9 @@ export const useFindProductByName = (name: string) => {
 
   return {
     options:
-      data?.map(({ productid, productname }) => ({
+      data?.map(({ productid, name }) => ({
         value: productid,
-        label: productname
+        label: name
       })) || [],
     isLoading
   };

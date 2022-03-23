@@ -9,7 +9,7 @@ export const useRemoveIngredient = () => {
       const { data, error } = await supabase
         .from("ingredients")
         .delete()
-        .eq("id", ingredientId);
+        .eq("ingredientid", ingredientId);
       if (error) {
         throw error;
       }
