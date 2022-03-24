@@ -4,9 +4,10 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { queryClient } from "src/utils/react-query-client";
+import { useQueryClientConfig } from "src/utils/react-query-client";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const { queryClient } = useQueryClientConfig();
   return (
     <>
       <QueryClientProvider client={queryClient}>

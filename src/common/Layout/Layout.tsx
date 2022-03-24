@@ -6,13 +6,16 @@ import clsx from "clsx";
 import { IconContext } from "react-icons/lib";
 import { sidebarData } from "./sideardata";
 import { FiLogOut } from "react-icons/fi";
+import { RiAdminLine } from "react-icons/ri";
 import Image from "next/image";
 import { useLogout } from "../../modules/Auth/hooks/useLogout";
 import { LinkWrapper } from "../LinkWrapper/LinkWrapper";
+import { useUser } from "src/utils/useUser";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const [sidebar, setSidebar] = useState(false);
   const logoutMutation = useLogout();
+  const { data } = useUser();
 
   const toggleSidebar = useCallback(() => setSidebar(sidebar => !sidebar), []);
   const handleLogout = useCallback(
@@ -51,6 +54,14 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                 </LinkWrapper>
               );
             })}
+            {data?.usertype === "admin" ? (
+              <LinkWrapper link="/admin-panel">
+                <li className={styles.navText}>
+                  <RiAdminLine />
+                  <span>Admin panel</span>
+                </li>
+              </LinkWrapper>
+            ) : null}
             <li className={styles.navText} onClick={handleLogout}>
               <FiLogOut />
               <span>Wyloguj się</span>

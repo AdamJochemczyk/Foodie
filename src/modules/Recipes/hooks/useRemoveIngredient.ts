@@ -1,9 +1,10 @@
 import { supabase } from "src/utils/supabaseClient";
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation } from "react-query";
 import { toast } from "react-toastify";
+import { useQueryClientConfig } from "src/utils/react-query-client";
 
 export const useRemoveIngredient = () => {
-  const queryClient = useQueryClient();
+  const { queryClient } = useQueryClientConfig();
   return useMutation(
     async (ingredientId: string) => {
       const { data, error } = await supabase

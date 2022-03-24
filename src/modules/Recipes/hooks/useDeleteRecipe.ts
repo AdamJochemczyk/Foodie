@@ -1,14 +1,15 @@
 import { toast } from "react-toastify";
 import { removeImage } from "src/utils/removeImage";
 import { supabase } from "src/utils/supabaseClient";
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation } from "react-query";
 import { useRouter } from "next/router";
 import { useRemoveIngredient } from "./useRemoveIngredient";
 import { DeleteRecipe } from "../types";
+import { useQueryClientConfig } from "src/utils/react-query-client";
 
 export const useDeleteRecipe = () => {
   const router = useRouter();
-  const queryClient = useQueryClient();
+  const { queryClient } = useQueryClientConfig();
   const removeIngredient = useRemoveIngredient();
 
   return useMutation(

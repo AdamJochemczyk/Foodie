@@ -4,6 +4,7 @@ import { useFindIngredients } from "src/modules/Recipes/hooks/useFindIngredients
 import { useGetRecipeById } from "src/modules/Recipes/hooks/useGetRecipeById";
 import { RecipeAddEdit } from "src/modules/Recipes/components/RecipeAddEdit/RecipeAddEdit";
 import { useDeleteRecipe } from "../../hooks/useDeleteRecipe";
+import styles from "./EditRecipe.module.css";
 
 export const EditRecipe = () => {
   const { recipe, isLoading } = useGetRecipeById();
@@ -11,9 +12,9 @@ export const EditRecipe = () => {
   const deleteRecipe = useDeleteRecipe();
 
   return (
-    <>
+    <div className={styles.container}>
       {!isLoading ? (
-        <>
+        <div className={styles.content}>
           <RecipeAddEdit
             mode="edit"
             photoLink={recipe.photo_link}
@@ -43,21 +44,21 @@ export const EditRecipe = () => {
             }}
           />
           <p>Zgloszone przez: {recipe?.user?.email}</p>
-        </>
+          <ActionButton
+            variant="danger"
+            text="usuń przepis"
+            onClick={() =>
+              deleteRecipe.mutate({
+                id: recipe.recipeid,
+                title: recipe.title,
+                ingredients
+              })
+            }
+          />
+        </div>
       ) : (
         <p>Loading...</p>
       )}
-      <ActionButton
-        variant="danger"
-        text="usuń przepis"
-        onClick={() =>
-          deleteRecipe.mutate({
-            id: recipe.recipeid,
-            title: recipe.title,
-            ingredients
-          })
-        }
-      />
-    </>
+    </div>
   );
 };
