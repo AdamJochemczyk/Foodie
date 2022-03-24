@@ -8,15 +8,14 @@ import { GetServerSideProps } from "next";
 import { getCount } from "src/modules/Admin/hooks/getCount";
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const [productCount, recipesCount, usersCount] = await Promise.all([
+  const [productCount, recipesCount] = await Promise.all([
     getCount("products"),
-    getCount("recipes"),
-    getCount("users")
+    getCount("recipes")
   ]);
 
   return {
     props: {
-      data: { productCount, recipesCount, usersCount }
+      data: { productCount, recipesCount }
     }
   };
 };

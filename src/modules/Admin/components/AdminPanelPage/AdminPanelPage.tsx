@@ -1,17 +1,29 @@
 import React from "react";
+import { LinkWrapper } from "src/common/LinkWrapper/LinkWrapper";
+import styles from "./AdminPanelPage.module.css";
 
 export interface Counts {
   productCount: number;
   recipesCount: number;
-  usersCount: number;
 }
 
 export const AdminPanelPage = ({ data }: { data: Counts }) => {
   return (
-    <div>
-      <p>Product count: {data.productCount}</p>
-      <p>Recipes count: {data.recipesCount}</p>
-      <p>Users count: {data.usersCount}</p>
-    </div>
+    <article className={styles.container}>
+      <div className={styles.panels}>
+        <LinkWrapper link="/products/edit">
+          <section className={styles.panel}>
+            <p>Products:</p>
+            <p>{data.productCount}</p>
+          </section>
+        </LinkWrapper>
+        <LinkWrapper link="/recipes/edit">
+          <section className={styles.panel}>
+            <p>Recipes:</p>
+            <p>{data.recipesCount}</p>
+          </section>
+        </LinkWrapper>
+      </div>
+    </article>
   );
 };
