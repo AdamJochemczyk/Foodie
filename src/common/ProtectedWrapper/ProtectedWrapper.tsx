@@ -19,10 +19,10 @@ export const ProtectedWrapper = ({
       router.push("/auth/sign-in");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isLoading]);
 
   if (isLoading) {
-    <div>loading...</div>;
+    return <div>loading...</div>;
   }
   return <div>{children}</div>;
 };

@@ -18,7 +18,6 @@ const getUser = async (userId: string | undefined) => {
 
 export const useUser = () => {
   const { userId } = useUserId();
-
   return useQuery("user", () => getUser(userId));
 };
 
