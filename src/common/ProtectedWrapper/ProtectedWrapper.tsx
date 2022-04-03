@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useUser } from "../../utils/useUser";
+import { SplashScreen } from "../SplashScreen/SplashScreen";
 
 export const ProtectedWrapper = ({
   children,
@@ -20,9 +21,8 @@ export const ProtectedWrapper = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
-
   if (isLoading) {
-    return <div>loading...</div>;
+    return <SplashScreen />;
   }
   return <div>{children}</div>;
 };

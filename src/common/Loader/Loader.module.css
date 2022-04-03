@@ -1,36 +1,58 @@
-.ldsRing {
-  display: inline-block;
+.ldsRipple {
   position: relative;
+}
+.small {
   width: 20px;
   height: 20px;
-  margin-right: 1.5rem;
 }
-.ldsRing div {
-  box-sizing: border-box;
-  display: block;
+.large {
+  width: 80px;
+  height: 80px;
+}
+.ldsRippleDivs {
   position: absolute;
-  width: 16px;
-  height: 16px;
-  margin: 4px;
-  border: 4px solid #fff;
+  border: 4px solid var(--cta-orange);
+  opacity: 1;
   border-radius: 50%;
-  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #fff transparent transparent transparent;
 }
-.ldsRing div:nth-child(1) {
-  animation-delay: -0.45s;
+.ldsRippleDivsS {
+  animation: ldsRippleS 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
-.ldsRing div:nth-child(2) {
-  animation-delay: -0.3s;
+.ldsRippleDivsL {
+  animation: ldsRippleL 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
-.ldsRing div:nth-child(3) {
-  animation-delay: -0.15s;
+.ldsRippleDivLast {
+  animation-delay: -0.5s;
 }
-@keyframes ldsRing {
+@keyframes ldsRippleS {
   0% {
-    transform: rotate(0deg);
+    top: 5px;
+    left: 5px;
+    width: 0;
+    height: 0;
+    opacity: 1;
   }
   100% {
-    transform: rotate(360deg);
+    top: 5px;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+  }
+}
+@keyframes ldsRippleL {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
   }
 }

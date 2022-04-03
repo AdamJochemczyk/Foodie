@@ -2,7 +2,7 @@ import { BiBookHeart } from "react-icons/bi";
 import { RiFridgeLine } from "react-icons/ri";
 import { FaCarrot } from "react-icons/fa";
 import { AiOutlineUser } from "react-icons/ai";
-import { FiShoppingBag, FiAlertOctagon, FiList } from "react-icons/fi";
+import { FiShoppingBag, FiList } from "react-icons/fi";
 
 export const sidebarData = [
   {
@@ -24,11 +24,6 @@ export const sidebarData = [
     title: "Zakupy",
     path: "/shoping",
     icon: <FiShoppingBag />
-  },
-  {
-    title: "Raporty",
-    path: "/reports",
-    icon: <FiAlertOctagon />
   },
   {
     title: "Produkty",
