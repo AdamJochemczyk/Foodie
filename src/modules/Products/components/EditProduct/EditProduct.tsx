@@ -28,7 +28,7 @@ export const EditProduct = () => {
             }}
           />
           <div className={styles.wrapper}>
-            <p className={styles.subtitle}>Podgląd wygladu:</p>
+            <p className={styles.subtitle}>Card:</p>
             <div className={styles.content}>
               <ProductCard
                 productId={product.productid}
@@ -38,11 +38,12 @@ export const EditProduct = () => {
                 showFavButton={false}
               />
               <p className={styles.person}>
-                Zgloszone przez: {(product as any).user.email}
+                Provided by: {(product as any).user.email}
               </p>
               <ActionButton
                 variant="danger"
-                text="usuń produkt"
+                text="remove product"
+                isLoading={removeProductMutation.isLoading}
                 onClick={() =>
                   removeProductMutation.mutate({
                     productid: product.productid,

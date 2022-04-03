@@ -58,7 +58,7 @@ export const useUpdateRecipe = () => {
     },
     {
       onSuccess: () => {
-        toast.success("Zweryfikowałeś przepis");
+        toast.success("Updated recipe");
         router.push("/recipes/edit");
       },
       onError: () => {

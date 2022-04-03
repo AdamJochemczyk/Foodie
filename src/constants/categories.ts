@@ -1,12 +1,12 @@
 export const categories = [
-  { value: "meat, eggs", text: "Mięso, jaja" },
-  { value: "fish, seafood", text: "Ryby, owoce morza" },
-  { value: "cereal products", text: "Produkty zbożowe" },
-  { value: "milk, dairy products", text: "Mleko, produkty mleczne" },
-  { value: "preserves", text: "Przetwory" },
-  { value: "drinks, juices, water", text: "Napoje, soki, woda" },
-  { value: "loose", text: "Produkty sypkie" },
-  { value: "spices", text: "Przyprawy" },
-  { value: "fruits", text: "Owoce" },
-  { value: "vegetables", text: "Warzywa" }
+  { value: "meat, eggs", text: "meat, eggs" },
+  { value: "fish, seafood", text: "fish, seafood" },
+  { value: "cereal products", text: "cereal products" },
+  { value: "milk, dairy products", text: "milk, dairy products" },
+  { value: "preserves", text: "preserves" },
+  { value: "drinks, juices, water", text: "drinks, juices, water" },
+  { value: "loose", text: "loose" },
+  { value: "spices", text: "spices" },
+  { value: "fruits", text: "fruits" },
+  { value: "vegetables", text: "vegetables" }
 ];

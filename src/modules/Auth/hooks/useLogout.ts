@@ -14,7 +14,7 @@ export const useLogout = () => {
   const router = useRouter();
   return useMutation(() => logout(), {
     onSuccess: () => {
-      toast.success("Zostałeś wylogowany");
+      toast.success("Logged out");
       router.push("/");
     },
     onError: (error: { message: string }) => {

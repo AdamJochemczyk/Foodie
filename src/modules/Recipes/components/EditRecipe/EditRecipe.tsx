@@ -43,10 +43,11 @@ export const EditRecipe = () => {
               )
             }}
           />
-          <p>Zgloszone przez: {recipe?.user?.email}</p>
+          <p>Provided by: {recipe?.user?.email}</p>
           <ActionButton
             variant="danger"
-            text="usuń przepis"
+            text="delete recipe"
+            isLoading={deleteRecipe.isLoading}
             onClick={() =>
               deleteRecipe.mutate({
                 id: recipe.recipeid,

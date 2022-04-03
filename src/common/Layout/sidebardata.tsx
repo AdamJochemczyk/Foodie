@@ -6,29 +6,29 @@ import { FiShoppingBag, FiList } from "react-icons/fi";
 
 export const sidebarData = [
   {
-    title: "Przepisy",
+    title: "Recipes",
     path: "/recipes",
     icon: <BiBookHeart />
   },
   {
-    title: "Dieta",
+    title: "Diet",
     path: "/diet",
     icon: <FaCarrot />
   },
   {
-    title: "Lodówka",
+    title: "Fridge",
     path: "/fridge",
     icon: <RiFridgeLine />
   },
   {
-    title: "Zakupy",
-    path: "/shoping",
+    title: "Shopping",
+    path: "/shopping",
     icon: <FiShoppingBag />
   },
   {
-    title: "Produkty",
+    title: "Products",
     path: "/products",
     icon: <FiList />
   },
-  { title: "Konto", path: "/account", icon: <AiOutlineUser /> }
+  { title: "Account", path: "/account", icon: <AiOutlineUser /> }
 ];

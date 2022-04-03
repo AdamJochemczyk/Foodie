@@ -9,10 +9,12 @@ import { LinkWrapper } from "src/common/LinkWrapper/LinkWrapper";
 
 export const ProductForm = ({
   formik,
-  changeVerified = false
+  changeVerified = false,
+  isLoading
 }: {
   formik: FormikProps<SearchProducts>;
   changeVerified: boolean;
+  isLoading: boolean;
 }) => {
   return (
     <>
@@ -21,14 +23,15 @@ export const ProductForm = ({
           <FormInput name="searchName" label="Search by" autocomplete="off" />
           <CategorySelect name="category" />
           {changeVerified ? (
-            <Checkbox name="verified" label="zweryfikowane" />
+            <Checkbox name="verified" label="verified" />
           ) : (
-            <Checkbox name="favorites" label="pokaz ulubione" />
+            <Checkbox name="favorites" label="show favorites" />
           )}
           <ActionButton
-            text="Filtruj"
+            text="filter"
             type="submit"
             onClick={formik.handleSubmit}
+            isLoading={isLoading}
           />
         </form>
       </FormikProvider>

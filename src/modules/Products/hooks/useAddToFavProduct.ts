@@ -21,11 +21,11 @@ export const useAddToFavProduct = () => {
     },
     {
       onSuccess: () => {
-        toast.success("Dodałeś produkt do ulubionych");
+        toast.success("You have added this product to favorites");
         queryClient.invalidateQueries("getProducts");
       },
       onError: () => {
-        toast.error("Coś poszło nie tak");
+        toast.error("Something went wrong");
       }
     }
   );

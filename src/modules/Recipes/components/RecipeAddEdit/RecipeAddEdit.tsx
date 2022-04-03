@@ -53,7 +53,7 @@ export const RecipeAddEdit = ({
 }: RecipeAddEditProperties) => {
   const addRecipeMutation = useCreateRecipe();
   const removeIngredient = useRemoveIngredient();
-  const updateMutation = useUpdateRecipe();
+  const updateRecipeMutation = useUpdateRecipe();
   const router = useRouter();
 
   const formik = useFormik<RecipeForm>({
@@ -64,7 +64,7 @@ export const RecipeAddEdit = ({
       if (mode === "add") {
         addRecipeMutation.mutate(values);
       } else if (mode === "edit") {
-        updateMutation.mutate(values);
+        updateRecipeMutation.mutate(values);
       }
     }
   });
@@ -72,20 +72,20 @@ export const RecipeAddEdit = ({
   const handleAddIngredient = () => {
     const { product, count, measuretype } = formik.values;
     if (!product) {
-      return toast.error("Wybierz produkt");
+      return toast.error("Choose product");
     }
     if (count <= 0) {
-      return toast.error("Ilość musi być dodatnia");
+      return toast.error("Count must be positive");
     }
     if (!measuretype) {
-      return toast.error("Wybierz jednostkę");
+      return toast.error("Check entity");
     }
     if (
       formik.values.recipeproducts.some(
         el => el.product.label === product.label
       )
     ) {
-      return toast.error("Skladnik został już dodany");
+      return toast.error("Ingredient already added");
     }
     if (product && count > 0 && measuretype) {
       formik.setFieldValue("recipeproducts", [
@@ -123,38 +123,38 @@ export const RecipeAddEdit = ({
       <div className={styles.from}>
         <FormikProvider value={formik}>
           <form>
-            <FormInput name="title" label="tytuł" />
-            <TextArea name="description" label="opis" />
+            <FormInput name="title" label="title" />
+            <TextArea name="description" label="description" />
             {mode === "edit" && typeof photoLink === "string" ? (
               <div className={styles.imgBox}>
                 <Image src={photoLink} alt="recipe" width={300} height={300} />
               </div>
             ) : null}
-            <FileInput name="photo" label="zdjecie przepisu" />
+            <FileInput name="photo" label="recipe photo" />
             <RecipeTypeSelect name="recipetype" />
             <FormInput
               name="mealportions"
               type="number"
-              label="liczba porcji"
+              label="meal portions"
             />
             <FormInput
               name="kcalperportion"
               type="number"
-              label="kcal na porcje"
+              label="kcal per portion"
             />
-            <Checkbox name="isvegan" label="wegańskie" />
-            <Checkbox name="isvegetarian" label="wegetariańskie" />
-            <p>Skladniki:</p>
+            <Checkbox name="isvegan" label="vegan" />
+            <Checkbox name="isvegetarian" label="vegetarian" />
+            <p>Ingredients:</p>
             <div className={styles.ingredientSubForm}>
               <SearchWithAPI
                 name="product"
-                label="Znajdź produkt"
+                label="find product"
                 dataSource={useFindProductByName}
               />
-              <FormInput name="count" label="ilość" type="number" />
+              <FormInput name="count" label="count" type="number" />
               <MeasureTypeSelect name="measuretype" />
               <OrangeButton
-                text="dodaj składnik"
+                text="add ingredient"
                 size="small"
                 onClick={handleAddIngredient}
               />
@@ -163,10 +163,10 @@ export const RecipeAddEdit = ({
               <table className={styles.table}>
                 <thead>
                   <tr>
-                    <td>Produkt</td>
-                    <td>Ilość</td>
-                    <td>Jednostka</td>
-                    <td>Akcja</td>
+                    <td>Product</td>
+                    <td>Count</td>
+                    <td>Entity</td>
+                    <td>Action</td>
                   </tr>
                 </thead>
                 <tbody>
@@ -179,7 +179,7 @@ export const RecipeAddEdit = ({
                         <td>
                           <OrangeButton
                             variant="secondary"
-                            text="Usun produkt"
+                            text="Remove product"
                             size="small"
                             onClick={() => handleRemoveProduct(product.value)}
                           />
@@ -193,9 +193,14 @@ export const RecipeAddEdit = ({
               <p>Loading...</p>
             )}
             <ActionButton
-              text={mode === "add" ? "Dodaj przepis" : "Edytuj"}
+              text={mode === "add" ? "Add recipe" : "Edit"}
               onClick={formik.handleSubmit}
               type="submit"
+              isLoading={
+                mode === "add"
+                  ? addRecipeMutation.isLoading
+                  : updateRecipeMutation.isLoading
+              }
             />
           </form>
         </FormikProvider>

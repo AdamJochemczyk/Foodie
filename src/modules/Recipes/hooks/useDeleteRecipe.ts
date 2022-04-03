@@ -16,7 +16,7 @@ export const useDeleteRecipe = () => {
     async ({ id, title, ingredients }: DeleteRecipe) => {
       const promises = ingredients.map(({ id }) => removeIngredient.mutate(id));
       await Promise.all(promises).catch(() =>
-        toast.error("Nie można usunąć składników")
+        toast.error("Cannot remove ingredients")
       );
       const { data, error } = await supabase
         .from("recipes")
@@ -30,7 +30,7 @@ export const useDeleteRecipe = () => {
     },
     {
       onSuccess: () => {
-        toast.success("Usunales przepis");
+        toast.success("You have removed recipe");
         router.push("/recipes/edit");
         queryClient.invalidateQueries("getRecipes");
       },

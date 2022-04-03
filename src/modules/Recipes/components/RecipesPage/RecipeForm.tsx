@@ -9,10 +9,12 @@ import styles from "./RecipesPage.module.css";
 
 export const RecipeForm = ({
   formik,
-  changeVerified = false
+  changeVerified = false,
+  isLoading
 }: {
   formik: FormikProps<SearchRecipes>;
   changeVerified?: boolean;
+  isLoading: boolean;
 }) => {
   return (
     <>
@@ -20,27 +22,28 @@ export const RecipeForm = ({
         <form>
           <FormInput name="title" label="Search by" />
           <RecipeTypeSelect name="recipeType" />
-          <FormInput name="mealPortions" label="Ilosc porcji" type="number" />
-          <p>Kalorie na porcje</p>
+          <FormInput name="mealPortions" label="Meal portions" type="number" />
+          <p>Kcal per portion</p>
           <FormInput name="kcalPerPortionFrom" label="min" type="number" />
           <FormInput name="kcalPerPortionTo" label="max" type="number" />
-          <Checkbox name="isVegan" label="Wegański" />
-          <Checkbox name="isVegetarian" label="Wegetariański" />
+          <Checkbox name="isVegan" label="vegan" />
+          <Checkbox name="isVegetarian" label="vegetarian" />
           {changeVerified ? (
-            <Checkbox name="verified" label="zweryfikowane" />
+            <Checkbox name="verified" label="verified" />
           ) : (
-            <Checkbox name="isFavorites" label="pokaz ulubione" />
+            <Checkbox name="isFavorites" label="show favorite" />
           )}
           <ActionButton
-            text="Filtruj"
+            text="filter"
             type="submit"
             onClick={formik.handleSubmit}
+            isLoading={isLoading}
           />
         </form>
       </FormikProvider>
       <div className={styles.link}>
         <LinkWrapper link="/recipes/add">
-          <OrangeButton text="dodaj nowy przepis" size="small" />
+          <OrangeButton text="add new recipe" size="small" />
         </LinkWrapper>
       </div>
     </>

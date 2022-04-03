@@ -7,7 +7,7 @@ import { SearchRecipes } from "../../types";
 import { RecipeForm } from "./RecipeForm";
 import { RecipesCards } from "./RecipesCards";
 
-const RecipesPage = ({ mode = "user" }: { mode?: "user" | "admin" }) => {
+export const RecipesPage = ({ mode = "user" }: { mode?: "user" | "admin" }) => {
   const [queryParams, setQueryParams] = useState<SearchRecipes>({
     title: "",
     recipeType: "",
@@ -20,7 +20,7 @@ const RecipesPage = ({ mode = "user" }: { mode?: "user" | "admin" }) => {
     verified: mode === "user"
   });
 
-  //TODO: rozbic formularz na glowne i szczegolowe
+  //TODO: make form search by main and details
   const { entities, isLoading } = useSearchRecipes(queryParams);
 
   const formik = useFormik<SearchRecipes>({
@@ -33,14 +33,12 @@ const RecipesPage = ({ mode = "user" }: { mode?: "user" | "admin" }) => {
 
   return (
     <CardsAndFormLayout
-      title={mode === "user" ? "Przepisy" : "Edytuj przepis"}
+      title={mode === "user" ? "Recipes" : "Edit recipe"}
       isLoading={isLoading}
-      form={<RecipeForm formik={formik} />}
+      form={<RecipeForm formik={formik} isLoading={isLoading} />}
       cards={
         <RecipesCards entities={entities} withEditLink={mode === "admin"} />
       }
     />
   );
 };
-
-export default RecipesPage;

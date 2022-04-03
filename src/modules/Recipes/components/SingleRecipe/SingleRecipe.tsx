@@ -34,13 +34,13 @@ export const SingleRecipe = ({
           Kcal per portion: {kcalperportion} | Portions: {mealportions}
         </p>
         <p>
-          {isvegan ? <Tag name="wegańskie" /> : null}
-          {isvegetarian ? <Tag name="wegetariańskie" /> : null}
+          {isvegan ? <Tag name="vegan" /> : null}
+          {isvegetarian ? <Tag name="vegetarian" /> : null}
           <Tag name={recipetype} />
         </p>
         <div className={styles.descBox}>
           <div className={styles.descIngredients}>
-            <h3 className={styles.subTitle}>Składniki</h3>
+            <h3 className={styles.subTitle}>Ingredients:</h3>
             {!isLoading ? (
               ingredients.length > 0 &&
               ingredients.map(el => (
@@ -54,7 +54,7 @@ export const SingleRecipe = ({
             )}
           </div>
           <div className={styles.desc}>
-            <h3 className={styles.subTitle}>Przygotowanie</h3>
+            <h3 className={styles.subTitle}>Description</h3>
             <p>{description}</p>
           </div>
         </div>

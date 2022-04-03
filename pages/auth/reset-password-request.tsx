@@ -25,7 +25,7 @@ export default function ResetPasswordRequest() {
     <div className={clsx(common.signWrapper, common.wrapper)}>
       <SignBox imgSrc="/static/images/password-reset.png">
         <div className={sign.form}>
-          <h1 className={sign.title}> Zresetuj hasło</h1>
+          <h1 className={sign.title}>Password reset</h1>
           <FormikProvider value={formik}>
             <form onSubmit={formik.handleSubmit}>
               <FormInput
@@ -35,11 +35,17 @@ export default function ResetPasswordRequest() {
                 autocomplete="email"
                 rounded
               />
-              <ActionButton text="Zresetuj hasło" type="submit" rounded />
+              <ActionButton
+                text="Reset password"
+                type="submit"
+                rounded
+                isLoading={resetPasswordForEmailMutation.isLoading}
+              />
             </form>
             <div className={sign.footer}>
               <p>
-                Wyślemy do Ciebie maila z potwierdzeniem prośby o zmianę hasła
+                We will send you an email to confirm your password change
+                request
               </p>
             </div>
           </FormikProvider>

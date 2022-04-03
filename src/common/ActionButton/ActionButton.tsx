@@ -7,35 +7,32 @@ import styles from "./ActionButton.module.css";
 interface ActionButtonProperties {
   text: string;
   onClick?: () => void;
-  loading?: boolean;
+  isLoading: boolean;
   type?: "submit" | "button";
   rounded?: boolean;
   variant?: "danger" | "action";
-  disabled?: boolean;
 }
 
 export const ActionButton = ({
   text,
   onClick,
-  loading = false,
+  isLoading,
   type = "button",
   rounded = false,
-  variant = "action",
-  disabled = false
+  variant = "action"
 }: ActionButtonProperties) => {
   return (
     <button
       className={clsx(styles.button, {
         [styles.rounded]: rounded,
         [styles.danger]: variant === "danger",
-        [styles.disabled]: disabled
+        [styles.disabled]: isLoading
       })}
       onClick={onClick}
       type={type}
-      disabled={disabled}
+      disabled={isLoading}
     >
-      {loading && <Loader />}
-      {upperFirst(text)}
+      {isLoading ? <Loader size="small" /> : upperFirst(text)}
     </button>
   );
 };

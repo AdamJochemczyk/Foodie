@@ -31,7 +31,7 @@ export default function Signup() {
     <div className={clsx(common.signWrapper, common.wrapper)}>
       <SignBox imgSrc="/static/images/sign.png">
         <div className={sign.form}>
-          <h1 className={sign.title}>Zarejestruj się</h1>
+          <h1 className={sign.title}>Sign up</h1>
           <FormikProvider value={formik}>
             <form onSubmit={formik.handleSubmit}>
               <FormInput
@@ -49,17 +49,17 @@ export default function Signup() {
                 rounded
               />
               <ActionButton
-                text="Stwórz konto"
-                loading={createUserMutation.isLoading}
+                text="Create account"
+                isLoading={createUserMutation.isLoading}
                 type="submit"
                 rounded
               />
             </form>
           </FormikProvider>
           <div className={sign.footer}>
-            Posiadasz już konto?
+            Already have an account?
             <Link passHref href="/auth/sign-in">
-              <a className={sign.link}>Login</a>
+              <a className={sign.link}>Sign in</a>
             </Link>
           </div>
         </div>

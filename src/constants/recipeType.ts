@@ -1,7 +1,7 @@
 export const recipeTypes = [
-  { value: "breakfast", text: "Śniadanie lub kolacja" },
-  { value: "lunch", text: "Lunch" },
-  { value: "dinner", text: "Obiad" },
-  { value: "snacks", text: "Przekąski" },
-  { value: "dessert", text: "Desery" }
+  { value: "breakfast", text: "breakfast" },
+  { value: "lunch", text: "lunch" },
+  { value: "dinner", text: "dinner" },
+  { value: "snacks", text: "snacks" },
+  { value: "dessert", text: "dessert" }
 ];

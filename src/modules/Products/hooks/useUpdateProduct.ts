@@ -76,7 +76,7 @@ export const useUpdateProduct = () => {
     },
     {
       onSuccess: () => {
-        toast.success("Zaktualizowałeś produkt");
+        toast.success("You have updated product");
         queryClient.invalidateQueries("getProducts");
         router.push("/products/edit");
       },

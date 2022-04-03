@@ -13,7 +13,7 @@ export const useCreateRecipe = () => {
   return useMutation(
     async (values: CreateRecipeProperties) => {
       if (values.photo === null) {
-        throw new Error("Zdjecie musi zostac podane");
+        throw new Error("Please provide the photo");
       }
       const isImageAdded = await uploadImage(
         `recipes/${values.title}`,
@@ -34,7 +34,7 @@ export const useCreateRecipe = () => {
     },
     {
       onSuccess: () => {
-        toast.success("Dodales przepis do weryfikacji");
+        toast.success("You have added recipe to verification");
         router.push("/recipes");
       },
       onError: (error: { message: string }) => {

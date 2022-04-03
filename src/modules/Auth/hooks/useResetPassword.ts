@@ -19,7 +19,7 @@ export const useResetPassword = () => {
       resetPassword(authToken, password),
     {
       onSuccess: () => {
-        toast.success("Twoje hasło zostało zresetowane");
+        toast.success("Your password has been reset");
         router.push("/recipes");
       },
       onError: (error: { message: string }) => {

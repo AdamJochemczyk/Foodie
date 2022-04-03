@@ -4,19 +4,11 @@ import { FormInput } from "src/common/Inputs";
 import { SignBox } from "src/modules/Auth/SignBox/SignBox";
 import common from "styles/common.module.css";
 import sign from "src/modules/Auth/Sign.module.css";
-import * as yup from "yup";
-import { createPasswordValidation } from "src/common/validation";
+import { repeatPasswordSchema } from "src/common/validation";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useResetPassword } from "src/modules/Auth/hooks/useResetPassword";
 import clsx from "clsx";
-
-const validationSchema = yup.object().shape({
-  password: createPasswordValidation,
-  passwordConfirmation: yup
-    .string()
-    .oneOf([yup.ref("password"), null], "Hasła muszą być takie same")
-});
 
 export default function ResetPassword() {
   const router = useRouter();
@@ -26,7 +18,7 @@ export default function ResetPassword() {
 
   const formik = useFormik({
     initialValues: { password: "", passwordConfirmation: "" },
-    validationSchema: validationSchema,
+    validationSchema: repeatPasswordSchema,
     onSubmit: ({ password }) => {
       resetPasswordMutation.mutate({
         authToken,
@@ -49,24 +41,29 @@ export default function ResetPassword() {
     <div className={clsx(common.signWrapper, common.wrapper)}>
       <SignBox imgSrc="/static/images/password-reset.png">
         <div className={sign.form}>
-          <h1 className={sign.title}> Zresetuj hasło</h1>
+          <h1 className={sign.title}>Reset password</h1>
           <FormikProvider value={formik}>
             <form onSubmit={formik.handleSubmit}>
               <FormInput
                 name="password"
                 type="password"
-                label="hasło"
+                label="password"
                 autocomplete="new-password"
                 rounded
               />
               <FormInput
                 name="passwordConfirmation"
                 type="password"
-                label="potwierdz hasło"
+                label="repeat password"
                 autocomplete="new-password"
                 rounded
               />
-              <ActionButton text="Zresetuj hasło" type="submit" rounded />
+              <ActionButton
+                text="Reset password"
+                type="submit"
+                rounded
+                isLoading={resetPasswordMutation.isLoading}
+              />
             </form>
           </FormikProvider>
         </div>

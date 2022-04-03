@@ -22,11 +22,11 @@ export const useRemoveFavProduct = () => {
     },
     {
       onSuccess: () => {
-        toast.success("Usunąłeś produkt z ulubionych");
+        toast.success("You have removed a product from favorites");
         queryClient.invalidateQueries("getProducts");
       },
       onError: () => {
-        toast.error("Coś poszło nie tak");
+        toast.error("Something went wrong");
       }
     }
   );

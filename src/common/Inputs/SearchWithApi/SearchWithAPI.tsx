@@ -9,7 +9,7 @@ interface Option {
   value: string;
   label: string;
 }
-interface SeatchWithApiProperties {
+interface SearchWithApiProperties {
   label: string;
   name: string;
   dataSource: (search: string) => { options: Option[]; isLoading: boolean };
@@ -18,7 +18,7 @@ export const SearchWithAPI = ({
   label,
   name,
   dataSource
-}: SeatchWithApiProperties) => {
+}: SearchWithApiProperties) => {
   const [search, setSearch] = useState("");
   const { options, isLoading } = dataSource(search);
   const [field, meta] = useField(name);

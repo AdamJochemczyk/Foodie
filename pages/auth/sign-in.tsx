@@ -34,8 +34,12 @@ export default function Signin() {
     }),
     onSubmit: values => {
       loginMutation.mutate(values);
-      if (rememberMe && typeof window !== "undefined") {
-        localStorage.setItem("loginEmail", values.email);
+      if (typeof window !== "undefined") {
+        if (rememberMe) {
+          localStorage.setItem("loginEmail", values.email);
+        } else {
+          localStorage.removeItem("loginEmail");
+        }
       }
     }
   });
@@ -50,7 +54,7 @@ export default function Signin() {
     <div className={clsx(common.signWrapper, common.wrapper)}>
       <SignBox imgSrc="/static/images/sign.png">
         <div className={sign.form}>
-          <h1>Zaloguj się</h1>
+          <h1>Sign in</h1>
           <FormikProvider value={formik}>
             <form onSubmit={formik.handleSubmit}>
               <FormInput
@@ -75,24 +79,24 @@ export default function Signin() {
                     checked={rememberMe}
                     onChange={handleRememberMeChecked}
                   />
-                  <label htmlFor="rememberMe">Pamiętaj mnie</label>
+                  <label htmlFor="rememberMe">Remember me</label>
                 </div>
                 <Link href="/auth/reset-password-request" passHref>
-                  <a className={sign.link}>Zapomniałeś hasła?</a>
+                  <a className={sign.link}>Forgot password?</a>
                 </Link>
               </div>
               <ActionButton
-                text="Zaloguj się"
-                loading={loginMutation.isLoading}
+                text="Sign in"
+                isLoading={loginMutation.isLoading}
                 type="submit"
                 rounded
               />
             </form>
           </FormikProvider>
           <div className={sign.helperBox}>
-            <p>Nie masz konta?</p>
+            <p>{`Don't have an account?`}</p>
             <Link href="/auth/sign-up" passHref>
-              <a className={sign.link}>Stwórz konto</a>
+              <a className={sign.link}>Create account</a>
             </Link>
           </div>
         </div>

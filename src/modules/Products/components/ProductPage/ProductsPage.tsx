@@ -1,5 +1,4 @@
 import { useFormik } from "formik";
-
 import { useState } from "react";
 import { CardsAndFormLayout } from "src/common/CardsAndFormLayout/CardsAndFormLayout";
 import { useSearchProducts } from "../../hooks";
@@ -30,9 +29,15 @@ export const ProductsPage = ({
 
   return (
     <CardsAndFormLayout
-      title={mode === "user" ? "Produkty" : "Edytuj produkty"}
+      title={mode === "user" ? "Products" : "Edit product"}
       isLoading={isLoading}
-      form={<ProductForm formik={formik} changeVerified={mode === "admin"} />}
+      form={
+        <ProductForm
+          formik={formik}
+          changeVerified={mode === "admin"}
+          isLoading={isLoading}
+        />
+      }
       cards={
         <ProductCards entities={entities} withEditLink={mode === "admin"} />
       }

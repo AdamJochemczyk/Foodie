@@ -4,7 +4,7 @@ import { FaBars } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
 import clsx from "clsx";
 import { IconContext } from "react-icons/lib";
-import { sidebarData } from "./sideardata";
+import { sidebarData } from "./sidebardata";
 import { FiLogOut } from "react-icons/fi";
 import { RiAdminLine } from "react-icons/ri";
 import Image from "next/image";
@@ -64,7 +64,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
             ) : null}
             <li className={styles.navText} onClick={handleLogout}>
               <FiLogOut />
-              <span>Wyloguj się</span>
+              <span>Log out</span>
             </li>
           </ul>
         </nav>

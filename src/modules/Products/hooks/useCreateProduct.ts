@@ -62,7 +62,7 @@ export const useCreateProduct = () => {
     },
     {
       onSuccess: () => {
-        toast.success("Dodales produkt do weryfikacji");
+        toast.success("You added product for verification");
         router.push("/products");
       },
       onError: (error: { message: string }) => {

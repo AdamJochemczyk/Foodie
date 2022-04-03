@@ -26,7 +26,7 @@ export const SignBox = ({ children, imgSrc }: SignBoxProperties) => {
         {children}
         <p className={styles.goBack} onClick={handleBack}>
           <BiLeftArrowAlt />
-          Powrót
+          Back
         </p>
       </div>
       <div className={styles.imageBox}>

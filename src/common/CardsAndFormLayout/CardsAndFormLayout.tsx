@@ -1,4 +1,5 @@
 import React from "react";
+import { SplashScreen } from "../SplashScreen/SplashScreen";
 import styles from "./CardsAndFormLayout.module.css";
 
 interface CardAndFormLayoutProperties {
@@ -20,7 +21,7 @@ export const CardsAndFormLayout = ({
       <section>
         <h2 className={styles.title}>{title}</h2>
         <div className={styles.cards}>
-          {!isLoading ? cards : <p>Loading...</p>}
+          {!isLoading ? cards : <SplashScreen />}
         </div>
       </section>
     </article>

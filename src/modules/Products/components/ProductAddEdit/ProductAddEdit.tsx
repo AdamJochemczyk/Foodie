@@ -32,23 +32,21 @@ export const ProductAddEdit = ({
 
   return (
     <section className={styles.content}>
-      <h1>{mode === "add" ? "Dodaj produkt" : "Edytuj produkt"}</h1>
+      <h1>{mode === "add" ? "Add product" : "Edit product"}</h1>
       <div className={styles.form}>
         <FormikProvider value={formik}>
           <form>
-            <FormInput name="name" label="nazwa produktu" />
-            <FormInput name="gtincode" label="kod produktu" />
+            <FormInput name="name" label="product name" />
+            <FormInput name="gtincode" label="product code" />
             <CategorySelect name="category" />
             <FileInput
               name="photo"
-              label={
-                mode === "add" ? "zdjecie produktu" : "podmien zdjecie produktu"
-              }
+              label={mode === "add" ? "product photo" : "change product photo"}
             />
             <ActionButton
-              text={mode === "add" ? "Dodaj" : "Edytuj"}
+              text={mode === "add" ? "Add" : "Edit"}
               onClick={formik.handleSubmit}
-              loading={
+              isLoading={
                 mode === "add"
                   ? createProductMutation.isLoading
                   : updateProductMutation.isLoading

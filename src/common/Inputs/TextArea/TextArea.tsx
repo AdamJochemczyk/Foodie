@@ -4,11 +4,11 @@ import { FormLabel } from "../FormLabel/FormLabel";
 import styles from "../FormInputs.module.css";
 import { upperFirst } from "../../utils/stringMethods";
 
-interface TextAreaProperteis {
+interface TextAreaProperties {
   name: string;
   label: string;
 }
-export const TextArea = ({ name, label }: TextAreaProperteis) => {
+export const TextArea = ({ name, label }: TextAreaProperties) => {
   const [field, meta] = useField(name);
 
   return (

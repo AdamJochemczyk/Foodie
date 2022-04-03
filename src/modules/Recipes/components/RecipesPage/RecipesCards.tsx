@@ -44,12 +44,12 @@ export const RecipesCards = ({
                   ? `/recipes/edit/${recipeid}`
                   : `/recipes/${recipeid}`
               }
-              btnText="Szczegóły"
+              btnText="Details"
             />
           )
         )
       ) : (
-        <p>Brak wyników wyszukiwania</p>
+        <p>No results</p>
       )}
     </>
   );

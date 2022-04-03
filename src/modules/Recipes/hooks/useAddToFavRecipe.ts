@@ -21,11 +21,11 @@ export const useAddToFavRecipe = () => {
     },
     {
       onSuccess: () => {
-        toast.success("Dodałeś przepis do ulubionych");
+        toast.success("You have added recipe to favorites");
         queryClient.invalidateQueries("getRecipes");
       },
       onError: () => {
-        toast.error("Coś poszło nie tak");
+        toast.error("Something went wrong");
       }
     }
   );

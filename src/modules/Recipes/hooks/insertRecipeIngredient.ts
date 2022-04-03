@@ -8,7 +8,7 @@ export const insertRecipeIngredient = async (values: RecipeIngredient) => {
     throw error;
   }
   if (data) {
-    toast.success("Dodałeś składnik do przepisu");
+    toast.success("You have added an ingredient to a recipe");
   }
   return data;
 };

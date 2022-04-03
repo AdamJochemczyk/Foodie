@@ -18,11 +18,11 @@ export const useRemoveIngredient = () => {
     },
     {
       onSuccess: () => {
-        toast.success("Usunąłeś składnik z przepisu");
+        toast.success("You have removed ingredient from recipe");
         queryClient.invalidateQueries(["getIngredients", "getRecipe"]);
       },
       onError: () => {
-        toast.error("Coś poszło nie tak");
+        toast.error("Something went wrong");
       }
     }
   );

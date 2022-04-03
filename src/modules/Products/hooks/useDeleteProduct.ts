@@ -29,7 +29,7 @@ export const useDeleteProduct = () => {
     },
     {
       onSuccess: () => {
-        toast.success("Usunałes produkt");
+        toast.success("You have removed the product");
         router.push("/products/edit");
         queryClient.invalidateQueries("getProducts");
       },

@@ -22,11 +22,11 @@ export const useRemoveFavRecipe = () => {
     },
     {
       onSuccess: () => {
-        toast.success("Usunąłeś przepis z ulubionych");
+        toast.success("You have removed recipe from favorites");
         queryClient.invalidateQueries("getRecipes");
       },
       onError: () => {
-        toast.error("Coś poszło nie tak");
+        toast.error("Something went wrong");
       }
     }
   );
