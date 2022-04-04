@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React from "react";
 import { SplashScreen } from "../SplashScreen/SplashScreen";
 import styles from "./CardsAndFormLayout.module.css";
@@ -20,7 +21,7 @@ export const CardsAndFormLayout = ({
       <section className={styles.filters}>{form}</section>
       <section>
         <h2 className={styles.title}>{title}</h2>
-        <div className={styles.cards}>
+        <div className={clsx(!isLoading && styles.cards)}>
           {!isLoading ? cards : <SplashScreen />}
         </div>
       </section>

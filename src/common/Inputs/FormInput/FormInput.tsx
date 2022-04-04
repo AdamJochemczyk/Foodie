@@ -8,7 +8,7 @@ interface FormInputProperties {
   name: string;
   label: string;
   autocomplete?: "new-password" | "email" | "password" | "off";
-  type?: "text" | "email" | "password" | "number";
+  type?: "text" | "email" | "password" | "number" | "date";
   rounded?: boolean;
 }
 
