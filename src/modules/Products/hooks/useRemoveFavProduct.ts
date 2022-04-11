@@ -1,12 +1,11 @@
 import { toast } from "react-toastify";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { supabase } from "src/utils/supabaseClient";
 import { useUserId } from "src/utils/useUser";
-import { useQueryClientConfig } from "src/utils/react-query-client";
 
 export const useRemoveFavProduct = () => {
   const { userId } = useUserId();
-  const { queryClient } = useQueryClientConfig();
+  const queryClient = useQueryClient();
 
   return useMutation(
     async (productId: string) => {

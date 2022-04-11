@@ -28,6 +28,9 @@
   cursor: pointer;
   font-weight: 700;
 }
+.title {
+  font-size: 2.5rem;
+}
 @media screen and (max-width: 767px) {
   .imageBox {
     display: none;

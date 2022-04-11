@@ -7,9 +7,14 @@ import { BiLeftArrowAlt } from "react-icons/bi";
 interface SignBoxProperties {
   children: React.ReactNode;
   imgSrc: string;
+  replaceLogoByTitle?: string;
 }
 
-export const SignBox = ({ children, imgSrc }: SignBoxProperties) => {
+export const SignBox = ({
+  children,
+  imgSrc,
+  replaceLogoByTitle
+}: SignBoxProperties) => {
   const router = useRouter();
   const handleBack = useCallback(() => {
     router.back();
@@ -17,12 +22,16 @@ export const SignBox = ({ children, imgSrc }: SignBoxProperties) => {
   return (
     <section className={styles.box}>
       <div className={styles.left}>
-        <Image
-          src="/static/icons/Foodie-nav-black.svg"
-          height={45}
-          width={150}
-          alt="Foodie"
-        />
+        {replaceLogoByTitle ? (
+          <h1 className={styles.title}>{replaceLogoByTitle}</h1>
+        ) : (
+          <Image
+            src="/static/icons/Foodie-nav-black.svg"
+            height={45}
+            width={150}
+            alt="Foodie"
+          />
+        )}
         {children}
         <p className={styles.goBack} onClick={handleBack}>
           <BiLeftArrowAlt />

@@ -1,12 +1,11 @@
 import { supabase } from "src/utils/supabaseClient";
 import { useUserId } from "src/utils/useUser";
 import { toast } from "react-toastify";
-import { useMutation } from "react-query";
-import { useQueryClientConfig } from "src/utils/react-query-client";
+import { useMutation, useQueryClient } from "react-query";
 
 export const useRemoveFavRecipe = () => {
   const { userId } = useUserId();
-  const { queryClient } = useQueryClientConfig();
+  const queryClient = useQueryClient();
 
   return useMutation(
     async (recipeId: string) => {

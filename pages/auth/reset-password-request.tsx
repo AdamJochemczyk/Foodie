@@ -8,16 +8,21 @@ import * as yup from "yup";
 import { emailValidation } from "src/common/validation";
 import { useResetPasswordForEmailRequest } from "../../src/modules/Auth/hooks/useResetPasswordRequest";
 import clsx from "clsx";
+import { useRouter } from "next/router";
 
 export default function ResetPasswordRequest() {
   const resetPasswordForEmailMutation = useResetPasswordForEmailRequest();
+  const { query } = useRouter();
   const formik = useFormik({
-    initialValues: { email: "" },
+    initialValues: { email: query.email || "" },
+    enableReinitialize: true,
     validationSchema: yup.object().shape({
       email: emailValidation
     }),
     onSubmit: ({ email }) => {
-      resetPasswordForEmailMutation.mutate(email);
+      if (typeof email === "string") {
+        resetPasswordForEmailMutation.mutate(email);
+      }
     }
   });
 

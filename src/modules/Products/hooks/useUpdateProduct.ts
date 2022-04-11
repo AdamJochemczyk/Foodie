@@ -1,11 +1,10 @@
 import { UpdateProduct, ProductProperties } from "./../types";
 import { toast } from "react-toastify";
 import { supabase } from "src/utils/supabaseClient";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { useRouter } from "next/router";
 import { uploadImage } from "src/utils/uploadImage";
 import { getImageUrl } from "src/utils/getImageUrl";
-import { useQueryClientConfig } from "src/utils/react-query-client";
 
 const updateProduct = async ({
   name,
@@ -62,7 +61,7 @@ const updatePhotoAndProduct = async (values: UpdateProduct) => {
 export const useUpdateProduct = () => {
   const router = useRouter();
   const { product_id } = router.query;
-  const { queryClient } = useQueryClientConfig();
+  const queryClient = useQueryClient();
 
   return useMutation(
     async (values: ProductProperties) => {
