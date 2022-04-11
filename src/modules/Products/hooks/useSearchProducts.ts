@@ -1,5 +1,5 @@
 import { definitions } from "./../../../../types/supabase";
-import { useUserId } from "src/utils/useUser";
+import { useUser } from "src/utils/useUser";
 import { toast } from "react-toastify";
 import { supabase } from "src/utils/supabaseClient";
 import { useQuery } from "react-query";
@@ -47,7 +47,7 @@ const fetchProducts = async ({
 };
 
 export const useSearchProducts = (queryParams: SearchProducts) => {
-  const { userId } = useUserId();
+  const { userId } = useUser();
   const { error, data, isLoading } = useQuery(
     ["getProducts", queryParams],
     () => fetchProducts({ ...queryParams, userId: userId || "" })

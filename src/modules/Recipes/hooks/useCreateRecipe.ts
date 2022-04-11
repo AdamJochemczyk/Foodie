@@ -1,14 +1,14 @@
 import { toast } from "react-toastify";
 import { useMutation } from "react-query";
 import { useRouter } from "next/router";
-import { useUserId } from "src/utils/useUser";
+import { useUser } from "src/utils/useUser";
 import { uploadImage } from "src/utils/uploadImage";
 import { getImageUrl } from "src/utils/getImageUrl";
 import { insertRecipe } from "./insertRecipe";
 import { CreateRecipeProperties } from "../types";
 
 export const useCreateRecipe = () => {
-  const { userId } = useUserId();
+  const { userId } = useUser();
   const router = useRouter();
   return useMutation(
     async (values: CreateRecipeProperties) => {

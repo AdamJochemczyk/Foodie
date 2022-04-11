@@ -1,31 +1,38 @@
 import { useQuery } from "react-query";
 import { supabase } from "./supabaseClient";
 
-const getUser = async (userId: string | undefined) => {
+interface FoodieUser {
+  id: string;
+  name: string;
+  surname: string;
+  avatar: string;
+  usertype: string;
+}
+
+const getUser = async () => {
+  const userData = await supabase.auth.user();
   const { data, error } = await supabase
-    .from("users")
+    .from<FoodieUser>("users")
     .select("*")
-    .eq("id", userId)
+    .eq("id", userData?.id || "")
     .single();
+
   if (error) {
     throw new Error(error.message);
   }
   if (!data) {
     throw new Error("User not found");
   }
-  return data;
+  return { data, userId: data?.id, email: userData?.email };
 };
 
 export const useUser = () => {
-  const { userId } = useUserId();
-  return useQuery("user", () => getUser(userId));
-};
-
-export const useUserId = () => {
-  const user = supabase.auth.user();
+  const query = useQuery("foodieUser", () => getUser());
 
   return {
-    user,
-    userId: user?.id
+    ...query,
+    data: query.data?.data,
+    userId: query.data?.userId,
+    email: query.data?.email
   };
 };

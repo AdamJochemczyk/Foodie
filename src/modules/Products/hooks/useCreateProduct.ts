@@ -1,5 +1,5 @@
 import { insertProduct } from "./insertProduct";
-import { useUserId } from "src/utils/useUser";
+import { useUser } from "src/utils/useUser";
 import { getImageUrl } from "src/utils/getImageUrl";
 import { toast } from "react-toastify";
 import { useMutation } from "react-query";
@@ -38,7 +38,7 @@ const insertProductWithPhoto = async ({
 };
 
 export const useCreateProduct = () => {
-  const { userId } = useUserId();
+  const { userId } = useUser();
   const router = useRouter();
 
   return useMutation(
