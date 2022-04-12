@@ -18,6 +18,7 @@ const createUser = async (userData: User) => {
 };
 
 export const useCreateUser = () => {
+  //TODO: add new controls dont pass email to our DB
   const router = useRouter();
   return useMutation((user: User) => createUser(user), {
     onSuccess: async createdUser => {
