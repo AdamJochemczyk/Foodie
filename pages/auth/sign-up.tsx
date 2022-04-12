@@ -3,12 +3,13 @@ import { SignBox } from "src/modules/Auth/SignBox/SignBox";
 import common from "styles/common.module.css";
 import sign from "src/modules/Auth/Sign.module.css";
 import { FormikProvider, useFormik } from "formik";
-import { FormInput } from "src/common/Inputs";
+import { FileInput, FormInput } from "src/common/Inputs";
 import * as yup from "yup";
 import { ActionButton } from "src/common/ActionButton/ActionButton";
 import {
   createPasswordValidation,
-  emailValidation
+  emailValidation,
+  fileValidation
 } from "src/common/validation";
 import { useCreateUser } from "src/modules/Auth/hooks/useCreateUser";
 import clsx from "clsx";
@@ -17,10 +18,19 @@ import clsx from "clsx";
 export default function Signup() {
   const createUserMutation = useCreateUser();
   const formik = useFormik({
-    initialValues: { email: "", password: "" },
+    initialValues: {
+      email: "",
+      password: "",
+      name: "",
+      surname: "",
+      avatar: null
+    },
     validationSchema: yup.object().shape({
       email: emailValidation,
-      password: createPasswordValidation
+      password: createPasswordValidation,
+      name: yup.string().required("Name is required"),
+      surname: yup.string().required("Surname is required"),
+      avatar: fileValidation
     }),
     onSubmit: values => {
       createUserMutation.mutate(values);
@@ -48,6 +58,9 @@ export default function Signup() {
                 autocomplete="new-password"
                 rounded
               />
+              <FormInput name="name" label="name" rounded />
+              <FormInput name="surname" label="surname" rounded />
+              <FileInput name="avatar" label="avatar" />
               <ActionButton
                 text="Create account"
                 isLoading={createUserMutation.isLoading}

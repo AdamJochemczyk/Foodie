@@ -1,6 +1,5 @@
 import { insertProduct } from "./insertProduct";
 import { useUser } from "src/utils/useUser";
-import { getImageUrl } from "src/utils/getImageUrl";
 import { toast } from "react-toastify";
 import { useMutation } from "react-query";
 import { uploadImage } from "src/utils/uploadImage";
@@ -46,18 +45,15 @@ export const useCreateProduct = () => {
       if (!values.photo) {
         throw new Error("Photo not provided");
       } else {
-        const isImageAdded = await uploadImage(
+        const image = await uploadImage(
           `products/${values.gtincode}`,
           values.photo
         );
-        if (isImageAdded) {
-          const photolink = await getImageUrl(`products/${values.gtincode}`);
-          return await insertProductWithPhoto({
-            ...values,
-            userid: typeof userId === "string" ? userId : "",
-            photolink
-          });
-        }
+        return await insertProductWithPhoto({
+          ...values,
+          userid: typeof userId === "string" ? userId : "",
+          photolink: image?.link
+        });
       }
     },
     {

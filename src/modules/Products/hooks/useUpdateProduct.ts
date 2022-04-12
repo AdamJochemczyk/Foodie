@@ -4,7 +4,6 @@ import { supabase } from "src/utils/supabaseClient";
 import { useMutation, useQueryClient } from "react-query";
 import { useRouter } from "next/router";
 import { uploadImage } from "src/utils/uploadImage";
-import { getImageUrl } from "src/utils/getImageUrl";
 
 const updateProduct = async ({
   name,
@@ -40,21 +39,16 @@ const updateProduct = async ({
 
 const updatePhotoAndProduct = async (values: UpdateProduct) => {
   if (values.photo) {
-    const { data: isFileAdded } = await uploadImage(
+    const fileAdded = await uploadImage(
       `products/${values.gtincode}`,
       values?.photo
     );
-    if (isFileAdded) {
-      const photolink = await getImageUrl(`products/${values.gtincode}`);
-      if (photolink) {
-        return await updateProduct({
-          ...values,
-          photolink
-        });
-      }
-    } else {
-      throw new Error("Error on image upload");
-    }
+    return await updateProduct({
+      ...values,
+      photolink: fileAdded?.link
+    });
+  } else {
+    throw new Error("Error on image upload");
   }
 };
 

@@ -1,4 +1,3 @@
-import { getImageUrl } from "src/utils/getImageUrl";
 import { uploadImage } from "src/utils/uploadImage";
 import { supabase } from "src/utils/supabaseClient";
 import { useMutation } from "react-query";
@@ -28,15 +27,9 @@ const updateRecipe = async (values: UpdateRecipe) => {
 
 const updatePhotoAndRecipe = async (values: UpdateRecipe) => {
   if (values.photo) {
-    const isImageAdded = await uploadImage(
-      `recipes/${values.title}`,
-      values.photo
-    );
-    if (isImageAdded) {
-      const photoLink = await getImageUrl(`recipes/${values.title}`);
-      if (photoLink) {
-        return await updateRecipe({ ...values, photolink: photoLink });
-      }
+    const image = await uploadImage(`recipes/${values.title}`, values.photo);
+    if (image?.link) {
+      return await updateRecipe({ ...values, photolink: image?.link });
     } else {
       throw new Error("Error on image upload");
     }
