@@ -3,6 +3,9 @@ import { useState } from "react";
 import styles from "../FormInputs.module.css";
 import { FormLabel } from "../FormLabel/FormLabel";
 import fileInput from "./FileInput.module.css";
+import { CropEasy } from "./crop/CropEasy";
+import Image from "next/image";
+import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
 
 interface FileInputProperties {
   name: string;
@@ -12,30 +15,60 @@ interface FileInputProperties {
 export const FileInput = ({ name, label }: FileInputProperties) => {
   const [field, meta] = useField(name);
   const { setFieldValue } = useFormikContext();
-  const [fileName, setFileName] = useState("");
-  const [fileSize, setFileSize] = useState("");
+
+  const [openCrop, setOpenCrop] = useState(false);
+  const [photoURL, setPhotoUrl] = useState("");
+
+  const setFile = (file: File | Blob) => {
+    setFieldValue(field.name, file);
+  };
+  const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.currentTarget.files) {
+      const file = event.currentTarget.files[0];
+      setFile(file);
+      setPhotoUrl(URL.createObjectURL(file));
+      setOpenCrop(true);
+    }
+  };
+  const handleEditAgain = () => {
+    setOpenCrop(true);
+  };
 
   return (
     <div className={fileInput.fileInput}>
-      <input
-        type="file"
-        id="file"
-        className={fileInput.file}
-        onChange={event => {
-          if (event.currentTarget.files) {
-            setFieldValue(field.name, event.currentTarget.files[0]);
-            setFileName(event.currentTarget.files[0].name);
-            setFileSize(
-              `${(event.currentTarget.files[0].size / 1000).toFixed(2)}KB`
-            );
-          }
-        }}
-      />
-      <FormLabel name="file" label={label} meta={meta}>
-        <p className={fileInput.fileName}>
-          {fileName} {fileSize}
-        </p>
-      </FormLabel>
+      {openCrop ? (
+        <CropEasy
+          photoURL={photoURL}
+          setPhotoURL={setPhotoUrl}
+          setOpenCrop={setOpenCrop}
+          setFile={setFile}
+        />
+      ) : (
+        <>
+          {photoURL ? (
+            <div className={fileInput.imgPreview}>
+              <Image src={photoURL} alt="No image" layout="fill" />
+            </div>
+          ) : null}
+          <input
+            type="file"
+            id="file"
+            className={fileInput.file}
+            onChange={onFileChange}
+          />
+          <div className={fileInput.buttons}>
+            {photoURL ? (
+              <OrangeButton
+                text="Edit again"
+                onClick={handleEditAgain}
+                variant="secondary"
+                size="small"
+              />
+            ) : null}
+            <FormLabel name="file" label={label} meta={meta} />
+          </div>
+        </>
+      )}
       <p className={styles.errorData}>{meta.touched ? meta.error : ""}</p>
     </div>
   );

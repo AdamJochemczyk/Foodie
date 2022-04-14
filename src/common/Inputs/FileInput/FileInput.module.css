@@ -8,7 +8,6 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-bottom: 4rem;
 }
 .fileInput label {
   position: relative;
@@ -34,4 +33,17 @@
 .fileInput input:focus + label {
   outline: 1px solid #000;
   outline: -webkit-focus-ring-color auto 2px;
+}
+
+.buttons {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.imgPreview {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  border: solid 1px black;
 }
