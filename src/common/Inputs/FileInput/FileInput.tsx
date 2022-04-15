@@ -10,9 +10,14 @@ import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
 interface FileInputProperties {
   name: string;
   label: string;
+  showAfterCrop?: boolean;
 }
 
-export const FileInput = ({ name, label }: FileInputProperties) => {
+export const FileInput = ({
+  name,
+  label,
+  showAfterCrop = true
+}: FileInputProperties) => {
   const [field, meta] = useField(name);
   const { setFieldValue } = useFormikContext();
 
@@ -45,7 +50,7 @@ export const FileInput = ({ name, label }: FileInputProperties) => {
         />
       ) : (
         <>
-          {photoURL ? (
+          {photoURL && showAfterCrop ? (
             <div className={fileInput.imgPreview}>
               <Image src={photoURL} alt="No image" layout="fill" />
             </div>

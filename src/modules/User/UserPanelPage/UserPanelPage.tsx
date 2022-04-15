@@ -6,11 +6,13 @@ import { SignBox } from "src/modules/Auth/SignBox/SignBox";
 import { FormikProvider, useFormik } from "formik";
 import * as yup from "yup";
 import { useUpdateUserNameAndSurname } from "../hooks/updateUserNameAndSurname";
-import { FormInput } from "src/common/Inputs";
+import { FileInput, FormInput } from "src/common/Inputs";
 import { ActionButton } from "src/common/ActionButton/ActionButton";
 import { LinkWrapper } from "src/common/LinkWrapper/LinkWrapper";
 import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
 import { useUpdateEmail } from "../hooks/updateEmail";
+import { fileValidation } from "src/common/validation";
+import { useUploadUserAvatar } from "../hooks/useUploadUserAvatar";
 
 const validationSchema = yup.object().shape({
   email: yup.string().email("This isn't email").required("Email is required"),
@@ -20,7 +22,6 @@ const validationSchema = yup.object().shape({
 
 export const UserPanelPage = () => {
   const { data, email, isLoading } = useUser();
-
   const updateUserNameSurname = useUpdateUserNameAndSurname();
   const updateEmail = useUpdateEmail();
   const formikPersonalData = useFormik({
@@ -55,6 +56,27 @@ export const UserPanelPage = () => {
       }
     }
   });
+  const addAvatar = useUploadUserAvatar("add");
+  const editAvatar = useUploadUserAvatar("edit");
+  const formikAvatar = useFormik({
+    initialValues: {
+      file: null
+    },
+    enableReinitialize: true,
+    validationSchema: yup.object().shape({
+      file: fileValidation
+    }),
+    onSubmit: ({ file }) => {
+      if (file) {
+        if (!data?.avatar) {
+          addAvatar.mutate(file);
+        } else {
+          editAvatar.mutate(file);
+        }
+      }
+    }
+  });
+
   if (isLoading) {
     return <SplashScreen />;
   }
@@ -62,7 +84,18 @@ export const UserPanelPage = () => {
     <article className={styles.wrapper}>
       <SignBox imgSrc="/static/images/user.png" replaceLogoByTitle="User data">
         <div>
-          <div>Avatar: avatar allow to change avatar</div>
+          <FormikProvider value={formikAvatar}>
+            <form onSubmit={formikAvatar.handleSubmit}>
+              <FileInput name="file" label="avatar" showAfterCrop={false} />
+              <ActionButton
+                text={`${data?.avatar ? "Update" : "Add"} avatar`}
+                onClick={formikAvatar.handleSubmit}
+                isLoading={
+                  data?.avatar ? addAvatar.isLoading : editAvatar.isLoading
+                }
+              />
+            </form>
+          </FormikProvider>
           <FormikProvider value={formikEmail}>
             <form onSubmit={formikEmail.handleSubmit}>
               <FormInput name="email" label="email" />
