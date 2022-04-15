@@ -6,7 +6,7 @@ import { supabase } from "src/utils/supabaseClient";
 const getProduct = async (productId: string) => {
   const { data, error } = await supabase
     .from<definitions["products"]>("products")
-    .select(`*,user:proposaluserid!inner(email)`)
+    .select(`*,user:proposaluserid!inner(name,surname)`)
     .eq("productid", productId)
     .single();
   if (error) {

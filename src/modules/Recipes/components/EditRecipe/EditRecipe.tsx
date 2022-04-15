@@ -13,11 +13,11 @@ export const EditRecipe = () => {
 
   return (
     <div className={styles.container}>
-      {!isLoading ? (
+      {!isLoading && recipe ? (
         <div className={styles.content}>
           <RecipeAddEdit
             mode="edit"
-            photoLink={recipe.photo_link}
+            photoLink={recipe.photolink}
             ingredientsLoading={ingredientsLoading}
             initialValues={{
               title: recipe.title,
@@ -43,7 +43,7 @@ export const EditRecipe = () => {
               )
             }}
           />
-          <p>Provided by: {recipe?.user?.email}</p>
+          <p>Provided by: {`${recipe.user.name} ${recipe.user.surname}`}</p>
           <ActionButton
             variant="danger"
             text="delete recipe"

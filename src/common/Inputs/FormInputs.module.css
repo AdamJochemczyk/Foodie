@@ -4,6 +4,7 @@
   align-items: flex-start;
   padding: 0.5rem;
   min-height: 80px;
+  min-width: 100px;
 }
 .fieldLabel {
   margin-bottom: 0.5rem;

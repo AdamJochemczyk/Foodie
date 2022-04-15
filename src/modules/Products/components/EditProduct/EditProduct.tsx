@@ -38,7 +38,10 @@ export const EditProduct = () => {
                 showFavButton={false}
               />
               <p className={styles.person}>
-                Provided by: {(product as any).user.email}
+                Provided by:{" "}
+                {`${(product as any).user.name} ${
+                  (product as any).user.surname
+                }`}
               </p>
               <ActionButton
                 variant="danger"

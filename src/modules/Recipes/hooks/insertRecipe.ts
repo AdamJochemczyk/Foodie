@@ -25,7 +25,7 @@ export const insertRecipe = async ({
     isvegan: isvegan,
     isvegetarian: isvegetarian
   });
-  const recipeId = data ? (data[0].recipe_id as string) : "";
+  const recipeId = data ? (data[0].recipeid as string) : "";
   if (recipeId && recipeproducts.length > 0) {
     const promises = recipeproducts.map(ingredient => {
       insertRecipeIngredient({
