@@ -1,4 +1,4 @@
-import { uploadImage } from "src/utils/uploadImage";
+import { updateImage } from "src/utils/uploadImage";
 import { supabase } from "src/utils/supabaseClient";
 import { useMutation } from "react-query";
 import { useRouter } from "next/router";
@@ -27,7 +27,7 @@ const updateRecipe = async (values: UpdateRecipe) => {
 
 const updatePhotoAndRecipe = async (values: UpdateRecipe) => {
   if (values.photo) {
-    const image = await uploadImage(`recipes/${values.title}`, values.photo);
+    const image = await updateImage(`recipes/${values.imgCode}`, values.photo);
     if (image?.link) {
       return await updateRecipe({ ...values, photolink: image?.link });
     } else {

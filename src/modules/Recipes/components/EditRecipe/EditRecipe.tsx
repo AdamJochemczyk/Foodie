@@ -40,7 +40,8 @@ export const EditRecipe = () => {
                   measuretype: measure,
                   count: count
                 })
-              )
+              ),
+              imgCode: recipe.imgCode
             }}
           />
           <p>Provided by: {`${recipe.user.name} ${recipe.user.surname}`}</p>

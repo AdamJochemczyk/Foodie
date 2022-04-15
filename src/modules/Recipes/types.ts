@@ -28,6 +28,7 @@ export interface RecipeProperties {
   photolink: string;
   proposaluserid: string;
   recipeproducts: RecipeProducts[];
+  uuid: string;
 }
 export interface RecipeIngredient {
   productid: string;
@@ -44,18 +45,13 @@ export interface Recipe {
   isvegan: boolean;
   isvegetarian: boolean;
   photo: File | null;
+  imgCode: string;
 }
-export interface UpdateRecipe {
-  title: string;
-  description: string;
-  recipetype: string;
-  mealportions: number;
-  kcalperportion: number;
-  isvegan: boolean;
-  isvegetarian: boolean;
+export interface UpdateRecipe extends Recipe {
   recipeid: string;
   photolink?: string;
   photo: File | null;
+  imgCode: string;
 }
 export interface CreateRecipeProperties extends Recipe {
   recipeproducts: RecipeProducts[];

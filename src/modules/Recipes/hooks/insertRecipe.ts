@@ -12,7 +12,8 @@ export const insertRecipe = async ({
   proposaluserid,
   isvegan,
   isvegetarian,
-  recipeproducts
+  recipeproducts,
+  uuid
 }: RecipeProperties) => {
   const { data, error } = await supabase.from("recipes").insert({
     title: title,
@@ -23,7 +24,8 @@ export const insertRecipe = async ({
     kcalperportion: kcalperportion,
     proposaluserid: proposaluserid,
     isvegan: isvegan,
-    isvegetarian: isvegetarian
+    isvegetarian: isvegetarian,
+    imgCode: uuid
   });
   const recipeId = data ? (data[0].recipeid as string) : "";
   if (recipeId && recipeproducts.length > 0) {

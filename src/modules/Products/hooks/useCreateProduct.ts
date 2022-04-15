@@ -5,7 +5,7 @@ import { useMutation } from "react-query";
 import { uploadImage } from "src/utils/uploadImage";
 import { useRouter } from "next/router";
 import { ProductProperties } from "../types";
-import { uuid } from "uuidv4";
+import { v4 as uuidv4 } from "uuid";
 
 const insertProductWithPhoto = async ({
   gtincode,
@@ -49,7 +49,7 @@ export const useCreateProduct = () => {
       if (!values.photo) {
         throw new Error("Photo not provided");
       } else {
-        const uuidCode = uuid();
+        const uuidCode = uuidv4();
         const image = await uploadImage(`products/${uuidCode}`, values.photo);
         return await insertProductWithPhoto({
           ...values,

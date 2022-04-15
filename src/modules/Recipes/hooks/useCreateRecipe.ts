@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
 import { useMutation } from "react-query";
 import { useRouter } from "next/router";
@@ -14,12 +15,14 @@ export const useCreateRecipe = () => {
       if (values.photo === null) {
         throw new Error("Please provide the photo");
       }
-      const image = await uploadImage(`recipes/${values.title}`, values.photo);
+      const uuidCode = uuidv4();
+      const image = await uploadImage(`recipes/${uuidCode}`, values.photo);
       if (image?.link) {
         return await insertRecipe({
           ...values,
           photolink: image?.link,
-          proposaluserid: typeof userId === "string" ? userId : ""
+          proposaluserid: typeof userId === "string" ? userId : "",
+          uuid: uuidCode
         });
       } else {
         throw new Error("Error on image upload");

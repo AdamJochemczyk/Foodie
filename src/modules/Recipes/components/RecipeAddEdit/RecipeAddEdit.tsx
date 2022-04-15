@@ -46,7 +46,8 @@ export const RecipeAddEdit = ({
     product: null,
     count: 0,
     measuretype: "",
-    recipeproducts: []
+    recipeproducts: [],
+    imgCode: ""
   },
   photoLink,
   ingredientsLoading = false
@@ -125,7 +126,9 @@ export const RecipeAddEdit = ({
           <form>
             <FormInput name="title" label="title" />
             <TextArea name="description" label="description" />
-            {mode === "edit" && typeof photoLink === "string" ? (
+            {mode === "edit" &&
+            !formik.values.photo &&
+            typeof photoLink === "string" ? (
               <div className={styles.imgBox}>
                 <Image src={photoLink} alt="recipe" width={300} height={300} />
               </div>

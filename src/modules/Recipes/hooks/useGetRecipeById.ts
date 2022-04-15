@@ -19,6 +19,7 @@ interface SingleRecipeForEdit {
     surname: string;
   };
   verified: boolean;
+  imgCode: string;
 }
 
 export const getRecipeById = async (id: string) => {
