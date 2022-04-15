@@ -12,7 +12,13 @@ import { ProductAddEditProperties } from "../../types";
 
 export const ProductAddEdit = ({
   mode = "add",
-  initialValues = { category: "", name: "", gtincode: "", photo: null }
+  initialValues = {
+    category: "",
+    name: "",
+    gtincode: "",
+    photo: null,
+    imgCode: ""
+  }
 }: ProductAddEditProperties) => {
   const createProductMutation = useCreateProduct();
   const updateProductMutation = useUpdateProduct();

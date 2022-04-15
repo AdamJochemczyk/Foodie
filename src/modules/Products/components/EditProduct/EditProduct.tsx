@@ -24,7 +24,8 @@ export const EditProduct = () => {
               category: product.category,
               name: product.name,
               gtincode: product.gtincode.toString(),
-              photo: null
+              photo: null,
+              imgCode: product.imgCode || ""
             }}
           />
           <div className={styles.wrapper}>

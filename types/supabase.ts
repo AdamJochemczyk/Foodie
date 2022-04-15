@@ -12,6 +12,102 @@ export interface paths {
       };
     };
   };
+  "/dishinmeal": {
+    get: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.dishinmeal.id"];
+          mealid?: parameters["rowFilter.dishinmeal.mealid"];
+          recipeid?: parameters["rowFilter.dishinmeal.recipeid"];
+          isEaten?: parameters["rowFilter.dishinmeal.isEaten"];
+          /** Filtering Columns */
+          select?: parameters["select"];
+          /** Ordering */
+          order?: parameters["order"];
+          /** Limiting and Pagination */
+          offset?: parameters["offset"];
+          /** Limiting and Pagination */
+          limit?: parameters["limit"];
+        };
+        header: {
+          /** Limiting and Pagination */
+          Range?: parameters["range"];
+          /** Limiting and Pagination */
+          "Range-Unit"?: parameters["rangeUnit"];
+          /** Preference */
+          Prefer?: parameters["preferCount"];
+        };
+      };
+      responses: {
+        /** OK */
+        200: {
+          schema: definitions["dishinmeal"][];
+        };
+        /** Partial Content */
+        206: unknown;
+      };
+    };
+    post: {
+      parameters: {
+        body: {
+          /** dishinmeal */
+          dishinmeal?: definitions["dishinmeal"];
+        };
+        query: {
+          /** Filtering Columns */
+          select?: parameters["select"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** Created */
+        201: unknown;
+      };
+    };
+    delete: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.dishinmeal.id"];
+          mealid?: parameters["rowFilter.dishinmeal.mealid"];
+          recipeid?: parameters["rowFilter.dishinmeal.recipeid"];
+          isEaten?: parameters["rowFilter.dishinmeal.isEaten"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** No Content */
+        204: never;
+      };
+    };
+    patch: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.dishinmeal.id"];
+          mealid?: parameters["rowFilter.dishinmeal.mealid"];
+          recipeid?: parameters["rowFilter.dishinmeal.recipeid"];
+          isEaten?: parameters["rowFilter.dishinmeal.isEaten"];
+        };
+        body: {
+          /** dishinmeal */
+          dishinmeal?: definitions["dishinmeal"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** No Content */
+        204: never;
+      };
+    };
+  };
   "/favusersproducts": {
     get: {
       parameters: {
@@ -297,6 +393,102 @@ export interface paths {
       };
     };
   };
+  "/productinmeal": {
+    get: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.productinmeal.id"];
+          mealid?: parameters["rowFilter.productinmeal.mealid"];
+          prodcutid?: parameters["rowFilter.productinmeal.prodcutid"];
+          isEaten?: parameters["rowFilter.productinmeal.isEaten"];
+          /** Filtering Columns */
+          select?: parameters["select"];
+          /** Ordering */
+          order?: parameters["order"];
+          /** Limiting and Pagination */
+          offset?: parameters["offset"];
+          /** Limiting and Pagination */
+          limit?: parameters["limit"];
+        };
+        header: {
+          /** Limiting and Pagination */
+          Range?: parameters["range"];
+          /** Limiting and Pagination */
+          "Range-Unit"?: parameters["rangeUnit"];
+          /** Preference */
+          Prefer?: parameters["preferCount"];
+        };
+      };
+      responses: {
+        /** OK */
+        200: {
+          schema: definitions["productinmeal"][];
+        };
+        /** Partial Content */
+        206: unknown;
+      };
+    };
+    post: {
+      parameters: {
+        body: {
+          /** productinmeal */
+          productinmeal?: definitions["productinmeal"];
+        };
+        query: {
+          /** Filtering Columns */
+          select?: parameters["select"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** Created */
+        201: unknown;
+      };
+    };
+    delete: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.productinmeal.id"];
+          mealid?: parameters["rowFilter.productinmeal.mealid"];
+          prodcutid?: parameters["rowFilter.productinmeal.prodcutid"];
+          isEaten?: parameters["rowFilter.productinmeal.isEaten"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** No Content */
+        204: never;
+      };
+    };
+    patch: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.productinmeal.id"];
+          mealid?: parameters["rowFilter.productinmeal.mealid"];
+          prodcutid?: parameters["rowFilter.productinmeal.prodcutid"];
+          isEaten?: parameters["rowFilter.productinmeal.isEaten"];
+        };
+        body: {
+          /** productinmeal */
+          productinmeal?: definitions["productinmeal"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** No Content */
+        204: never;
+      };
+    };
+  };
   "/products": {
     get: {
       parameters: {
@@ -308,6 +500,7 @@ export interface paths {
           category?: parameters["rowFilter.products.category"];
           verified?: parameters["rowFilter.products.verified"];
           proposaluserid?: parameters["rowFilter.products.proposaluserid"];
+          imgCode?: parameters["rowFilter.products.imgCode"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -365,6 +558,7 @@ export interface paths {
           category?: parameters["rowFilter.products.category"];
           verified?: parameters["rowFilter.products.verified"];
           proposaluserid?: parameters["rowFilter.products.proposaluserid"];
+          imgCode?: parameters["rowFilter.products.imgCode"];
         };
         header: {
           /** Preference */
@@ -386,6 +580,7 @@ export interface paths {
           category?: parameters["rowFilter.products.category"];
           verified?: parameters["rowFilter.products.verified"];
           proposaluserid?: parameters["rowFilter.products.proposaluserid"];
+          imgCode?: parameters["rowFilter.products.imgCode"];
         };
         body: {
           /** products */
@@ -417,6 +612,7 @@ export interface paths {
           proposaluserid?: parameters["rowFilter.recipes.proposaluserid"];
           isvegan?: parameters["rowFilter.recipes.isvegan"];
           isvegetarian?: parameters["rowFilter.recipes.isvegetarian"];
+          imgCode?: parameters["rowFilter.recipes.imgCode"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -478,6 +674,7 @@ export interface paths {
           proposaluserid?: parameters["rowFilter.recipes.proposaluserid"];
           isvegan?: parameters["rowFilter.recipes.isvegan"];
           isvegetarian?: parameters["rowFilter.recipes.isvegetarian"];
+          imgCode?: parameters["rowFilter.recipes.imgCode"];
         };
         header: {
           /** Preference */
@@ -503,10 +700,107 @@ export interface paths {
           proposaluserid?: parameters["rowFilter.recipes.proposaluserid"];
           isvegan?: parameters["rowFilter.recipes.isvegan"];
           isvegetarian?: parameters["rowFilter.recipes.isvegetarian"];
+          imgCode?: parameters["rowFilter.recipes.imgCode"];
         };
         body: {
           /** recipes */
           recipes?: definitions["recipes"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** No Content */
+        204: never;
+      };
+    };
+  };
+  "/usermeal": {
+    get: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.usermeal.id"];
+          userid?: parameters["rowFilter.usermeal.userid"];
+          mealdate?: parameters["rowFilter.usermeal.mealdate"];
+          mealname?: parameters["rowFilter.usermeal.mealname"];
+          /** Filtering Columns */
+          select?: parameters["select"];
+          /** Ordering */
+          order?: parameters["order"];
+          /** Limiting and Pagination */
+          offset?: parameters["offset"];
+          /** Limiting and Pagination */
+          limit?: parameters["limit"];
+        };
+        header: {
+          /** Limiting and Pagination */
+          Range?: parameters["range"];
+          /** Limiting and Pagination */
+          "Range-Unit"?: parameters["rangeUnit"];
+          /** Preference */
+          Prefer?: parameters["preferCount"];
+        };
+      };
+      responses: {
+        /** OK */
+        200: {
+          schema: definitions["usermeal"][];
+        };
+        /** Partial Content */
+        206: unknown;
+      };
+    };
+    post: {
+      parameters: {
+        body: {
+          /** usermeal */
+          usermeal?: definitions["usermeal"];
+        };
+        query: {
+          /** Filtering Columns */
+          select?: parameters["select"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** Created */
+        201: unknown;
+      };
+    };
+    delete: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.usermeal.id"];
+          userid?: parameters["rowFilter.usermeal.userid"];
+          mealdate?: parameters["rowFilter.usermeal.mealdate"];
+          mealname?: parameters["rowFilter.usermeal.mealname"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** No Content */
+        204: never;
+      };
+    };
+    patch: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.usermeal.id"];
+          userid?: parameters["rowFilter.usermeal.userid"];
+          mealdate?: parameters["rowFilter.usermeal.mealdate"];
+          mealname?: parameters["rowFilter.usermeal.mealname"];
+        };
+        body: {
+          /** usermeal */
+          usermeal?: definitions["usermeal"];
         };
         header: {
           /** Preference */
@@ -524,8 +818,10 @@ export interface paths {
       parameters: {
         query: {
           id?: parameters["rowFilter.users.id"];
-          email?: parameters["rowFilter.users.email"];
           usertype?: parameters["rowFilter.users.usertype"];
+          avatar?: parameters["rowFilter.users.avatar"];
+          name?: parameters["rowFilter.users.name"];
+          surname?: parameters["rowFilter.users.surname"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -577,8 +873,10 @@ export interface paths {
       parameters: {
         query: {
           id?: parameters["rowFilter.users.id"];
-          email?: parameters["rowFilter.users.email"];
           usertype?: parameters["rowFilter.users.usertype"];
+          avatar?: parameters["rowFilter.users.avatar"];
+          name?: parameters["rowFilter.users.name"];
+          surname?: parameters["rowFilter.users.surname"];
         };
         header: {
           /** Preference */
@@ -594,8 +892,10 @@ export interface paths {
       parameters: {
         query: {
           id?: parameters["rowFilter.users.id"];
-          email?: parameters["rowFilter.users.email"];
           usertype?: parameters["rowFilter.users.usertype"];
+          avatar?: parameters["rowFilter.users.avatar"];
+          name?: parameters["rowFilter.users.name"];
+          surname?: parameters["rowFilter.users.surname"];
         };
         body: {
           /** users */
@@ -615,6 +915,29 @@ export interface paths {
 }
 
 export interface definitions {
+  dishinmeal: {
+    /**
+     * Format: uuid
+     * @description Note:
+     * This is a Primary Key.<pk/>
+     * @default extensions.uuid_generate_v4()
+     */
+    id: string;
+    /**
+     * Format: uuid
+     * @description Note:
+     * This is a Foreign Key to `usermeal.id`.<fk table='usermeal' column='id'/>
+     */
+    mealid: string;
+    /**
+     * Format: uuid
+     * @description Note:
+     * This is a Foreign Key to `recipes.recipeid`.<fk table='recipes' column='recipeid'/>
+     */
+    recipeid: string;
+    /** Format: boolean */
+    isEaten: boolean;
+  };
   favusersproducts: {
     /**
      * Format: uuid
@@ -694,8 +1017,31 @@ export interface definitions {
       | "tablespoon"
       | "glass"
       | "ml"
-      | "litr"
+      | "liter"
       | "piece";
+  };
+  productinmeal: {
+    /**
+     * Format: uuid
+     * @description Note:
+     * This is a Primary Key.<pk/>
+     * @default extensions.uuid_generate_v4()
+     */
+    id: string;
+    /**
+     * Format: uuid
+     * @description Note:
+     * This is a Foreign Key to `usermeal.id`.<fk table='usermeal' column='id'/>
+     */
+    mealid: string;
+    /**
+     * Format: uuid
+     * @description Note:
+     * This is a Foreign Key to `products.productid`.<fk table='products' column='productid'/>
+     */
+    prodcutid: string;
+    /** Format: boolean */
+    isEaten: boolean;
   };
   products: {
     /**
@@ -739,6 +1085,8 @@ export interface definitions {
      * This is a Foreign Key to `users.id`.<fk table='users' column='id'/>
      */
     proposaluserid: string;
+    /** Format: uuid */
+    imgCode?: string;
   };
   recipes: {
     /**
@@ -775,6 +1123,38 @@ export interface definitions {
     isvegan: boolean;
     /** Format: boolean */
     isvegetarian: boolean;
+    /** Format: uuid */
+    imgCode?: string;
+  };
+  usermeal: {
+    /**
+     * Format: uuid
+     * @description Note:
+     * This is a Primary Key.<pk/>
+     * @default extensions.uuid_generate_v4()
+     */
+    id: string;
+    /**
+     * Format: uuid
+     * @description Note:
+     * This is a Foreign Key to `users.id`.<fk table='users' column='id'/>
+     */
+    userid: string;
+    /**
+     * Format: date
+     * @default CURRENT_DATE
+     */
+    mealdate: string;
+    /**
+     * Format: public.meal_name
+     * @enum {string}
+     */
+    mealname:
+      | "breakfast"
+      | "second breakfast"
+      | "lunch"
+      | "afternoon tea"
+      | "dinner";
   };
   users: {
     /**
@@ -783,14 +1163,18 @@ export interface definitions {
      * This is a Primary Key.<pk/>
      */
     id: string;
-    /** Format: text */
-    email: string;
     /**
      * Format: public.user_type
      * @default user
      * @enum {string}
      */
     usertype: "user" | "admin";
+    /** Format: text */
+    avatar?: string;
+    /** Format: text */
+    name?: string;
+    /** Format: text */
+    surname?: string;
   };
 }
 
@@ -827,6 +1211,16 @@ export interface parameters {
   offset: string;
   /** @description Limiting and Pagination */
   limit: string;
+  /** @description dishinmeal */
+  "body.dishinmeal": definitions["dishinmeal"];
+  /** Format: uuid */
+  "rowFilter.dishinmeal.id": string;
+  /** Format: uuid */
+  "rowFilter.dishinmeal.mealid": string;
+  /** Format: uuid */
+  "rowFilter.dishinmeal.recipeid": string;
+  /** Format: boolean */
+  "rowFilter.dishinmeal.isEaten": string;
   /** @description favusersproducts */
   "body.favusersproducts": definitions["favusersproducts"];
   /** Format: uuid */
@@ -855,6 +1249,16 @@ export interface parameters {
   "rowFilter.ingredients.productcount": string;
   /** Format: public.measure_type */
   "rowFilter.ingredients.measure": string;
+  /** @description productinmeal */
+  "body.productinmeal": definitions["productinmeal"];
+  /** Format: uuid */
+  "rowFilter.productinmeal.id": string;
+  /** Format: uuid */
+  "rowFilter.productinmeal.mealid": string;
+  /** Format: uuid */
+  "rowFilter.productinmeal.prodcutid": string;
+  /** Format: boolean */
+  "rowFilter.productinmeal.isEaten": string;
   /** @description products */
   "body.products": definitions["products"];
   /** Format: uuid */
@@ -871,6 +1275,8 @@ export interface parameters {
   "rowFilter.products.verified": string;
   /** Format: uuid */
   "rowFilter.products.proposaluserid": string;
+  /** Format: uuid */
+  "rowFilter.products.imgCode": string;
   /** @description recipes */
   "body.recipes": definitions["recipes"];
   /** Format: uuid */
@@ -895,14 +1301,30 @@ export interface parameters {
   "rowFilter.recipes.isvegan": string;
   /** Format: boolean */
   "rowFilter.recipes.isvegetarian": string;
+  /** Format: uuid */
+  "rowFilter.recipes.imgCode": string;
+  /** @description usermeal */
+  "body.usermeal": definitions["usermeal"];
+  /** Format: uuid */
+  "rowFilter.usermeal.id": string;
+  /** Format: uuid */
+  "rowFilter.usermeal.userid": string;
+  /** Format: date */
+  "rowFilter.usermeal.mealdate": string;
+  /** Format: public.meal_name */
+  "rowFilter.usermeal.mealname": string;
   /** @description users */
   "body.users": definitions["users"];
   /** Format: uuid */
   "rowFilter.users.id": string;
-  /** Format: text */
-  "rowFilter.users.email": string;
   /** Format: public.user_type */
   "rowFilter.users.usertype": string;
+  /** Format: text */
+  "rowFilter.users.avatar": string;
+  /** Format: text */
+  "rowFilter.users.name": string;
+  /** Format: text */
+  "rowFilter.users.surname": string;
 }
 
 export interface operations {}

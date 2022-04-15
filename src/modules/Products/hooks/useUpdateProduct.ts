@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { supabase } from "src/utils/supabaseClient";
 import { useMutation, useQueryClient } from "react-query";
 import { useRouter } from "next/router";
-import { uploadImage } from "src/utils/uploadImage";
+import { updateImage } from "src/utils/uploadImage";
 
 const updateProduct = async ({
   name,
@@ -39,8 +39,8 @@ const updateProduct = async ({
 
 const updatePhotoAndProduct = async (values: UpdateProduct) => {
   if (values.photo) {
-    const fileAdded = await uploadImage(
-      `products/${values.gtincode}`,
+    const fileAdded = await updateImage(
+      `products/${values.imgCode}`,
       values?.photo
     );
     return await updateProduct({
@@ -63,14 +63,14 @@ export const useUpdateProduct = () => {
         if (!values.photo) {
           return updateProduct({ ...values, productid: product_id });
         } else {
-          updatePhotoAndProduct({ ...values, productid: product_id });
+          return updatePhotoAndProduct({ ...values, productid: product_id });
         }
       }
     },
     {
       onSuccess: () => {
+        queryClient.invalidateQueries(["getProducts", "getProduct"]);
         toast.success("You have updated product");
-        queryClient.invalidateQueries("getProducts");
         router.push("/products/edit");
       },
       onError: () => {

@@ -3,6 +3,7 @@ export interface ProductProperties {
   name: string;
   gtincode: string;
   photo?: File | null;
+  imgCode: string;
 }
 export interface UpdateProduct extends ProductProperties {
   productid: string;

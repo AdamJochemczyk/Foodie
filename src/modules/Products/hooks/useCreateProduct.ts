@@ -5,19 +5,22 @@ import { useMutation } from "react-query";
 import { uploadImage } from "src/utils/uploadImage";
 import { useRouter } from "next/router";
 import { ProductProperties } from "../types";
+import { uuid } from "uuidv4";
 
 const insertProductWithPhoto = async ({
   gtincode,
   name,
   category,
   userid,
-  photolink
+  photolink,
+  uuid
 }: {
   gtincode: string;
   name: string;
   category: string;
   userid: string;
   photolink?: string;
+  uuid: string;
 }) => {
   if (photolink) {
     const { error, data } = await insertProduct({
@@ -25,7 +28,8 @@ const insertProductWithPhoto = async ({
       name,
       photolink,
       category,
-      proposaluserid: userid
+      proposaluserid: userid,
+      imgCode: uuid
     });
     if (error) {
       throw new Error("Error on product upload");
@@ -45,14 +49,13 @@ export const useCreateProduct = () => {
       if (!values.photo) {
         throw new Error("Photo not provided");
       } else {
-        const image = await uploadImage(
-          `products/${values.gtincode}`,
-          values.photo
-        );
+        const uuidCode = uuid();
+        const image = await uploadImage(`products/${uuidCode}`, values.photo);
         return await insertProductWithPhoto({
           ...values,
           userid: typeof userId === "string" ? userId : "",
-          photolink: image?.link
+          photolink: image?.link,
+          uuid: uuidCode
         });
       }
     },
