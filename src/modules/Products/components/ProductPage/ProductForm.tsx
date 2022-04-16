@@ -1,8 +1,7 @@
 import React from "react";
 import styles from "./ProductsPage.module.css";
-import { ActionButton } from "src/common/ActionButton/ActionButton";
+import { Button } from "src/common/Button/Button";
 import { FormInput, CategorySelect, Checkbox } from "src/common/Inputs";
-import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
 import { FormikProps, FormikProvider } from "formik";
 import { SearchProducts } from "../../types";
 import { LinkWrapper } from "src/common/LinkWrapper/LinkWrapper";
@@ -27,9 +26,10 @@ export const ProductForm = ({
           ) : (
             <Checkbox name="favorites" label="show favorites" />
           )}
-          <ActionButton
+          <Button
             text="filter"
             type="submit"
+            size="small"
             onClick={formik.handleSubmit}
             isLoading={isLoading}
           />
@@ -37,7 +37,12 @@ export const ProductForm = ({
       </FormikProvider>
       <div className={styles.link}>
         <LinkWrapper link="/products/add">
-          <OrangeButton text="add new product" />
+          <Button
+            text="add new product"
+            color="orange"
+            variant="primary"
+            size="small"
+          />
         </LinkWrapper>
       </div>
     </>

@@ -2,31 +2,40 @@ import clsx from "clsx";
 import React from "react";
 import { Loader } from "../Loader/Loader";
 import { upperFirst } from "../utils/stringMethods";
-import styles from "./ActionButton.module.css";
+import styles from "./Button.module.css";
 
-interface ActionButtonProperties {
+interface ButtonProperties {
   text: string;
   onClick?: () => void;
-  isLoading: boolean;
+  isLoading?: boolean;
   type?: "submit" | "button";
   rounded?: boolean;
-  variant?: "danger" | "action";
+  variant?: "danger" | "action" | "primary" | "secondary";
+  size?: "big" | "small";
+  color?: "blue" | "orange";
 }
 
-export const ActionButton = ({
+export const Button = ({
   text,
   onClick,
-  isLoading,
+  isLoading = false,
   type = "button",
   rounded = false,
-  variant = "action"
-}: ActionButtonProperties) => {
+  variant = "action",
+  color = "blue",
+  size = "big"
+}: ButtonProperties) => {
   return (
     <button
       className={clsx(styles.button, {
         [styles.rounded]: rounded,
+        [styles.orange]: color === "orange",
         [styles.danger]: variant === "danger",
-        [styles.disabled]: isLoading
+        [styles.disabled]: isLoading,
+        [styles.primary]: variant === "primary",
+        [styles.secondary]: variant === "secondary",
+        [styles.small]: size === "small",
+        [styles.big]: size === "big"
       })}
       onClick={onClick}
       type={type}

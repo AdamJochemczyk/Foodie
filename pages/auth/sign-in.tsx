@@ -1,6 +1,6 @@
 import { FormikProvider, useFormik } from "formik";
 import Link from "next/link";
-import { ActionButton } from "src/common/ActionButton/ActionButton";
+import { Button } from "src/common/Button/Button";
 import { FormInput } from "src/common/Inputs";
 import { SignBox } from "src/modules/Auth/SignBox/SignBox";
 import common from "styles/common.module.css";
@@ -85,11 +85,12 @@ export default function Signin() {
                   <a className={sign.link}>Forgot password?</a>
                 </Link>
               </div>
-              <ActionButton
+              <Button
                 text="Sign in"
                 isLoading={loginMutation.isLoading}
                 type="submit"
                 rounded
+                size="small"
               />
             </form>
           </FormikProvider>

@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Footer.module.css";
 import Image from "next/image";
 import { SocialButton } from "src/common/SocialButton/SocialButton";
-import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
+import { Button } from "src/common/Button/Button";
 import { socials } from "../constants";
 import { LinkWrapper } from "src/common/LinkWrapper/LinkWrapper";
 
@@ -73,7 +73,12 @@ export const Footer = () => (
               maxLength={150}
               className={styles.contactForm__input}
             />
-            <OrangeButton text="skontaktuj się ze mną" type="submit" />
+            <Button
+              text="skontaktuj się ze mną"
+              type="submit"
+              color="orange"
+              variant="primary"
+            />
           </form>
         </div>
       </section>

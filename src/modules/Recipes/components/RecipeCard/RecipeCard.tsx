@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { FavButton } from "src/common/FavButton/FavButton";
 import { LinkWrapper } from "src/common/LinkWrapper/LinkWrapper";
-import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
+import { Button } from "src/common/Button/Button";
 import { Tag } from "src/common/Tag/Tag";
 import { upperFirst } from "src/common/utils/stringMethods";
 import { useAddToFavRecipe, useRemoveFavRecipe } from "../../hooks";
@@ -49,7 +49,12 @@ export const RecipeCard = ({
       </div>
       <div className={styles.link}>
         <LinkWrapper link={href}>
-          <OrangeButton text={btnText} size="small" />
+          <Button
+            text={btnText}
+            size="small"
+            color="orange"
+            variant="primary"
+          />
         </LinkWrapper>
       </div>
 

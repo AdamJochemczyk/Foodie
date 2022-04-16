@@ -1,5 +1,5 @@
 import { FormikProvider, useFormik } from "formik";
-import { ActionButton } from "src/common/ActionButton/ActionButton";
+import { Button } from "src/common/Button/Button";
 import { FormInput } from "src/common/Inputs";
 import { SignBox } from "src/modules/Auth/SignBox/SignBox";
 import common from "styles/common.module.css";
@@ -58,11 +58,12 @@ export default function ResetPassword() {
                 autocomplete="new-password"
                 rounded
               />
-              <ActionButton
+              <Button
                 text="Reset password"
                 type="submit"
                 rounded
                 isLoading={resetPasswordMutation.isLoading}
+                size="small"
               />
             </form>
           </FormikProvider>

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { LinkWrapper } from "src/common/LinkWrapper/LinkWrapper";
-import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
+import { Button } from "src/common/Button/Button";
 import styles from "./Navbar.module.css";
 
 export const Navbar = () => (
@@ -22,10 +22,20 @@ export const Navbar = () => (
     </div>
     <div className={styles.actionBtns}>
       <LinkWrapper link="/auth/sign-up">
-        <OrangeButton text="zarejestruj się" size="small" />
+        <Button
+          text="zarejestruj się"
+          size="small"
+          color="orange"
+          variant="primary"
+        />
       </LinkWrapper>
       <LinkWrapper link="/auth/sign-in">
-        <OrangeButton variant="secondary" text="zaloguj się" size="small" />
+        <Button
+          variant="secondary"
+          text="zaloguj się"
+          size="small"
+          color="orange"
+        />
       </LinkWrapper>
     </div>
   </nav>

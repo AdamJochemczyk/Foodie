@@ -1,6 +1,6 @@
 import { FormikProvider, useFormik } from "formik";
 import React from "react";
-import { ActionButton } from "src/common/ActionButton/ActionButton";
+import { Button } from "src/common/Button/Button";
 import {
   FormInput,
   FileInput,
@@ -10,7 +10,6 @@ import {
   TextArea,
   SearchWithAPI
 } from "src/common/Inputs";
-import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
 import { addRecipeValidation, recipeValidation } from "src/common/validation";
 import { useFindProductByName } from "src/modules/Products/hooks/useFindProductByName";
 import {
@@ -156,11 +155,15 @@ export const RecipeAddEdit = ({
               />
               <FormInput name="count" label="count" type="number" />
               <MeasureTypeSelect name="measuretype" />
-              <OrangeButton
-                text="add ingredient"
-                size="small"
-                onClick={handleAddIngredient}
-              />
+              <div className={styles.addIngredientBtn}>
+                <Button
+                  text="add ingredient"
+                  size="small"
+                  color="orange"
+                  variant="primary"
+                  onClick={handleAddIngredient}
+                />
+              </div>
             </div>
             {!ingredientsLoading ? (
               <table className={styles.table}>
@@ -180,8 +183,8 @@ export const RecipeAddEdit = ({
                         <td>{count}</td>
                         <td>{measuretype}</td>
                         <td>
-                          <OrangeButton
-                            variant="secondary"
+                          <Button
+                            variant="danger"
                             text="Remove product"
                             size="small"
                             onClick={() => handleRemoveProduct(product.value)}
@@ -195,10 +198,11 @@ export const RecipeAddEdit = ({
             ) : (
               <p>Loading...</p>
             )}
-            <ActionButton
+            <Button
               text={mode === "add" ? "Add recipe" : "Edit"}
               onClick={formik.handleSubmit}
               type="submit"
+              size="small"
               isLoading={
                 mode === "add"
                   ? addRecipeMutation.isLoading

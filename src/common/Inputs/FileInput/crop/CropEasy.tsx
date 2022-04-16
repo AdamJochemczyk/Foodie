@@ -3,7 +3,7 @@ import Cropper from "react-easy-crop";
 import { Area, Point } from "react-easy-crop/types";
 import { getCroppedImg } from "./utils/cropImage";
 import styles from "./CropEasy.module.css";
-import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
+import { Button } from "src/common/Button/Button";
 
 export const CropEasy = ({
   photoURL,
@@ -86,13 +86,20 @@ export const CropEasy = ({
         </div>
       </div>
       <div className={styles.cropButtons}>
-        <OrangeButton
+        <Button
           text="cancel"
           onClick={handleCropClose}
           size="small"
           variant="secondary"
+          color="orange"
         />
-        <OrangeButton text="crop" onClick={cropImage} size="small" />
+        <Button
+          text="crop"
+          onClick={cropImage}
+          size="small"
+          color="orange"
+          variant="primary"
+        />
       </div>
     </div>
   );

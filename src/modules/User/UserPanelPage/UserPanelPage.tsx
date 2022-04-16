@@ -7,9 +7,8 @@ import { FormikProvider, useFormik } from "formik";
 import * as yup from "yup";
 import { useUpdateUserNameAndSurname } from "../hooks/updateUserNameAndSurname";
 import { FileInput, FormInput } from "src/common/Inputs";
-import { ActionButton } from "src/common/ActionButton/ActionButton";
+import { Button } from "src/common/Button/Button";
 import { LinkWrapper } from "src/common/LinkWrapper/LinkWrapper";
-import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
 import { useUpdateEmail } from "../hooks/updateEmail";
 import { fileValidation } from "src/common/validation";
 import { useUploadUserAvatar } from "../hooks/useUploadUserAvatar";
@@ -87,7 +86,8 @@ export const UserPanelPage = () => {
           <FormikProvider value={formikAvatar}>
             <form onSubmit={formikAvatar.handleSubmit}>
               <FileInput name="file" label="avatar" showAfterCrop={false} />
-              <ActionButton
+              <Button
+                size="small"
                 text={`${data?.avatar ? "Update" : "Add"} avatar`}
                 onClick={formikAvatar.handleSubmit}
                 isLoading={
@@ -99,7 +99,8 @@ export const UserPanelPage = () => {
           <FormikProvider value={formikEmail}>
             <form onSubmit={formikEmail.handleSubmit}>
               <FormInput name="email" label="email" />
-              <ActionButton
+              <Button
+                size="small"
                 text="update email"
                 type="submit"
                 isLoading={updateEmail.isLoading}
@@ -110,7 +111,8 @@ export const UserPanelPage = () => {
             <form onSubmit={formikPersonalData.handleSubmit}>
               <FormInput name="name" label="name" />
               <FormInput name="surname" label="surname" />
-              <ActionButton
+              <Button
+                size="small"
                 text="update personality"
                 type="submit"
                 isLoading={updateUserNameSurname.isLoading}
@@ -119,7 +121,12 @@ export const UserPanelPage = () => {
           </FormikProvider>
           <div className={styles.reset}>
             <LinkWrapper link={`/auth/reset-password-request?email=${email}`}>
-              <OrangeButton text="Reset password" size="small" />
+              <Button
+                text="Reset password"
+                size="small"
+                color="orange"
+                variant="primary"
+              />
             </LinkWrapper>
           </div>
         </div>

@@ -2,7 +2,7 @@
 // TODO: remove any, problem with supabase types in joins
 import { useRouter } from "next/router";
 import React from "react";
-import { ActionButton } from "src/common/ActionButton/ActionButton";
+import { Button } from "src/common/Button/Button";
 import { useDeleteProduct, useGetProduct } from "../../hooks";
 import { ProductAddEdit } from "../ProductAddEdit/ProductAddEdit";
 import { ProductCard } from "../ProductCard/ProductCard";
@@ -44,9 +44,10 @@ export const EditProduct = () => {
                   (product as any).user.surname
                 }`}
               </p>
-              <ActionButton
+              <Button
                 variant="danger"
                 text="remove product"
+                size="small"
                 isLoading={removeProductMutation.isLoading}
                 onClick={() =>
                   removeProductMutation.mutate({

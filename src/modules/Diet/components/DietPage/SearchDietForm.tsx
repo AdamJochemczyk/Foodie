@@ -1,6 +1,6 @@
 import { FormikProps, FormikProvider } from "formik";
 import React from "react";
-import { ActionButton } from "src/common/ActionButton/ActionButton";
+import { Button } from "src/common/Button/Button";
 import { FormInput } from "src/common/Inputs";
 import { DietSearch } from "../../types";
 
@@ -16,11 +16,12 @@ export const SearchDietForm = ({
       <form>
         <FormInput name="startDate" label="start date" type="date" />
         <FormInput name="endDate" label="end date" type="date" />
-        <ActionButton
+        <Button
           text="apply"
           type="submit"
           isLoading={isLoading}
           onClick={formik.handleSubmit}
+          size="small"
         />
       </form>
     </FormikProvider>

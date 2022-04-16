@@ -1,6 +1,6 @@
 import React from "react";
 import { LinkWrapper } from "src/common/LinkWrapper/LinkWrapper";
-import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
+import { Button } from "src/common/Button/Button";
 import styles from "./Hero.module.css";
 
 export const Hero = () => {
@@ -15,13 +15,19 @@ export const Hero = () => {
         </p>
         <div className={styles.heroBtns}>
           <LinkWrapper link="#przepisy">
-            <OrangeButton text="zobacz ofertę" size="small" />
+            <Button
+              text="zobacz ofertę"
+              size="small"
+              color="orange"
+              variant="primary"
+            />
           </LinkWrapper>
           <LinkWrapper link="/auth/sign-in">
-            <OrangeButton
+            <Button
               text="przejdź do apki"
               size="small"
               variant="secondary"
+              color="orange"
             />
           </LinkWrapper>
         </div>

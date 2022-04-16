@@ -1,7 +1,7 @@
 import { FormikProvider, useFormik } from "formik";
 import React from "react";
 import { FormInput, CategorySelect, FileInput } from "src/common/Inputs";
-import { ActionButton } from "src/common/ActionButton/ActionButton";
+import { Button } from "src/common/Button/Button";
 import { useCreateProduct, useUpdateProduct } from "../../hooks";
 import {
   productAddValidationWithPhoto,
@@ -49,7 +49,7 @@ export const ProductAddEdit = ({
               name="photo"
               label={mode === "add" ? "product photo" : "change product photo"}
             />
-            <ActionButton
+            <Button
               text={mode === "add" ? "Add" : "Edit"}
               onClick={formik.handleSubmit}
               isLoading={
@@ -57,6 +57,7 @@ export const ProductAddEdit = ({
                   ? createProductMutation.isLoading
                   : updateProductMutation.isLoading
               }
+              size="small"
             />
           </form>
         </FormikProvider>

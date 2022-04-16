@@ -5,7 +5,7 @@ import sign from "src/modules/Auth/Sign.module.css";
 import { FormikProvider, useFormik } from "formik";
 import { FileInput, FormInput } from "src/common/Inputs";
 import * as yup from "yup";
-import { ActionButton } from "src/common/ActionButton/ActionButton";
+import { Button } from "src/common/Button/Button";
 import {
   createPasswordValidation,
   emailValidation,
@@ -61,11 +61,12 @@ export default function Signup() {
               <FormInput name="name" label="name" rounded />
               <FormInput name="surname" label="surname" rounded />
               <FileInput name="avatar" label="avatar" />
-              <ActionButton
+              <Button
                 text="Create account"
                 isLoading={createUserMutation.isLoading}
                 type="submit"
                 rounded
+                size="small"
               />
             </form>
           </FormikProvider>

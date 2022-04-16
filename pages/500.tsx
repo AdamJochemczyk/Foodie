@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { LinkWrapper } from "src/common/LinkWrapper/LinkWrapper";
-import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
+import { Button } from "src/common/Button/Button";
 import styles from "styles/common.module.css";
 
 export default function Custom500() {
@@ -9,7 +9,7 @@ export default function Custom500() {
     <div className={styles.wrapper}>
       <Image src="/static/images/500.svg" alt="500" width={600} height={600} />
       <LinkWrapper link="/">
-        <OrangeButton text="back to page" />
+        <Button text="back to page" color="orange" variant="primary" />
       </LinkWrapper>
     </div>
   );

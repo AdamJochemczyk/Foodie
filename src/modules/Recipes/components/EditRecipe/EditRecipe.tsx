@@ -1,5 +1,5 @@
 import React from "react";
-import { ActionButton } from "src/common/ActionButton/ActionButton";
+import { Button } from "src/common/Button/Button";
 import { useFindIngredients } from "src/modules/Recipes/hooks/useFindIngredients";
 import { useGetRecipeById } from "src/modules/Recipes/hooks/useGetRecipeById";
 import { RecipeAddEdit } from "src/modules/Recipes/components/RecipeAddEdit/RecipeAddEdit";
@@ -45,10 +45,11 @@ export const EditRecipe = () => {
             }}
           />
           <p>Provided by: {`${recipe.user.name} ${recipe.user.surname}`}</p>
-          <ActionButton
+          <Button
             variant="danger"
             text="delete recipe"
             isLoading={deleteRecipe.isLoading}
+            size="small"
             onClick={() =>
               deleteRecipe.mutate({
                 id: recipe.recipeid,

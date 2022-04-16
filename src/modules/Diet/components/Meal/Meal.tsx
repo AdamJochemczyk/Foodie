@@ -1,6 +1,6 @@
 import React from "react";
 import { LinkWrapper } from "src/common/LinkWrapper/LinkWrapper";
-import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
+import { Button } from "src/common/Button/Button";
 import { useGetMealIngredients } from "../../hooks/useGetMealIngredients";
 import { MealIngredients } from "../MealIngredients/MealIngredients";
 import styles from "./Meal.module.css";
@@ -15,7 +15,12 @@ export const Meal = ({ day, name }: { day: string; name: string }) => {
       </div>
       <div className={styles.link}>
         <LinkWrapper link={`/diet/123`}>
-          <OrangeButton text={"Edit meal"} size="small" />
+          <Button
+            text={"Edit meal"}
+            size="small"
+            color="orange"
+            variant="primary"
+          />
         </LinkWrapper>
       </div>
     </div>

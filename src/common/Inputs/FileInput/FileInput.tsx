@@ -5,7 +5,7 @@ import { FormLabel } from "../FormLabel/FormLabel";
 import fileInput from "./FileInput.module.css";
 import { CropEasy } from "./crop/CropEasy";
 import Image from "next/image";
-import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
+import { Button } from "src/common/Button/Button";
 
 interface FileInputProperties {
   name: string;
@@ -63,11 +63,12 @@ export const FileInput = ({
           />
           <div className={fileInput.buttons}>
             {photoURL ? (
-              <OrangeButton
+              <Button
                 text="Edit again"
                 onClick={handleEditAgain}
                 variant="secondary"
                 size="small"
+                color="orange"
               />
             ) : null}
             <FormLabel name="file" label={label} meta={meta} />

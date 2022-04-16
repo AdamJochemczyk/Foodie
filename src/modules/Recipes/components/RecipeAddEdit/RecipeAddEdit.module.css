@@ -8,8 +8,11 @@
 .ingredientSubForm {
   display: flex;
   gap: 2rem;
-  align-items: center;
+  align-items: flex-end;
   width: 600px;
+}
+.addIngredientBtn {
+  align-self: center;
 }
 .table {
   width: 100%;

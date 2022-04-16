@@ -1,9 +1,8 @@
 import { FormikProps, FormikProvider } from "formik";
 import React from "react";
-import { ActionButton } from "src/common/ActionButton/ActionButton";
+import { Button } from "src/common/Button/Button";
 import { FormInput, Checkbox, RecipeTypeSelect } from "src/common/Inputs";
 import { LinkWrapper } from "src/common/LinkWrapper/LinkWrapper";
-import { OrangeButton } from "src/common/OrangeButton/OrangeButton";
 import { SearchRecipes } from "../../types";
 import styles from "./RecipesPage.module.css";
 
@@ -33,9 +32,10 @@ export const RecipeForm = ({
           ) : (
             <Checkbox name="isFavorites" label="show favorite" />
           )}
-          <ActionButton
+          <Button
             text="filter"
             type="submit"
+            size="small"
             onClick={formik.handleSubmit}
             isLoading={isLoading}
           />
@@ -43,7 +43,12 @@ export const RecipeForm = ({
       </FormikProvider>
       <div className={styles.link}>
         <LinkWrapper link="/recipes/add">
-          <OrangeButton text="add new recipe" size="small" />
+          <Button
+            text="add new recipe"
+            size="small"
+            color="orange"
+            variant="primary"
+          />
         </LinkWrapper>
       </div>
     </>
