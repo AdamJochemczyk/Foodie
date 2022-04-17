@@ -24,6 +24,10 @@ const Home: NextPage = () => {
         }
       });
     }
+    if (queryData.includes("type=signup")) {
+      toast.success("Email confirmed");
+      router.push("/auth/sign-in");
+    }
   }, [router]);
 
   return (

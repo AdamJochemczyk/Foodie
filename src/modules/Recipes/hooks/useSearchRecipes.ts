@@ -32,6 +32,8 @@ const fetchRecipes = async ({
 
   if (verified) {
     query.eq("verified", verified);
+    //@ts-ignore problem with supabase types
+    query.filter("favusersrecipes.userid", "eq", userId);
   }
   if (title) {
     query.ilike("title", `%${title}%`);
@@ -52,15 +54,14 @@ const fetchRecipes = async ({
   if (isVegetarian) {
     query.eq("isvegetarian", isVegetarian);
   }
-  if (isFavorites) {
-    //@ts-ignore
-    query.filter("favusersrecipes.userid", "eq", userId);
-  }
   const { data: recipes, error } = await query;
   if (error) {
     throw error.message;
   }
-  return recipes;
+  //@ts-ignore problem with supabase types
+  return isFavorites
+    ? recipes.filter(recipe => recipe.isFav.length > 0) || []
+    : recipes;
 };
 
 export const useSearchRecipes = (queryParams: SearchRecipes) => {

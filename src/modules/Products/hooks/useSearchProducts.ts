@@ -26,6 +26,8 @@ const fetchProducts = async ({
 
   if (verified) {
     query.eq("verified", verified);
+    //@ts-ignore
+    query.filter("favusersproducts.userid", "eq", userId);
   }
 
   if (searchName) {
@@ -34,16 +36,15 @@ const fetchProducts = async ({
   if (category) {
     query.match({ category: category });
   }
-  if (favorites) {
-    //@ts-ignore
-    query.filter("favusersproducts.userid", "eq", userId);
-  }
   const { data: products, error } = await query;
 
   if (error) {
     throw error.message;
   }
-  return products;
+  return favorites
+    ? //@ts-ignore problem with supabase types
+      products.filter(product => product.isFav.length > 0) || []
+    : products;
 };
 
 export const useSearchProducts = (queryParams: SearchProducts) => {
