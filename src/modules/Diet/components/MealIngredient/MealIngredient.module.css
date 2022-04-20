@@ -1,0 +1,17 @@
+.card {
+  border-radius: 6px;
+  width: 250px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease-in-out;
+  position: relative;
+  max-height: 250px;
+  background-color: white;
+  margin: 1rem;
+}
+.title {
+  margin-top: 1.5rem;
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 700;
+}

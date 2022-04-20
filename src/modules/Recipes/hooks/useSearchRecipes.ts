@@ -58,9 +58,9 @@ const fetchRecipes = async ({
   if (error) {
     throw error.message;
   }
-  //@ts-ignore problem with supabase types
   return isFavorites
-    ? recipes.filter(recipe => recipe.isFav.length > 0) || []
+    ? //@ts-ignore problem with supabase types
+      recipes.filter(recipe => recipe.isFav.length > 0) || []
     : recipes;
 };
 

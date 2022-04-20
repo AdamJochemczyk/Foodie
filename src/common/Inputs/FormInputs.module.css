@@ -19,7 +19,6 @@
 }
 .fieldInput.error {
   border: solid 1px var(--action-red);
-  color: var(--action-red);
 }
 .fieldLabel.error {
   color: var(--action-red);

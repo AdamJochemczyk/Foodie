@@ -7,15 +7,11 @@ export const DietDay = ({ day }: { day: string }) => {
     <section>
       <p className={styles.title}>{day}</p>
       <div className={styles.container}>
-        {[
-          "breakfast",
-          "second breakfast",
-          "lunch",
-          "afternoon tea",
-          "dinner"
-        ].map(meal => (
-          <Meal key={meal + day} day={day} name={meal} />
-        ))}
+        {["breakfast", "lunch", "dinner", "afternoon tea", "supper"].map(
+          meal => (
+            <Meal key={meal + day} day={day} name={meal} />
+          )
+        )}
       </div>
     </section>
   );

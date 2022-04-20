@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+.planner {
+  width: 1200px;
+}
+.list {
+  display: flex;
+  height: 300px;
+  max-height: 300px;
+  border: dotted;
+  padding: 1rem;
+  overflow-x: auto;
+}
+.title {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
