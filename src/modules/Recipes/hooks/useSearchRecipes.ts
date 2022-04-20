@@ -66,8 +66,9 @@ const fetchRecipes = async ({
 
 export const useSearchRecipes = (queryParams: SearchRecipes) => {
   const { userId } = useUser();
-  const { error, data, isLoading } = useQuery(["getRecipes", queryParams], () =>
-    fetchRecipes({ ...queryParams, userId: userId || "" })
+  const { error, data, isLoading, isFetching } = useQuery(
+    ["getRecipes", queryParams],
+    () => fetchRecipes({ ...queryParams, userId: userId || "" })
   );
 
   if (error) {
@@ -76,6 +77,7 @@ export const useSearchRecipes = (queryParams: SearchRecipes) => {
 
   return {
     entities: data || [],
-    isLoading
+    isLoading,
+    isFetching
   };
 };

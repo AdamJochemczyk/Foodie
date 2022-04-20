@@ -3,6 +3,7 @@ import { DraggableLocation } from "react-beautiful-dnd";
 
 //TODO: try to remove AS in this code
 //probably the worst typed of my career xD
+//think about refactor
 
 export interface MealPlanState {
   products: Array<definitions["products"]>;
@@ -42,8 +43,8 @@ const isIngredientAlreadyPlanned = (
 
 export const reorderMealPlan = (
   mealIngredients: MealPlanState,
-  source: DraggableLocation,
-  destination: DraggableLocation
+  source: DraggableLocation, //& { droppableId: keyof MealPlanState },
+  destination: DraggableLocation //& { droppableId: keyof MealPlanState }
 ) => {
   const sourceList = [
     ...mealIngredients[source.droppableId as keyof MealPlanState]
@@ -66,15 +67,23 @@ export const reorderMealPlan = (
   //moving to different list
   //insert into next only if destination is a meal list
   if (destination.droppableId === "meal") {
-    if (
+    const canMoveFromProduct =
       source.droppableId === "products" &&
       "name" in element &&
       "productid" in element &&
       !isIngredientAlreadyPlanned(
         destinationList as MealPlanState["meal"],
         element.productid
-      )
-    ) {
+      );
+    const canMoveFromRecipe =
+      source.droppableId === "recipes" &&
+      "title" in element &&
+      "recipeid" in element &&
+      !isIngredientAlreadyPlanned(
+        destinationList as MealPlanState["meal"],
+        element.recipeid
+      );
+    if (canMoveFromProduct) {
       destinationList.splice(destination.index, 0, {
         id: element.productid,
         type: "product",
@@ -82,15 +91,8 @@ export const reorderMealPlan = (
         photoLink: element.photolink
       });
     }
-    if (
-      source.droppableId === "recipes" &&
-      "title" in element &&
-      "recipeid" in element &&
-      !isIngredientAlreadyPlanned(
-        destinationList as MealPlanState["meal"],
-        element.recipeid
-      )
-    ) {
+
+    if (canMoveFromRecipe) {
       destinationList.splice(destination.index, 0, {
         id: element.recipeid,
         type: "recipe",

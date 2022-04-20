@@ -5,7 +5,7 @@ import { DietSearch } from "../../types";
 import { useFormik } from "formik";
 import { add } from "date-fns";
 import { dietDatesValidation } from "../../validation";
-import { DietCards } from "./DietCards";
+import { DietCards } from "./DietDay";
 import { getDatesBetweenDates } from "src/common/utils/getDatesBetweenDates";
 
 export const DietPage = () => {

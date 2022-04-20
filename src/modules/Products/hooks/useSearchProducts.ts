@@ -49,7 +49,7 @@ const fetchProducts = async ({
 
 export const useSearchProducts = (queryParams: SearchProducts) => {
   const { userId } = useUser();
-  const { error, data, isLoading } = useQuery(
+  const { error, data, isLoading, isFetching } = useQuery(
     ["getProducts", queryParams],
     () => fetchProducts({ ...queryParams, userId: userId || "" })
   );
@@ -60,6 +60,7 @@ export const useSearchProducts = (queryParams: SearchProducts) => {
 
   return {
     entities: data || [],
-    isLoading
+    isLoading,
+    isFetching
   };
 };

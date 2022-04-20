@@ -33,6 +33,7 @@ export const MealPlan = ({
               entities.map(({ id, name, type, photoLink }) => (
                 <MealIngredient
                   key={id}
+                  id={id}
                   link={photoLink}
                   name={name}
                   type={type}

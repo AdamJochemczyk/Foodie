@@ -9,13 +9,21 @@ import styles from "./List.module.css";
 import { MealPlanState, reorderMealPlan } from "./reorderMealPlan";
 
 export const MealPage = () => {
-  const { entities: products, isLoading: productsLoading } = useSearchProducts({
+  const {
+    entities: products,
+    isLoading: productsLoading,
+    isFetching: productsFetching
+  } = useSearchProducts({
     searchName: "",
     category: "",
     verified: true,
     favorites: true
   });
-  const { entities: recipes, isLoading: recipesLoading } = useSearchRecipes({
+  const {
+    entities: recipes,
+    isLoading: recipesLoading,
+    isFetching: recipesFetching
+  } = useSearchRecipes({
     title: "",
     recipeType: "",
     mealPortions: 0,
@@ -40,8 +48,9 @@ export const MealPage = () => {
       meal: [],
       recipes: recipes
     });
+    // fetching means refresh UI after remove from fav recipe or product
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [recipesLoading, productsLoading]);
+  }, [productsFetching, recipesFetching]);
 
   const onDragEnd = ({ source, destination }: DropResult) => {
     //dropped outside list

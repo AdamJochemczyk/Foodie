@@ -44,6 +44,7 @@ export const PossibleRecipesInMeal = ({
                           link={el.photolink}
                           name={el.title}
                           manageAction="fav"
+                          id={el.recipeid}
                         />
                       </div>
                     )}

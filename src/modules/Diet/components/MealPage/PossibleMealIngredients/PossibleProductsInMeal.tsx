@@ -42,6 +42,7 @@ export const PossibleProductsInMeal = ({
                         <MealIngredient
                           link={el.photolink}
                           name={el.name}
+                          id={el.productid}
                           type="product"
                           manageAction="fav"
                         />
