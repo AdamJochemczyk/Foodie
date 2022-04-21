@@ -1,4 +1,5 @@
 import { useQuery } from "react-query";
+import { useUserContext } from "src/context/UserContext";
 import { supabase } from "./supabaseClient";
 
 interface FoodieUser {
@@ -9,30 +10,36 @@ interface FoodieUser {
   usertype: string;
 }
 
-const getUser = async () => {
-  const userData = await supabase.auth.user();
-  const { data, error } = await supabase
-    .from<FoodieUser>("users")
-    .select("*")
-    .eq("id", userData?.id || "")
-    .single();
+const getUser = async (userId: string, email: string) => {
+  if (userId !== "") {
+    const { data, error } = await supabase
+      .from<FoodieUser>("users")
+      .select("*")
+      .eq("id", userId)
+      .single();
 
-  if (error) {
-    throw new Error(error.message);
+    if (error) {
+      throw new Error(error.message);
+    }
+    if (!data) {
+      throw new Error("User not found");
+    }
+    return { data, userId: data?.id, email };
   }
-  if (!data) {
-    throw new Error("User not found");
-  }
-  return { data, userId: data?.id, email: userData?.email };
 };
 
 export const useUser = () => {
-  const query = useQuery("foodieUser", () => getUser());
+  const { user, isLoggedIn, setIsLoggedIn } = useUserContext();
+  const query = useQuery(["foodieUser", user, isLoggedIn], () =>
+    getUser(user.userId, user.email)
+  );
 
   return {
     ...query,
     data: query.data?.data,
-    userId: query.data?.userId,
-    email: query.data?.email
+    userId: user.userId,
+    email: user.email,
+    isLoggedIn,
+    setIsLoggedIn
   };
 };

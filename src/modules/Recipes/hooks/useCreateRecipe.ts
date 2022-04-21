@@ -21,7 +21,7 @@ export const useCreateRecipe = () => {
         return await insertRecipe({
           ...values,
           photolink: image?.link,
-          proposaluserid: typeof userId === "string" ? userId : "",
+          proposaluserid: userId,
           uuid: uuidCode
         });
       } else {

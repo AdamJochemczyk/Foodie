@@ -68,7 +68,7 @@ export const useSearchRecipes = (queryParams: SearchRecipes) => {
   const { userId } = useUser();
   const { error, data, isLoading, isFetching } = useQuery(
     ["getRecipes", queryParams],
-    () => fetchRecipes({ ...queryParams, userId: userId || "" })
+    () => fetchRecipes({ ...queryParams, userId })
   );
 
   if (error) {

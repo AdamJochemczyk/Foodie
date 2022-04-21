@@ -53,7 +53,7 @@ export const useCreateProduct = () => {
         const image = await uploadImage(`products/${uuidCode}`, values.photo);
         return await insertProductWithPhoto({
           ...values,
-          userid: typeof userId === "string" ? userId : "",
+          userid: userId,
           photolink: image?.link,
           uuid: uuidCode
         });

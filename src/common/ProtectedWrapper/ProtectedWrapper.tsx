@@ -11,12 +11,13 @@ export const ProtectedWrapper = ({
   adminRestrictions?: boolean;
 }) => {
   const router = useRouter();
-  const { data, isLoading, isError } = useUser();
+  const { data, isLoading, isError, setIsLoggedIn } = useUser();
   useEffect(() => {
-    if (isError) {
-      router.push("/auth/sign-in");
+    if ((!isLoading && !data) || isError) {
+      router.push("/");
     }
     if (!isLoading && adminRestrictions && data?.usertype !== "admin") {
+      setIsLoggedIn(false);
       router.push("/auth/sign-in");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

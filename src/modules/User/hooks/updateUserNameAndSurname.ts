@@ -4,15 +4,7 @@ import { useMutation } from "react-query";
 import { UserData } from "../types";
 import { toast } from "react-toastify";
 
-const updateUser = async (
-  { name, surname }: UserData,
-  userId: string | undefined
-) => {
-  const errorMsg = "Cannot update user name and surname";
-  if (typeof userId === "undefined") {
-    throw new Error(errorMsg);
-  }
-
+const updateUser = async ({ name, surname }: UserData, userId: string) => {
   const { error } = await supabase
     .from("users")
     .update({
@@ -21,7 +13,7 @@ const updateUser = async (
     })
     .eq("id", userId);
   if (error) {
-    return new Error(errorMsg);
+    return new Error("Cannot update user name and surname");
   }
 };
 

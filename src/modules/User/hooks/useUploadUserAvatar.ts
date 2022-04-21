@@ -16,7 +16,7 @@ export const useUploadUserAvatar = (mode: "add" | "edit") => {
       if (image?.link) {
         return await updateUserAvatar({
           imageLink: image.link,
-          userId: userId || ""
+          userId
         });
       }
     },

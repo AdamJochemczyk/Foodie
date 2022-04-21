@@ -12,7 +12,7 @@ export const useRemoveFavRecipe = () => {
       const { data, error } = await supabase
         .from("favusersrecipes")
         .delete()
-        .eq("userid", userId || "")
+        .eq("userid", userId)
         .eq("recipeid", recipeId);
       if (error) {
         throw error;

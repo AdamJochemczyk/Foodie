@@ -51,7 +51,7 @@ export const useSearchProducts = (queryParams: SearchProducts) => {
   const { userId } = useUser();
   const { error, data, isLoading, isFetching } = useQuery(
     ["getProducts", queryParams],
-    () => fetchProducts({ ...queryParams, userId: userId || "" })
+    () => fetchProducts({ ...queryParams, userId })
   );
 
   if (error) {
