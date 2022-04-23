@@ -12,102 +12,6 @@ export interface paths {
       };
     };
   };
-  "/dishinmeal": {
-    get: {
-      parameters: {
-        query: {
-          id?: parameters["rowFilter.dishinmeal.id"];
-          mealid?: parameters["rowFilter.dishinmeal.mealid"];
-          recipeid?: parameters["rowFilter.dishinmeal.recipeid"];
-          isEaten?: parameters["rowFilter.dishinmeal.isEaten"];
-          /** Filtering Columns */
-          select?: parameters["select"];
-          /** Ordering */
-          order?: parameters["order"];
-          /** Limiting and Pagination */
-          offset?: parameters["offset"];
-          /** Limiting and Pagination */
-          limit?: parameters["limit"];
-        };
-        header: {
-          /** Limiting and Pagination */
-          Range?: parameters["range"];
-          /** Limiting and Pagination */
-          "Range-Unit"?: parameters["rangeUnit"];
-          /** Preference */
-          Prefer?: parameters["preferCount"];
-        };
-      };
-      responses: {
-        /** OK */
-        200: {
-          schema: definitions["dishinmeal"][];
-        };
-        /** Partial Content */
-        206: unknown;
-      };
-    };
-    post: {
-      parameters: {
-        body: {
-          /** dishinmeal */
-          dishinmeal?: definitions["dishinmeal"];
-        };
-        query: {
-          /** Filtering Columns */
-          select?: parameters["select"];
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferReturn"];
-        };
-      };
-      responses: {
-        /** Created */
-        201: unknown;
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          id?: parameters["rowFilter.dishinmeal.id"];
-          mealid?: parameters["rowFilter.dishinmeal.mealid"];
-          recipeid?: parameters["rowFilter.dishinmeal.recipeid"];
-          isEaten?: parameters["rowFilter.dishinmeal.isEaten"];
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferReturn"];
-        };
-      };
-      responses: {
-        /** No Content */
-        204: never;
-      };
-    };
-    patch: {
-      parameters: {
-        query: {
-          id?: parameters["rowFilter.dishinmeal.id"];
-          mealid?: parameters["rowFilter.dishinmeal.mealid"];
-          recipeid?: parameters["rowFilter.dishinmeal.recipeid"];
-          isEaten?: parameters["rowFilter.dishinmeal.isEaten"];
-        };
-        body: {
-          /** dishinmeal */
-          dishinmeal?: definitions["dishinmeal"];
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferReturn"];
-        };
-      };
-      responses: {
-        /** No Content */
-        204: never;
-      };
-    };
-  };
   "/favusersproducts": {
     get: {
       parameters: {
@@ -399,7 +303,7 @@ export interface paths {
         query: {
           id?: parameters["rowFilter.productinmeal.id"];
           mealid?: parameters["rowFilter.productinmeal.mealid"];
-          prodcutid?: parameters["rowFilter.productinmeal.prodcutid"];
+          productid?: parameters["rowFilter.productinmeal.productid"];
           isEaten?: parameters["rowFilter.productinmeal.isEaten"];
           /** Filtering Columns */
           select?: parameters["select"];
@@ -453,7 +357,7 @@ export interface paths {
         query: {
           id?: parameters["rowFilter.productinmeal.id"];
           mealid?: parameters["rowFilter.productinmeal.mealid"];
-          prodcutid?: parameters["rowFilter.productinmeal.prodcutid"];
+          productid?: parameters["rowFilter.productinmeal.productid"];
           isEaten?: parameters["rowFilter.productinmeal.isEaten"];
         };
         header: {
@@ -471,7 +375,7 @@ export interface paths {
         query: {
           id?: parameters["rowFilter.productinmeal.id"];
           mealid?: parameters["rowFilter.productinmeal.mealid"];
-          prodcutid?: parameters["rowFilter.productinmeal.prodcutid"];
+          productid?: parameters["rowFilter.productinmeal.productid"];
           isEaten?: parameters["rowFilter.productinmeal.isEaten"];
         };
         body: {
@@ -585,6 +489,102 @@ export interface paths {
         body: {
           /** products */
           products?: definitions["products"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** No Content */
+        204: never;
+      };
+    };
+  };
+  "/recipeinmeal": {
+    get: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.recipeinmeal.id"];
+          mealid?: parameters["rowFilter.recipeinmeal.mealid"];
+          recipeid?: parameters["rowFilter.recipeinmeal.recipeid"];
+          isEaten?: parameters["rowFilter.recipeinmeal.isEaten"];
+          /** Filtering Columns */
+          select?: parameters["select"];
+          /** Ordering */
+          order?: parameters["order"];
+          /** Limiting and Pagination */
+          offset?: parameters["offset"];
+          /** Limiting and Pagination */
+          limit?: parameters["limit"];
+        };
+        header: {
+          /** Limiting and Pagination */
+          Range?: parameters["range"];
+          /** Limiting and Pagination */
+          "Range-Unit"?: parameters["rangeUnit"];
+          /** Preference */
+          Prefer?: parameters["preferCount"];
+        };
+      };
+      responses: {
+        /** OK */
+        200: {
+          schema: definitions["recipeinmeal"][];
+        };
+        /** Partial Content */
+        206: unknown;
+      };
+    };
+    post: {
+      parameters: {
+        body: {
+          /** recipeinmeal */
+          recipeinmeal?: definitions["recipeinmeal"];
+        };
+        query: {
+          /** Filtering Columns */
+          select?: parameters["select"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** Created */
+        201: unknown;
+      };
+    };
+    delete: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.recipeinmeal.id"];
+          mealid?: parameters["rowFilter.recipeinmeal.mealid"];
+          recipeid?: parameters["rowFilter.recipeinmeal.recipeid"];
+          isEaten?: parameters["rowFilter.recipeinmeal.isEaten"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** No Content */
+        204: never;
+      };
+    };
+    patch: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.recipeinmeal.id"];
+          mealid?: parameters["rowFilter.recipeinmeal.mealid"];
+          recipeid?: parameters["rowFilter.recipeinmeal.recipeid"];
+          isEaten?: parameters["rowFilter.recipeinmeal.isEaten"];
+        };
+        body: {
+          /** recipeinmeal */
+          recipeinmeal?: definitions["recipeinmeal"];
         };
         header: {
           /** Preference */
@@ -915,29 +915,6 @@ export interface paths {
 }
 
 export interface definitions {
-  dishinmeal: {
-    /**
-     * Format: uuid
-     * @description Note:
-     * This is a Primary Key.<pk/>
-     * @default extensions.uuid_generate_v4()
-     */
-    id: string;
-    /**
-     * Format: uuid
-     * @description Note:
-     * This is a Foreign Key to `usermeal.id`.<fk table='usermeal' column='id'/>
-     */
-    mealid: string;
-    /**
-     * Format: uuid
-     * @description Note:
-     * This is a Foreign Key to `recipes.recipeid`.<fk table='recipes' column='recipeid'/>
-     */
-    recipeid: string;
-    /** Format: boolean */
-    isEaten: boolean;
-  };
   favusersproducts: {
     /**
      * Format: uuid
@@ -1039,7 +1016,7 @@ export interface definitions {
      * @description Note:
      * This is a Foreign Key to `products.productid`.<fk table='products' column='productid'/>
      */
-    prodcutid: string;
+    productid: string;
     /** Format: boolean */
     isEaten: boolean;
   };
@@ -1087,6 +1064,29 @@ export interface definitions {
     proposaluserid: string;
     /** Format: uuid */
     imgCode?: string;
+  };
+  recipeinmeal: {
+    /**
+     * Format: uuid
+     * @description Note:
+     * This is a Primary Key.<pk/>
+     * @default extensions.uuid_generate_v4()
+     */
+    id: string;
+    /**
+     * Format: uuid
+     * @description Note:
+     * This is a Foreign Key to `usermeal.id`.<fk table='usermeal' column='id'/>
+     */
+    mealid: string;
+    /**
+     * Format: uuid
+     * @description Note:
+     * This is a Foreign Key to `recipes.recipeid`.<fk table='recipes' column='recipeid'/>
+     */
+    recipeid: string;
+    /** Format: boolean */
+    isEaten: boolean;
   };
   recipes: {
     /**
@@ -1149,12 +1149,7 @@ export interface definitions {
      * Format: public.meal_name
      * @enum {string}
      */
-    mealname:
-      | "breakfast"
-      | "second breakfast"
-      | "lunch"
-      | "afternoon tea"
-      | "dinner";
+    mealname: "breakfast" | "supper" | "lunch" | "afternoon tea" | "dinner";
   };
   users: {
     /**
@@ -1211,16 +1206,6 @@ export interface parameters {
   offset: string;
   /** @description Limiting and Pagination */
   limit: string;
-  /** @description dishinmeal */
-  "body.dishinmeal": definitions["dishinmeal"];
-  /** Format: uuid */
-  "rowFilter.dishinmeal.id": string;
-  /** Format: uuid */
-  "rowFilter.dishinmeal.mealid": string;
-  /** Format: uuid */
-  "rowFilter.dishinmeal.recipeid": string;
-  /** Format: boolean */
-  "rowFilter.dishinmeal.isEaten": string;
   /** @description favusersproducts */
   "body.favusersproducts": definitions["favusersproducts"];
   /** Format: uuid */
@@ -1256,7 +1241,7 @@ export interface parameters {
   /** Format: uuid */
   "rowFilter.productinmeal.mealid": string;
   /** Format: uuid */
-  "rowFilter.productinmeal.prodcutid": string;
+  "rowFilter.productinmeal.productid": string;
   /** Format: boolean */
   "rowFilter.productinmeal.isEaten": string;
   /** @description products */
@@ -1277,6 +1262,16 @@ export interface parameters {
   "rowFilter.products.proposaluserid": string;
   /** Format: uuid */
   "rowFilter.products.imgCode": string;
+  /** @description recipeinmeal */
+  "body.recipeinmeal": definitions["recipeinmeal"];
+  /** Format: uuid */
+  "rowFilter.recipeinmeal.id": string;
+  /** Format: uuid */
+  "rowFilter.recipeinmeal.mealid": string;
+  /** Format: uuid */
+  "rowFilter.recipeinmeal.recipeid": string;
+  /** Format: boolean */
+  "rowFilter.recipeinmeal.isEaten": string;
   /** @description recipes */
   "body.recipes": definitions["recipes"];
   /** Format: uuid */

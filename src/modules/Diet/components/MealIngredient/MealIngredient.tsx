@@ -4,6 +4,7 @@ import { FavButton } from "src/common/FavButton/FavButton";
 import { upperFirst } from "src/common/utils/stringMethods";
 import { useRemoveFavProduct } from "src/modules/Products/hooks";
 import { useRemoveFavRecipe } from "src/modules/Recipes/hooks";
+import { useRemoveIngredientFromMeal } from "../../hooks/useRemoveMealIngredient";
 import styles from "./MealIngredient.module.css";
 
 export const MealIngredient = ({
@@ -15,13 +16,14 @@ export const MealIngredient = ({
 }: {
   link: string;
   name: string;
-  type: "recipe" | "product";
+  type: string;
   manageAction: "fav" | "meal";
   id: string;
 }) => {
   // now ingredients in meal plan show only fav products
   const removeFavProduct = useRemoveFavProduct();
   const removeFavRecipe = useRemoveFavRecipe();
+  const removeIngredientFromMeal = useRemoveIngredientFromMeal();
 
   const handleRemoveFromFav = () => {
     if (type === "product") {
@@ -36,7 +38,7 @@ export const MealIngredient = ({
   };
 
   const handleRemoveMealIngredient = () => {
-    //TODO: remove single ingredient
+    removeIngredientFromMeal.mutate({ id, type });
   };
 
   return (

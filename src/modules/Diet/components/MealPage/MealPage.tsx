@@ -6,9 +6,15 @@ import { PossibleRecipesInMeal } from "./PossibleMealIngredients/PossibleRecipes
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { MealPlan } from "./PossibleMealIngredients/MealPlan";
 import styles from "./List.module.css";
-import { MealPlanState, reorderMealPlan } from "./reorderMealPlan";
+import { MealPlanState, useReorderMealPlan } from "./reorderMealPlan";
+import { useGetMealIngredients } from "../../hooks/useGetMealIngredients";
+import { useRouter } from "next/router";
 
 export const MealPage = () => {
+  const router = useRouter();
+  const { meal_id } = router.query;
+  const { reorderMealPlan } = useReorderMealPlan(meal_id as string);
+
   const {
     entities: products,
     isLoading: productsLoading,
@@ -34,23 +40,30 @@ export const MealPage = () => {
     isFavorites: true,
     verified: true
   });
-  //TODO: hook to get meal by id
-  //TODO: get meal data from BE
+
+  const {
+    meal,
+    isLoading: ingredientsLoading,
+    isFetching: ingredientsFetching
+  } = useGetMealIngredients({
+    mealId: meal_id as string
+  });
+
   const [mealPlan, setMealPlan] = useState<MealPlanState>({
     products: products,
-    meal: [],
+    meal: meal,
     recipes: recipes
   });
 
   useEffect(() => {
     setMealPlan({
       products: products,
-      meal: [],
+      meal: meal,
       recipes: recipes
     });
     // fetching means refresh UI after remove from fav recipe or product
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [productsFetching, recipesFetching]);
+  }, [productsFetching, recipesFetching, ingredientsFetching]);
 
   const onDragEnd = ({ source, destination }: DropResult) => {
     //dropped outside list
@@ -58,7 +71,7 @@ export const MealPage = () => {
     setMealPlan(reorderMealPlan(mealPlan, source, destination));
   };
 
-  if (productsLoading || recipesLoading) {
+  if (productsLoading || recipesLoading || ingredientsLoading) {
     return <p>Please wait...</p>;
   }
 

@@ -5,18 +5,21 @@ import { DietSearch } from "../../types";
 import { useFormik } from "formik";
 import { add } from "date-fns";
 import { dietDatesValidation } from "../../validation";
-import { DietCards } from "./DietDay";
+import { DietCards } from "./DietCards";
 import { getDatesBetweenDates } from "src/common/utils/getDatesBetweenDates";
+import { useGetUserMeals } from "../../hooks/useGetUserMeal";
 
 export const DietPage = () => {
   const [queryParams, setQueryParams] = useState<DietSearch>({
     startDate: new Date().toISOString().split("T")[0],
-    endDate: add(new Date(), { days: 7 }).toISOString().split("T")[0]
+    endDate: add(new Date(), { days: 3 }).toISOString().split("T")[0]
   });
 
   const [days, setDays] = useState<string[]>(
     getDatesBetweenDates(queryParams.startDate, queryParams.endDate)
   );
+
+  const { entities, isLoading } = useGetUserMeals(days);
 
   const formik = useFormik<DietSearch>({
     initialValues: queryParams,
@@ -30,9 +33,9 @@ export const DietPage = () => {
   return (
     <CardsAndFormLayout
       title="Diet"
-      isLoading={false}
-      form={<SearchDietForm formik={formik} isLoading={false} />}
-      cards={<DietCards days={days} />}
+      isLoading={isLoading}
+      form={<SearchDietForm formik={formik} isLoading={isLoading} />}
+      cards={<DietCards days={days} entities={entities} />}
     />
   );
 };

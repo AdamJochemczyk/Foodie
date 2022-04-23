@@ -11,14 +11,17 @@ export const MealPlan = ({
   entities: {
     id: string;
     name: string;
-    type: "product" | "recipe";
-    photoLink: string;
+    type: string;
   }[];
   listId: string;
 }) => {
   if (isLoading) {
     return <p>Loading...</p>;
   }
+  {
+    /*TODO: get photoLink for id */
+  }
+  const photoLink = "";
   return (
     <Droppable
       droppableId={listId}
@@ -30,7 +33,7 @@ export const MealPlan = ({
           <p className={styles.title}>Meal</p>
           <div className={styles.list} ref={dropProvided.innerRef}>
             {entities.length > 0 ? (
-              entities.map(({ id, name, type, photoLink }) => (
+              entities.map(({ id, name, type }) => (
                 <MealIngredient
                   key={id}
                   id={id}

@@ -1,29 +1,52 @@
 import React from "react";
 import { LinkWrapper } from "src/common/LinkWrapper/LinkWrapper";
 import { Button } from "src/common/Button/Button";
-//import { useGetMealIngredients } from "../../hooks/useGetMealIngredients";
+import { useGetMealIngredients } from "../../hooks/useGetMealIngredients";
 import styles from "./Meal.module.css";
+import { usePlanMeal } from "../../hooks/usePlanMeal";
+import { MealIngredients } from "./MealIngredients";
 
-//TODO: remove it
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const Meal = ({ day, name }: { day: string; name: string }) => {
-  //TODO: meal management
-  //const { entities, isLoading } = useGetMealIngredients({ day, name });
+export const Meal = ({
+  id,
+  day,
+  name
+}: {
+  id: string;
+  day: string;
+  name: string;
+}) => {
+  const createMealSlot = usePlanMeal();
+  const { meal, isLoading } = useGetMealIngredients({ mealId: id });
+
   return (
     <div className={styles.box}>
       <p className={styles.mealName}>{name}</p>
       <div className={styles.items}>
-        {/* <MealIngredients isLoading={isLoading} entities={entities} /> */}
+        {!isLoading ? (
+          <MealIngredients ingredients={meal} />
+        ) : (
+          <p>Loading...</p>
+        )}
       </div>
       <div className={styles.link}>
-        <LinkWrapper link={`/diet/123`}>
+        {id !== "" ? (
+          <LinkWrapper link={`/diet/${id}`}>
+            <Button
+              text={"Edit meal"}
+              size="small"
+              color="orange"
+              variant="secondary"
+            />
+          </LinkWrapper>
+        ) : (
           <Button
-            text={"Edit meal"}
+            text={"Plan meal"}
             size="small"
             color="orange"
             variant="primary"
+            onClick={() => createMealSlot.mutate({ meal: name, day })}
           />
-        </LinkWrapper>
+        )}
       </div>
     </div>
   );

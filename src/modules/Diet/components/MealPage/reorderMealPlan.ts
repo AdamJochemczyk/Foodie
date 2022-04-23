@@ -1,5 +1,6 @@
 import { definitions } from "./../../../../../types/supabase";
 import { DraggableLocation } from "react-beautiful-dnd";
+import { useAddIngredientToMeal } from "../../hooks/useAddIngredientToMealPlan";
 
 //TODO: try to remove AS in this code
 //probably the worst typed of my career xD
@@ -10,8 +11,8 @@ export interface MealPlanState {
   meal: {
     id: string;
     name: string;
-    type: "product" | "recipe";
-    photoLink: string;
+    type: string;
+    photoLink?: string;
   }[];
   recipes: Array<definitions["recipes"]>;
 }
@@ -41,70 +42,80 @@ const isIngredientAlreadyPlanned = (
   );
 };
 
-export const reorderMealPlan = (
-  mealIngredients: MealPlanState,
-  source: DraggableLocation, //& { droppableId: keyof MealPlanState },
-  destination: DraggableLocation //& { droppableId: keyof MealPlanState }
-) => {
-  const sourceList = [
-    ...mealIngredients[source.droppableId as keyof MealPlanState]
-  ];
-  const destinationList = [
-    ...mealIngredients[destination.droppableId as keyof MealPlanState]
-  ];
-  const element = sourceList[source.index];
+export const useReorderMealPlan = (mealId: string) => {
+  const addToMeal = useAddIngredientToMeal({ mealId });
 
-  //moving in same list
-  if (source.droppableId === destination.droppableId) {
-    const reordered = reorder(
-      sourceList as oneOfMealPlanList,
-      source.index,
-      destination.index
-    );
-    return { ...mealIngredients, [source.droppableId]: reordered };
-  }
+  const reorderMealPlan = (
+    mealIngredients: MealPlanState,
+    source: DraggableLocation, //& { droppableId: keyof MealPlanState },
+    destination: DraggableLocation //& { droppableId: keyof MealPlanState }
+  ) => {
+    const sourceList = [
+      ...mealIngredients[source.droppableId as keyof MealPlanState]
+    ];
+    const destinationList = [
+      ...mealIngredients[destination.droppableId as keyof MealPlanState]
+    ];
+    const element = sourceList[source.index];
 
-  //moving to different list
-  //insert into next only if destination is a meal list
-  if (destination.droppableId === "meal") {
-    const canMoveFromProduct =
-      source.droppableId === "products" &&
-      "name" in element &&
-      "productid" in element &&
-      !isIngredientAlreadyPlanned(
-        destinationList as MealPlanState["meal"],
-        element.productid
+    //moving in same list
+    if (source.droppableId === destination.droppableId) {
+      const reordered = reorder(
+        sourceList as oneOfMealPlanList,
+        source.index,
+        destination.index
       );
-    const canMoveFromRecipe =
-      source.droppableId === "recipes" &&
-      "title" in element &&
-      "recipeid" in element &&
-      !isIngredientAlreadyPlanned(
-        destinationList as MealPlanState["meal"],
-        element.recipeid
-      );
-    if (canMoveFromProduct) {
-      destinationList.splice(destination.index, 0, {
-        id: element.productid,
-        type: "product",
-        name: element.name,
-        photoLink: element.photolink
-      });
+      return { ...mealIngredients, [source.droppableId]: reordered };
     }
 
-    if (canMoveFromRecipe) {
-      destinationList.splice(destination.index, 0, {
-        id: element.recipeid,
-        type: "recipe",
-        name: element.title,
-        photoLink: element.photolink
-      });
-    }
-  }
+    //moving to different list
+    //insert into next only if destination is a meal list
+    if (destination.droppableId === "meal") {
+      const canMoveFromProduct =
+        source.droppableId === "products" &&
+        "name" in element &&
+        "productid" in element &&
+        !isIngredientAlreadyPlanned(
+          destinationList as MealPlanState["meal"],
+          element.productid
+        );
+      const canMoveFromRecipe =
+        source.droppableId === "recipes" &&
+        "title" in element &&
+        "recipeid" in element &&
+        !isIngredientAlreadyPlanned(
+          destinationList as MealPlanState["meal"],
+          element.recipeid
+        );
+      if (canMoveFromProduct) {
+        addToMeal.mutate({ id: element.productid, type: "product" });
 
-  return {
-    ...mealIngredients,
-    [source.droppableId]: sourceList,
-    [destination.droppableId]: destinationList
+        destinationList.splice(destination.index, 0, {
+          id: element.productid,
+          type: "product",
+          name: element.name,
+          photoLink: element.photolink
+        });
+      }
+
+      if (canMoveFromRecipe) {
+        addToMeal.mutate({ id: element.recipeid, type: "recipe" });
+
+        destinationList.splice(destination.index, 0, {
+          id: element.recipeid,
+          type: "recipe",
+          name: element.title,
+          photoLink: element.photolink
+        });
+      }
+    }
+
+    return {
+      ...mealIngredients,
+      [source.droppableId]: sourceList,
+      [destination.droppableId]: destinationList
+    };
   };
+
+  return { reorderMealPlan };
 };
