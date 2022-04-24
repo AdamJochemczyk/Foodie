@@ -4,6 +4,7 @@ import { FavButton } from "src/common/FavButton/FavButton";
 import { upperFirst } from "src/common/utils/stringMethods";
 import { useRemoveFavProduct } from "src/modules/Products/hooks";
 import { useRemoveFavRecipe } from "src/modules/Recipes/hooks";
+import { useGetPhotoLinkForId } from "../../hooks/useGetPhotoLinkForId";
 import { useRemoveIngredientFromMeal } from "../../hooks/useRemoveMealIngredient";
 import styles from "./MealIngredient.module.css";
 
@@ -14,7 +15,7 @@ export const MealIngredient = ({
   manageAction,
   id
 }: {
-  link: string;
+  link?: string;
   name: string;
   type: string;
   manageAction: "fav" | "meal";
@@ -24,6 +25,8 @@ export const MealIngredient = ({
   const removeFavProduct = useRemoveFavProduct();
   const removeFavRecipe = useRemoveFavRecipe();
   const removeIngredientFromMeal = useRemoveIngredientFromMeal();
+
+  const { photoLink, isLoading } = useGetPhotoLinkForId({ id, type });
 
   const handleRemoveFromFav = () => {
     if (type === "product") {
@@ -43,13 +46,24 @@ export const MealIngredient = ({
 
   return (
     <div className={styles.card}>
-      <Image
-        src={link}
-        width={250}
-        height={manageAction === "fav" ? 200 : 150}
-        alt={name}
-        objectFit="cover"
-      />
+      {manageAction === "fav" && link ? (
+        <Image
+          src={link}
+          width={250}
+          height={200}
+          alt={name}
+          objectFit="cover"
+        />
+      ) : null}
+      {manageAction === "meal" && !isLoading && photoLink ? (
+        <Image
+          src={photoLink}
+          width={250}
+          height={150}
+          alt={name}
+          objectFit="cover"
+        />
+      ) : null}
       <p className={styles.title}>{upperFirst(name)}</p>
       {manageAction === "fav" ? (
         <FavButton

@@ -18,10 +18,6 @@ export const MealPlan = ({
   if (isLoading) {
     return <p>Loading...</p>;
   }
-  {
-    /*TODO: get photoLink for id */
-  }
-  const photoLink = "";
   return (
     <Droppable
       droppableId={listId}
@@ -37,7 +33,6 @@ export const MealPlan = ({
                 <MealIngredient
                   key={id}
                   id={id}
-                  link={photoLink}
                   name={name}
                   type={type}
                   manageAction="meal"
