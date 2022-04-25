@@ -16,7 +16,7 @@ const getProduct = async (productId: string) => {
 };
 
 export const useGetProduct = (productId: string | string[] | undefined) => {
-  const { error, data, isLoading } = useQuery(["getProduct"], () => {
+  const { error, data, isLoading } = useQuery(["getProduct", productId], () => {
     if (typeof productId === "string") {
       return getProduct(productId);
     }
