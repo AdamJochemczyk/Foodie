@@ -29,6 +29,6 @@ export const useGetShoppingList = (queryParams: DietSearch) => {
 
   return {
     isLoading,
-    entities: data
+    entities: data || []
   };
 };

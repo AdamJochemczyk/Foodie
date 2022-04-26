@@ -14,15 +14,6 @@
 .addIngredientBtn {
   align-self: center;
 }
-.table {
-  width: 100%;
-  margin: 2rem 0;
-  padding: 1.5rem;
-}
-.table td {
-  padding: 1rem;
-  border: solid 1px black;
-}
 .imgBox {
   display: flex;
   justify-content: center;

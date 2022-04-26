@@ -1,5 +1,5 @@
 import { FormikProvider, useFormik } from "formik";
-import React from "react";
+import React, { useMemo } from "react";
 import { Button } from "src/common/Button/Button";
 import {
   FormInput,
@@ -23,6 +23,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { RecipeForm } from "../../types";
+import { Table } from "src/common/Table/Table";
 
 interface RecipeAddEditProperties {
   mode: "add" | "edit";
@@ -118,6 +119,11 @@ export const RecipeAddEdit = ({
     }
   };
 
+  const tableHeaders = useMemo(
+    () => ["Product", "Count", "Entity", "Action"],
+    []
+  );
+
   return (
     <section className={styles.content}>
       <div className={styles.from}>
@@ -165,39 +171,25 @@ export const RecipeAddEdit = ({
                 />
               </div>
             </div>
-            {!ingredientsLoading ? (
-              <table className={styles.table}>
-                <thead>
-                  <tr>
-                    <td>Product</td>
-                    <td>Count</td>
-                    <td>Entity</td>
-                    <td>Action</td>
+            <Table isLoading={ingredientsLoading} headers={tableHeaders}>
+              {formik.values.recipeproducts.map(
+                ({ product, count, measuretype }) => (
+                  <tr key={product.value}>
+                    <td>{product.label}</td>
+                    <td>{count}</td>
+                    <td>{measuretype}</td>
+                    <td>
+                      <Button
+                        variant="danger"
+                        text="Remove product"
+                        size="small"
+                        onClick={() => handleRemoveProduct(product.value)}
+                      />
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {formik.values.recipeproducts.map(
-                    ({ product, count, measuretype }) => (
-                      <tr key={product.value}>
-                        <td>{product.label}</td>
-                        <td>{count}</td>
-                        <td>{measuretype}</td>
-                        <td>
-                          <Button
-                            variant="danger"
-                            text="Remove product"
-                            size="small"
-                            onClick={() => handleRemoveProduct(product.value)}
-                          />
-                        </td>
-                      </tr>
-                    )
-                  )}
-                </tbody>
-              </table>
-            ) : (
-              <p>Loading...</p>
-            )}
+                )
+              )}
+            </Table>
             <Button
               text={mode === "add" ? "Add recipe" : "Edit"}
               onClick={formik.handleSubmit}

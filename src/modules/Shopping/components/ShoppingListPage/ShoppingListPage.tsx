@@ -6,14 +6,14 @@ import { DietSearch } from "src/modules/Diet/types";
 import { dietDatesValidation } from "src/modules/Diet/validation";
 import { useGetShoppingList } from "../../hooks/useGetShoppingList";
 import { GenerateListForm } from "./GenerateListForm";
+import { ProductsList } from "./ProductsList";
 
 export const ShoppingListPage = () => {
   const [queryParams, setQueryParams] = useState<DietSearch>({
     startDate: new Date().toISOString().split("T")[0],
     endDate: add(new Date(), { days: 5 }).toISOString().split("T")[0]
   });
-  //TODO: get entities from hook
-  const { isLoading } = useGetShoppingList(queryParams);
+  const { entities, isLoading } = useGetShoppingList(queryParams);
 
   const formik = useFormik<DietSearch>({
     initialValues: queryParams,
@@ -28,7 +28,7 @@ export const ShoppingListPage = () => {
       title="Shopping list"
       isLoading={isLoading}
       form={<GenerateListForm formik={formik} isLoading={isLoading} />}
-      cards={<div>LIST</div>}
+      cards={<ProductsList entities={entities} isLoading={isLoading} />}
     />
   );
 };
