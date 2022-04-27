@@ -1,6 +1,7 @@
 import { useField, useFormikContext } from "formik";
 import React, { useState } from "react";
 import Select from "react-select";
+import { upperFirst } from "src/common/utils/stringMethods";
 import { debounce } from "../../utils/debounce";
 import styles from "../FormInputs.module.css";
 import { FormLabel } from "../FormLabel/FormLabel";
@@ -46,7 +47,9 @@ export const SearchWithAPI = ({
         onChange={handleChange}
         isLoading={isLoading}
       />
-      <p className={styles.errorData}>{meta.error}</p>
+      <p className={styles.errorData}>
+        {meta.error && `${upperFirst(name)} is required`}
+      </p>
     </div>
   );
 };
