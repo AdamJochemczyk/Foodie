@@ -2,6 +2,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { Button } from "src/common/Button/Button";
 import { ChangeBestBeforeDateFrom } from "./ChangeBestBeforeDateFrom";
+import { ChangeProductCount } from "./ChangeProductCount";
 import styles from "./ProductInFridge.module.css";
 
 export const ProductInFridgeCard = ({
@@ -52,7 +53,7 @@ export const ProductInFridgeCard = ({
             />
           )}
           {changeCount ? (
-            <p>form2</p>
+            <ChangeProductCount id={id} count={count} />
           ) : (
             <Button
               text="Change count"
