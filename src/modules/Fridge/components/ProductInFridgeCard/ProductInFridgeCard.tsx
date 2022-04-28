@@ -1,15 +1,16 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import { Button } from "src/common/Button/Button";
+import { ChangeBestBeforeDateFrom } from "./ChangeBestBeforeDateFrom";
 import styles from "./ProductInFridge.module.css";
 
 export const ProductInFridgeCard = ({
   bestbeforedate,
   count,
   name,
-  photolink
-}: //id
-{
+  photolink,
+  id
+}: {
   bestbeforedate: string;
   count: number;
   name: string;
@@ -21,9 +22,11 @@ export const ProductInFridgeCard = ({
 
   const handleChangeDateClick = () => {
     setChangeDate(prev => !prev);
+    setChangeCount(false);
   };
   const handleChangeCountClick = () => {
     setChangeCount(prev => !prev);
+    setChangeDate(false);
   };
   return (
     <div className={styles.card}>
@@ -38,19 +41,25 @@ export const ProductInFridgeCard = ({
           Best before date: <span>{bestbeforedate}</span>
         </p>
         <div className={styles.buttons}>
-          {changeDate && <p>from1</p>}
-          {changeCount && <p>form2</p>}
-          <Button
-            text="Change best before date"
-            onClick={handleChangeDateClick}
-            color="orange"
-            size="small"
-          />
-          <Button
-            text="Change count"
-            onClick={handleChangeCountClick}
-            size="small"
-          />
+          {changeDate ? (
+            <ChangeBestBeforeDateFrom id={id} bestbeforedate={bestbeforedate} />
+          ) : (
+            <Button
+              text="Change best before date"
+              onClick={handleChangeDateClick}
+              color="orange"
+              size="small"
+            />
+          )}
+          {changeCount ? (
+            <p>form2</p>
+          ) : (
+            <Button
+              text="Change count"
+              onClick={handleChangeCountClick}
+              size="small"
+            />
+          )}
         </div>
       </div>
     </div>
