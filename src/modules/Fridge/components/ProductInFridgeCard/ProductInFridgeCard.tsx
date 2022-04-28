@@ -1,9 +1,11 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Button } from "src/common/Button/Button";
 import { ChangeBestBeforeDateFrom } from "./ChangeBestBeforeDateFrom";
 import { ChangeProductCount } from "./ChangeProductCount";
 import styles from "./ProductInFridge.module.css";
+import { differenceInDays } from "date-fns";
+import clsx from "clsx";
 
 export const ProductInFridgeCard = ({
   bestbeforedate,
@@ -21,6 +23,11 @@ export const ProductInFridgeCard = ({
   const [changeDate, setChangeDate] = useState(false);
   const [changeCount, setChangeCount] = useState(false);
 
+  const daysLeft = useMemo(
+    () => differenceInDays(new Date(bestbeforedate), new Date()),
+    []
+  );
+
   const handleChangeDateClick = () => {
     setChangeDate(prev => !prev);
     setChangeCount(false);
@@ -28,6 +35,10 @@ export const ProductInFridgeCard = ({
   const handleChangeCountClick = () => {
     setChangeCount(prev => !prev);
     setChangeDate(false);
+  };
+  const handleResetButtons = () => {
+    setChangeDate(false);
+    setChangeCount(false);
   };
   return (
     <div className={styles.card}>
@@ -38,7 +49,12 @@ export const ProductInFridgeCard = ({
         <p className={styles.name}>
           {count} x {name}
         </p>
-        <p className={styles.date}>
+        <p
+          className={clsx(styles.date, {
+            [styles.orange]: daysLeft > 0 && daysLeft < 3,
+            [styles.red]: daysLeft <= 0
+          })}
+        >
           Best before date: <span>{bestbeforedate}</span>
         </p>
         <div className={styles.buttons}>
@@ -46,8 +62,8 @@ export const ProductInFridgeCard = ({
             <ChangeBestBeforeDateFrom id={id} bestbeforedate={bestbeforedate} />
           ) : (
             <Button
-              text="Change best before date"
-              onClick={handleChangeDateClick}
+              text={changeCount ? "Close" : "Change best before date"}
+              onClick={changeCount ? handleResetButtons : handleChangeDateClick}
               color="orange"
               size="small"
             />
@@ -56,8 +72,8 @@ export const ProductInFridgeCard = ({
             <ChangeProductCount id={id} count={count} />
           ) : (
             <Button
-              text="Change count"
-              onClick={handleChangeCountClick}
+              text={changeDate ? "Close" : "Change count"}
+              onClick={changeDate ? handleResetButtons : handleChangeCountClick}
               size="small"
             />
           )}
