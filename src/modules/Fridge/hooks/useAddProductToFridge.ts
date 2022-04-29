@@ -40,6 +40,7 @@ export const useAddProductToFridge = () => {
       onSuccess: () => {
         toast.success("You added product to fridge");
         queryClient.invalidateQueries(["productsInFridge"]);
+        queryClient.invalidateQueries(["getShoppingList"]);
       },
       onError: (err: Error) => {
         toast.error(err.message);

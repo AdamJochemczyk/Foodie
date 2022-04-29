@@ -297,6 +297,105 @@ export interface paths {
       };
     };
   };
+  "/productinfridge": {
+    get: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.productinfridge.id"];
+          userid?: parameters["rowFilter.productinfridge.userid"];
+          productid?: parameters["rowFilter.productinfridge.productid"];
+          count?: parameters["rowFilter.productinfridge.count"];
+          bestbeforedate?: parameters["rowFilter.productinfridge.bestbeforedate"];
+          /** Filtering Columns */
+          select?: parameters["select"];
+          /** Ordering */
+          order?: parameters["order"];
+          /** Limiting and Pagination */
+          offset?: parameters["offset"];
+          /** Limiting and Pagination */
+          limit?: parameters["limit"];
+        };
+        header: {
+          /** Limiting and Pagination */
+          Range?: parameters["range"];
+          /** Limiting and Pagination */
+          "Range-Unit"?: parameters["rangeUnit"];
+          /** Preference */
+          Prefer?: parameters["preferCount"];
+        };
+      };
+      responses: {
+        /** OK */
+        200: {
+          schema: definitions["productinfridge"][];
+        };
+        /** Partial Content */
+        206: unknown;
+      };
+    };
+    post: {
+      parameters: {
+        body: {
+          /** productinfridge */
+          productinfridge?: definitions["productinfridge"];
+        };
+        query: {
+          /** Filtering Columns */
+          select?: parameters["select"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** Created */
+        201: unknown;
+      };
+    };
+    delete: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.productinfridge.id"];
+          userid?: parameters["rowFilter.productinfridge.userid"];
+          productid?: parameters["rowFilter.productinfridge.productid"];
+          count?: parameters["rowFilter.productinfridge.count"];
+          bestbeforedate?: parameters["rowFilter.productinfridge.bestbeforedate"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** No Content */
+        204: never;
+      };
+    };
+    patch: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.productinfridge.id"];
+          userid?: parameters["rowFilter.productinfridge.userid"];
+          productid?: parameters["rowFilter.productinfridge.productid"];
+          count?: parameters["rowFilter.productinfridge.count"];
+          bestbeforedate?: parameters["rowFilter.productinfridge.bestbeforedate"];
+        };
+        body: {
+          /** productinfridge */
+          productinfridge?: definitions["productinfridge"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** No Content */
+        204: never;
+      };
+    };
+  };
   "/productinmeal": {
     get: {
       parameters: {
@@ -304,7 +403,7 @@ export interface paths {
           id?: parameters["rowFilter.productinmeal.id"];
           mealid?: parameters["rowFilter.productinmeal.mealid"];
           productid?: parameters["rowFilter.productinmeal.productid"];
-          isEaten?: parameters["rowFilter.productinmeal.isEaten"];
+          iseaten?: parameters["rowFilter.productinmeal.iseaten"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -358,7 +457,7 @@ export interface paths {
           id?: parameters["rowFilter.productinmeal.id"];
           mealid?: parameters["rowFilter.productinmeal.mealid"];
           productid?: parameters["rowFilter.productinmeal.productid"];
-          isEaten?: parameters["rowFilter.productinmeal.isEaten"];
+          iseaten?: parameters["rowFilter.productinmeal.iseaten"];
         };
         header: {
           /** Preference */
@@ -376,7 +475,7 @@ export interface paths {
           id?: parameters["rowFilter.productinmeal.id"];
           mealid?: parameters["rowFilter.productinmeal.mealid"];
           productid?: parameters["rowFilter.productinmeal.productid"];
-          isEaten?: parameters["rowFilter.productinmeal.isEaten"];
+          iseaten?: parameters["rowFilter.productinmeal.iseaten"];
         };
         body: {
           /** productinmeal */
@@ -508,7 +607,7 @@ export interface paths {
           id?: parameters["rowFilter.recipeinmeal.id"];
           mealid?: parameters["rowFilter.recipeinmeal.mealid"];
           recipeid?: parameters["rowFilter.recipeinmeal.recipeid"];
-          isEaten?: parameters["rowFilter.recipeinmeal.isEaten"];
+          iseaten?: parameters["rowFilter.recipeinmeal.iseaten"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -562,7 +661,7 @@ export interface paths {
           id?: parameters["rowFilter.recipeinmeal.id"];
           mealid?: parameters["rowFilter.recipeinmeal.mealid"];
           recipeid?: parameters["rowFilter.recipeinmeal.recipeid"];
-          isEaten?: parameters["rowFilter.recipeinmeal.isEaten"];
+          iseaten?: parameters["rowFilter.recipeinmeal.iseaten"];
         };
         header: {
           /** Preference */
@@ -580,7 +679,7 @@ export interface paths {
           id?: parameters["rowFilter.recipeinmeal.id"];
           mealid?: parameters["rowFilter.recipeinmeal.mealid"];
           recipeid?: parameters["rowFilter.recipeinmeal.recipeid"];
-          isEaten?: parameters["rowFilter.recipeinmeal.isEaten"];
+          iseaten?: parameters["rowFilter.recipeinmeal.iseaten"];
         };
         body: {
           /** recipeinmeal */
@@ -997,6 +1096,37 @@ export interface definitions {
       | "liter"
       | "piece";
   };
+  productinfridge: {
+    /**
+     * Format: uuid
+     * @description Note:
+     * This is a Primary Key.<pk/>
+     * @default extensions.uuid_generate_v4()
+     */
+    id: string;
+    /**
+     * Format: uuid
+     * @description Note:
+     * This is a Foreign Key to `users.id`.<fk table='users' column='id'/>
+     */
+    userid: string;
+    /**
+     * Format: uuid
+     * @description Note:
+     * This is a Foreign Key to `products.productid`.<fk table='products' column='productid'/>
+     */
+    productid: string;
+    /**
+     * Format: numeric
+     * @default 1
+     */
+    count?: number;
+    /**
+     * Format: date
+     * @default CURRENT_DATE
+     */
+    bestbeforedate: string;
+  };
   productinmeal: {
     /**
      * Format: uuid
@@ -1018,7 +1148,7 @@ export interface definitions {
      */
     productid: string;
     /** Format: boolean */
-    isEaten: boolean;
+    iseaten: boolean;
   };
   products: {
     /**
@@ -1086,7 +1216,7 @@ export interface definitions {
      */
     recipeid: string;
     /** Format: boolean */
-    isEaten: boolean;
+    iseaten: boolean;
   };
   recipes: {
     /**
@@ -1234,6 +1364,18 @@ export interface parameters {
   "rowFilter.ingredients.productcount": string;
   /** Format: public.measure_type */
   "rowFilter.ingredients.measure": string;
+  /** @description productinfridge */
+  "body.productinfridge": definitions["productinfridge"];
+  /** Format: uuid */
+  "rowFilter.productinfridge.id": string;
+  /** Format: uuid */
+  "rowFilter.productinfridge.userid": string;
+  /** Format: uuid */
+  "rowFilter.productinfridge.productid": string;
+  /** Format: numeric */
+  "rowFilter.productinfridge.count": string;
+  /** Format: date */
+  "rowFilter.productinfridge.bestbeforedate": string;
   /** @description productinmeal */
   "body.productinmeal": definitions["productinmeal"];
   /** Format: uuid */
@@ -1243,7 +1385,7 @@ export interface parameters {
   /** Format: uuid */
   "rowFilter.productinmeal.productid": string;
   /** Format: boolean */
-  "rowFilter.productinmeal.isEaten": string;
+  "rowFilter.productinmeal.iseaten": string;
   /** @description products */
   "body.products": definitions["products"];
   /** Format: uuid */
@@ -1271,7 +1413,7 @@ export interface parameters {
   /** Format: uuid */
   "rowFilter.recipeinmeal.recipeid": string;
   /** Format: boolean */
-  "rowFilter.recipeinmeal.isEaten": string;
+  "rowFilter.recipeinmeal.iseaten": string;
   /** @description recipes */
   "body.recipes": definitions["recipes"];
   /** Format: uuid */
