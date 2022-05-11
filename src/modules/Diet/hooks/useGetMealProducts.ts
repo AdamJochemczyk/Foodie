@@ -20,7 +20,8 @@ export const getMealProducts = async (mealId: string) => {
     data?.map(product => ({
       id: product.productid,
       name: product.products.name,
-      type: "product"
+      isEaten: product.iseaten,
+      type: "product" as const
     })) || []
   );
 };

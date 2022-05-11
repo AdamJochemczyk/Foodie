@@ -21,7 +21,8 @@ export const getMealRecipes = async (mealId: string) => {
     data?.map(recipe => ({
       id: recipe.recipeid,
       name: recipe.recipes.title,
-      type: "recipe"
+      type: "recipe" as const,
+      isEaten: recipe.iseaten
     })) || []
   );
 };
