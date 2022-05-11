@@ -25,5 +25,5 @@ export const ProtectedWrapper = ({
   if (isLoading) {
     return <SplashScreen />;
   }
-  return <div>{children}</div>;
+  return <>{children}</>;
 };

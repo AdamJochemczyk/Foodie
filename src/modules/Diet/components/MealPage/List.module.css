@@ -7,8 +7,7 @@
 }
 .list {
   display: flex;
-  height: 300px;
-  max-height: 300px;
+  min-height: 300px;
   border: dotted;
   padding: 1rem;
   overflow-x: auto;
