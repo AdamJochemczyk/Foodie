@@ -41,7 +41,7 @@ export const RecipeCard = ({
         </p>
         <div className={styles.params}>
           <Tag name={recipetype} />
-          <Tag name={`${mealportions} porcji`} />
+          <Tag name={`${mealportions} portions`} />
           <Tag name={`${kcalperportion} kcal`} />
           {isvegan ? <Tag name="wegańskie" /> : null}
           {isvegetarian ? <Tag name="wegetariańskie" /> : null}

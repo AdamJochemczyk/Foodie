@@ -32,7 +32,11 @@ const insertProductWithPhoto = async ({
       imgCode: uuid
     });
     if (error) {
-      throw new Error("Error on product upload");
+      throw new Error(
+        error.details.includes("gtincode")
+          ? "Gtin code already exists"
+          : "Error on product upload"
+      );
     }
     return data;
   } else {

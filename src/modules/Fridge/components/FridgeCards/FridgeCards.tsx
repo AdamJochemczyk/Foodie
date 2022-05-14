@@ -33,7 +33,11 @@ export const FridgeCards = () => {
         {entities
           .filter(product => {
             if (formik.values.search !== "") {
-              return product.name.indexOf(formik.values.search) !== -1;
+              return (
+                product.name
+                  .toLowerCase()
+                  .indexOf(formik.values.search.toLowerCase()) !== -1
+              );
             }
             return product;
           })

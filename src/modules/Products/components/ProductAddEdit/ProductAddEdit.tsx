@@ -50,6 +50,7 @@ export const ProductAddEdit = ({
               label={mode === "add" ? "product photo" : "change product photo"}
             />
             <Button
+              type="submit"
               text={mode === "add" ? "Add" : "Edit"}
               onClick={formik.handleSubmit}
               isLoading={
