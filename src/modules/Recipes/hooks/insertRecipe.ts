@@ -29,15 +29,13 @@ export const insertRecipe = async ({
   });
   const recipeId = data ? (data[0].recipeid as string) : "";
   if (recipeId && recipeproducts.length > 0) {
-    const promises = recipeproducts.map(ingredient => {
-      insertRecipeIngredient({
-        productid: ingredient.product.value,
-        recipeid: recipeId,
-        productcount: ingredient.count,
-        measure: ingredient.measuretype
-      });
-    });
-    await Promise.all(promises);
+    const recipeIngredients = recipeproducts.map(ingredient => ({
+      productid: ingredient.product.value,
+      recipeid: recipeId,
+      productcount: ingredient.count,
+      measure: ingredient.measuretype
+    }));
+    await insertRecipeIngredient(recipeIngredients);
   }
   if (error) {
     throw error;

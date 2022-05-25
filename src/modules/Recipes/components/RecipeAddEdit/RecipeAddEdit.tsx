@@ -98,12 +98,14 @@ export const RecipeAddEdit = ({
     if (product && count > 0 && measuretype && mode === "edit") {
       const { recipe_id } = router.query;
       if (typeof recipe_id === "string") {
-        insertRecipeIngredient({
-          productid: product.value,
-          recipeid: recipe_id,
-          productcount: count,
-          measure: measuretype
-        });
+        insertRecipeIngredient([
+          {
+            productid: product.value,
+            recipeid: recipe_id,
+            productcount: count,
+            measure: measuretype
+          }
+        ]);
       }
     }
   };

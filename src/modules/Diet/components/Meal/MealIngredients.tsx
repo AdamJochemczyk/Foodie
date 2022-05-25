@@ -33,7 +33,7 @@ export const MealIngredients = ({ mealId }: { mealId: string }) => {
             checked={isEaten}
             onChange={e => handleCheckboxChange(e, id, type)}
           />
-          <span>{name}</span>
+          <span style={{ marginLeft: "1rem" }}>{name}</span>
         </div>
       ))}
     </div>
