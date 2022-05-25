@@ -16,7 +16,7 @@ const getMealIngredients = async ({ mealId }: { mealId: string }) => {
 export const useGetMealIngredients = ({ mealId }: { mealId: string }) => {
   const { error, data, isLoading, isFetching } = useQuery(
     ["getMealIngredients", mealId],
-    () => getMealIngredients({ mealId: mealId })
+    () => getMealIngredients({ mealId })
   );
   if (error) {
     toast.error(error as string);

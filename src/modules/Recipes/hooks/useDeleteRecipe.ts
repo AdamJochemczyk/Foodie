@@ -3,20 +3,22 @@ import { removeImage } from "src/utils/removeImage";
 import { supabase } from "src/utils/supabaseClient";
 import { useMutation, useQueryClient } from "react-query";
 import { useRouter } from "next/router";
-import { useRemoveIngredient } from "./useRemoveIngredient";
+import { useRemoveIngredients } from "./useRemoveIngredients";
 import { DeleteRecipe } from "../types";
 
 export const useDeleteRecipe = () => {
   const router = useRouter();
   const queryClient = useQueryClient();
-  const removeIngredient = useRemoveIngredient();
+  const removeIngredients = useRemoveIngredients();
 
   return useMutation(
     async ({ id, title, ingredients }: DeleteRecipe) => {
-      const promises = ingredients.map(({ id }) => removeIngredient.mutate(id));
-      await Promise.all(promises).catch(() =>
-        toast.error("Cannot remove ingredients")
-      );
+      const ingredientIds = ingredients.map(({ id }) => id);
+      try {
+        await removeIngredients.mutate(ingredientIds);
+      } catch (error) {
+        toast.error("Cannot remove ingredients");
+      }
       const { data, error } = await supabase
         .from("recipes")
         .delete()

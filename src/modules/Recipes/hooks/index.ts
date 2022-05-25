@@ -1,6 +1,6 @@
 export { useUpdateRecipe } from "./useUpdateRecipe";
 export { useSearchRecipes } from "./useSearchRecipes";
-export { useRemoveIngredient } from "./useRemoveIngredient";
+export { useRemoveIngredients } from "./useRemoveIngredients";
 export { useRemoveFavRecipe } from "./useRemoveFromFavRecipe";
 export { useGetRecipeById } from "src/modules/Recipes/hooks/useGetRecipeById";
 export { useFindIngredients } from "src/modules/Recipes/hooks/useFindIngredients";

@@ -14,7 +14,7 @@ import { addRecipeValidation, recipeValidation } from "src/common/validation";
 import { useFindProductByName } from "src/modules/Products/hooks/useFindProductByName";
 import {
   useCreateRecipe,
-  useRemoveIngredient,
+  useRemoveIngredients,
   insertRecipeIngredient,
   useUpdateRecipe
 } from "../../hooks";
@@ -53,7 +53,7 @@ export const RecipeAddEdit = ({
   ingredientsLoading = false
 }: RecipeAddEditProperties) => {
   const addRecipeMutation = useCreateRecipe();
-  const removeIngredient = useRemoveIngredient();
+  const removeIngredients = useRemoveIngredients();
   const updateRecipeMutation = useUpdateRecipe();
   const router = useRouter();
 
@@ -117,7 +117,7 @@ export const RecipeAddEdit = ({
     );
     formik.setFieldValue("recipeproducts", filteredProducts);
     if (mode === "edit") {
-      removeIngredient.mutate(id);
+      removeIngredients.mutate([id]);
     }
   };
 
