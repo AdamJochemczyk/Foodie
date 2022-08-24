@@ -17,11 +17,9 @@ export default function Signin() {
   const [rememberedEmail, setRememberedEmail] = useState("");
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      setRememberedEmail(localStorage.getItem("loginEmail") || "");
-      if (rememberedEmail) {
-        setRememberMe(true);
-      }
+    setRememberedEmail(localStorage.getItem("loginEmail") || "");
+    if (rememberedEmail) {
+      setRememberMe(true);
     }
   }, [rememberedEmail]);
 
@@ -34,12 +32,10 @@ export default function Signin() {
     }),
     onSubmit: values => {
       loginMutation.mutate(values);
-      if (typeof window !== "undefined") {
-        if (rememberMe) {
-          localStorage.setItem("loginEmail", values.email);
-        } else {
-          localStorage.removeItem("loginEmail");
-        }
+      if (rememberMe) {
+        localStorage.setItem("loginEmail", values.email);
+      } else {
+        localStorage.removeItem("loginEmail");
       }
     }
   });
